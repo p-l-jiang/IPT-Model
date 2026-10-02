@@ -14,7 +14,7 @@ description: >
 paths:
   processed: data/processed
   statcan_cache: data/raw/statcan          # downloaded StatCan tables (git-ignored)
-  icio_file: data/raw/icio/ICIO2025_{year}.csv
+  icio_file: data/raw/icio/{year}.csv
   fx_file: data/raw/fx/FXUSDCAD.csv
   census_da: data/raw/census/2021_da_extract.csv
   distances: data/processed/distances_2021.csv
@@ -64,7 +64,7 @@ solver:
   max_iter: 100           # Newton steps
 
 migration:
-  elasticity: 0           # 0 = no interprovincial migration; 1.5 in the 2019 paper's labour-mobility variant
+  elasticity: 1.5         # 0 = no interprovincial migration; 1.5 in the 2019 paper's labour-mobility variant
 
 aggregation:
   canada_weights: income  # income | real_income | population
