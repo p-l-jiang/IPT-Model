@@ -1,0 +1,27 @@
+# Internal-trade experiments (Tables 5 and 6 of the Tombe papers).
+scenarios:
+  - id: t5c4_internal_costs_minus10
+    label: "10% lower interprovincial trade costs (all sectors)"
+    shocks:
+      - {type: iceberg, importers: domestic, exporters: domestic, sectors: all, factor: 0.9}
+
+  - id: t5c5_external_costs_minus10
+    label: "10% lower trade costs between Canada and foreign regions (all sectors)"
+    shocks:
+      - {type: iceberg, importers: domestic, exporters: foreign, sectors: all, factor: 0.9}
+      - {type: iceberg, importers: foreign, exporters: domestic, sectors: all, factor: 0.9}
+
+  - id: t6c1_measured_costs_minus10
+    label: "10% lower measured interprovincial trade costs (goods)"
+    shocks:
+      - {type: measured_cost_reduction, sectors: goods, share: 0.10}
+
+  - id: t6c4_eliminate_nongeographic
+    label: "Eliminate non-geographic interprovincial trade barriers (goods)"
+    shocks:
+      - {type: eliminate_nongeographic, sectors: goods}
+
+  - id: t6c5_eliminate_measured
+    label: "Eliminate all measured interprovincial trade costs (goods)"
+    shocks:
+      - {type: eliminate_measured, sectors: goods}

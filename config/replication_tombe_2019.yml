@@ -1,0 +1,27 @@
+# Setup of the 2019 paper as implemented in the legacy "Tombe 2019 Replication"
+# script: 13 provinces and territories, the United States and the rest of the
+# world, 37 sectors, 2015 data, Caliendo-Parro-based trade elasticities and
+# interprovincial labour mobility with elasticity 1.5.
+#
+# The unified pipeline's corrections apply, so results differ from the legacy
+# script. Requires data/raw/icio/ICIO2025_2015.csv (OECD ICIO 2025 edition,
+# not included in the repository; download from https://oe.cd/icio).
+extends: default.yml
+name: tombe_2019
+description: >
+  2019 paper setup: 13 provinces and territories + US + rest of the world, 37 sectors, 2015,
+  labour mobility.
+
+years:
+  target: 2015
+  panel: [2010, 2015]
+
+trade_elasticities:
+  method: fixed
+  file: config/parameters/theta_tombe_2019_replication.csv
+
+migration:
+  elasticity: 1.5
+
+scenarios:
+  - config/scenarios/internal_trade.yml

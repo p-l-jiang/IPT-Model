@@ -1,0 +1,30 @@
+# Tables 5 and 6 of Albrecht and Tombe (2016). As in the legacy replication
+# script, the Table 6 experiments apply to all sectors with measured trade
+# costs (utilities, construction and public administration are excluded from
+# the trade-cost estimation).
+scenarios:
+  - id: t5c4_internal_costs_minus10
+    label: "10% lower interprovincial trade costs"
+    shocks:
+      - {type: iceberg, importers: domestic, exporters: domestic, sectors: all, factor: 0.9}
+
+  - id: t5c5_external_costs_minus10
+    label: "10% lower trade costs between Canada and the rest of the world"
+    shocks:
+      - {type: iceberg, importers: domestic, exporters: foreign, sectors: all, factor: 0.9}
+      - {type: iceberg, importers: foreign, exporters: domestic, sectors: all, factor: 0.9}
+
+  - id: t6c1_measured_costs_minus10
+    label: "10% lower measured interprovincial trade costs"
+    shocks:
+      - {type: measured_cost_reduction, sectors: all, share: 0.10}
+
+  - id: t6c4_eliminate_nongeographic
+    label: "Eliminate non-geographic interprovincial trade barriers"
+    shocks:
+      - {type: eliminate_nongeographic, sectors: all}
+
+  - id: t6c5_eliminate_measured
+    label: "Eliminate all measured interprovincial trade costs"
+    shocks:
+      - {type: eliminate_measured, sectors: all}

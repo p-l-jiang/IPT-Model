@@ -1,0 +1,25 @@
+region_a,region_b,link,note
+NL,QC,land,Labrador-Quebec border
+NS,NB,land,Chignecto Isthmus
+PE,NB,fixed_link,Confederation Bridge (since 1997)
+NB,QC,land,
+QC,ON,land,
+ON,MB,land,
+MB,SK,land,
+MB,NU,land,60th parallel / Hudson Bay coast
+SK,AB,land,
+SK,NT,land,60th parallel
+AB,BC,land,
+AB,NT,land,60th parallel
+BC,YT,land,60th parallel
+BC,NT,land,60th parallel
+YT,NT,land,
+NT,NU,land,
+YT,USA,land,Yukon-Alaska border
+BC,USA,land,
+AB,USA,land,
+SK,USA,land,
+MB,USA,land,
+ON,USA,land,
+QC,USA,land,
+NB,USA,land,

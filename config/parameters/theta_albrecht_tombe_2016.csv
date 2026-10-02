@@ -1,0 +1,23 @@
+sector_id,theta,source
+AGM,11.92,Value used in the legacy Albrecht and Tombe (2016) replication script
+FTX,4.56,Value used in the legacy Albrecht and Tombe (2016) replication script
+WOD,10.83,Value used in the legacy Albrecht and Tombe (2016) replication script
+PAP,9.07,Value used in the legacy Albrecht and Tombe (2016) replication script
+CHR,19.16,Value used in the legacy Albrecht and Tombe (2016) replication script
+MET,5.02,Value used in the legacy Albrecht and Tombe (2016) replication script
+EQV,6.19,Value used in the legacy Albrecht and Tombe (2016) replication script
+MNE,5.00,Value used in the legacy Albrecht and Tombe (2016) replication script
+UTL,5.00,Services value
+CON,5.00,Services value
+WRT,5.00,Services value
+HOT,5.00,Services value
+TRP,5.00,Services value
+COM,5.00,Services value
+FIN,5.00,Services value
+REA,5.00,Services value
+SFT,5.00,Services value
+OBS,5.00,Services value
+PAD,5.00,Services value
+EDU,5.00,Services value
+HTH,5.00,Services value
+OSV,5.00,Services value

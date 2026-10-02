@@ -1,0 +1,13 @@
+# Variant: tariffs modelled as ad valorem taxes whose revenue is rebated to the
+# importing region (Caliendo and Parro, 2015), applied to goods sectors only,
+# instead of iceberg costs on all sectors.
+extends: default.yml
+name: variant_tariffs_ad_valorem
+description: >
+  Main 2022 model; US tariff scenarios with ad valorem tariffs on goods and tariff revenue.
+
+scenario_defaults:
+  tariff_treatment: ad_valorem
+
+scenarios:
+  - config/scenarios/us_tariffs_goods.yml

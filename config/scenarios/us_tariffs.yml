@@ -1,0 +1,37 @@
+# US tariff experiments.
+#
+# By default tariffs are treated as iceberg costs on all sectors, as in the
+# legacy code (scenario_defaults$tariff_treatment = iceberg). Set
+# `tariff_treatment: ad_valorem` (here or in the configuration) to model them
+# as ad valorem taxes whose revenue is rebated to the importing region, and
+# use `sectors: goods` to exclude services.
+scenarios:
+  - id: us_tariff_35
+    label: "US 35% tariff on imports from all partners"
+    shocks:
+      - {type: tariff, importers: ["USA"], exporters: all, sectors: all, rate: 0.35}
+
+  - id: us_tariff_50_metals
+    label: "US 50% tariff on metals imports from all partners"
+    shocks:
+      - {type: tariff, importers: ["USA"], exporters: all, sectors: [BMT, FMT], rate: 0.50}
+
+  - id: us_tariff_35_canada_retaliates
+    label: "US 35% tariff; Canada retaliates with 35% on US imports"
+    shocks:
+      - {type: tariff, importers: ["USA"], exporters: all, sectors: all, rate: 0.35}
+      - {type: tariff, importers: domestic, exporters: ["USA"], sectors: all, rate: 0.35}
+
+  - id: us_tariff_35_canada_row_retaliate
+    label: "US 35% tariff; Canada and the rest of the world retaliate with 35%"
+    shocks:
+      - {type: tariff, importers: ["USA"], exporters: all, sectors: all, rate: 0.35}
+      - {type: tariff, importers: domestic, exporters: ["USA"], sectors: all, rate: 0.35}
+      - {type: tariff, importers: ["ROW"], exporters: ["USA"], sectors: all, rate: 0.35}
+
+  - id: us_tariff_50_metals_canada_row_retaliate
+    label: "US 50% metals tariff; Canada and the rest of the world retaliate on US metals"
+    shocks:
+      - {type: tariff, importers: ["USA"], exporters: all, sectors: [BMT, FMT], rate: 0.50}
+      - {type: tariff, importers: domestic, exporters: ["USA"], sectors: [BMT, FMT], rate: 0.50}
+      - {type: tariff, importers: ["ROW"], exporters: ["USA"], sectors: [BMT, FMT], rate: 0.50}

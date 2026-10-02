@@ -1,0 +1,14 @@
+# Sensitivity: the main 2022 model with the Caliendo-Parro-based trade
+# elasticities used in the Tombe papers (services 5) instead of the BoC rule.
+# The BoC rule gives very high elasticities in petroleum (71.1), metal ores (45)
+# and energy extraction (20.2), which produce near-corner responses to
+# uniform trade-cost changes; this configuration shows how much the results
+# depend on that choice.
+extends: default.yml
+name: sensitivity_theta_papers
+description: >
+  Main 2022 model with the trade elasticities of the Tombe papers.
+
+trade_elasticities:
+  method: fixed
+  file: config/parameters/theta_tombe_2019_replication.csv
