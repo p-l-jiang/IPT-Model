@@ -1,0 +1,48 @@
+# Setup of Albrecht and Tombe (2016, Canadian Journal of Economics 49(1)):
+# 10 provinces and the rest of the world (US included), 22 sectors, 2010 data,
+# Canada-wide input-output coefficients, Caliendo-Parro-based trade
+# elasticities and 2006-census normalized distances.
+#
+# The unified pipeline's corrections apply (consistent baseline, product-level
+# concordance, etc.), so results differ from the legacy replication script.
+# Requires data/raw/icio/ICIO2025_2010.csv (OECD ICIO 2025 edition, not
+# included in the repository; download from https://oe.cd/icio).
+extends: default.yml
+name: albrecht_tombe_2016
+description: >
+  Albrecht and Tombe (2016) setup: 10 provinces + rest of the world, 22 sectors, 2010.
+
+paths:
+  # Normalized distances from the legacy 2006-census script (the raw census file
+  # is not in the repository; see data/README.md). census_da is null so that
+  # scripts/02_build_distances.R does not rebuild (or overwrite) this file.
+  census_da: null
+  distances: data/raw/legacy/2006_dist_mat_legacy.csv
+
+years:
+  target: 2010
+  panel: [2010, 2010]
+
+regions:
+  domestic: ["NL", "PE", "NS", "NB", "QC", "ON", "MB", "SK", "AB", "BC"]
+  foreign: ["ROW"]
+
+sectors:
+  scheme: config/concordances/sector_scheme_albrecht_tombe_2016.csv
+
+io_parameters:
+  source: national
+
+trade_elasticities:
+  method: fixed
+  file: config/parameters/theta_albrecht_tombe_2016.csv
+
+trade_costs:
+  regressors: [log_dist]
+  exclude_sectors: [UTL, CON, PAD]
+
+aggregation:
+  canada_weights: real_income
+
+scenarios:
+  - config/scenarios/albrecht_tombe_2016.yml

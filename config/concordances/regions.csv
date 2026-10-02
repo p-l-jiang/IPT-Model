@@ -1,0 +1,16 @@
+region_id,region_name,statcan_name,pruid,type
+NL,Newfoundland and Labrador,Newfoundland and Labrador,10,province
+PE,Prince Edward Island,Prince Edward Island,11,province
+NS,Nova Scotia,Nova Scotia,12,province
+NB,New Brunswick,New Brunswick,13,province
+QC,Quebec,Quebec,24,province
+ON,Ontario,Ontario,35,province
+MB,Manitoba,Manitoba,46,province
+SK,Saskatchewan,Saskatchewan,47,province
+AB,Alberta,Alberta,48,province
+BC,British Columbia,British Columbia,59,province
+YT,Yukon,Yukon,60,territory
+NT,Northwest Territories,Northwest Territories,61,territory
+NU,Nunavut,Nunavut,62,territory
+USA,United States,,,foreign
+ROW,Rest of the world,,,foreign

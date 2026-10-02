@@ -1,0 +1,33 @@
+# US tariff experiments restricted to goods sectors. Used by
+# config/variant_tariffs_ad_valorem.yml, which treats tariffs as ad valorem
+# taxes with revenue rebated to the importing region.
+scenarios:
+  - id: us_tariff_35_goods
+    label: "US 35% tariff on goods imports from all partners"
+    shocks:
+      - {type: tariff, importers: ["USA"], exporters: all, sectors: goods, rate: 0.35}
+
+  - id: us_tariff_50_metals
+    label: "US 50% tariff on metals imports from all partners"
+    shocks:
+      - {type: tariff, importers: ["USA"], exporters: all, sectors: [BMT, FMT], rate: 0.50}
+
+  - id: us_tariff_35_goods_canada_retaliates
+    label: "US 35% tariff on goods; Canada retaliates with 35% on US goods"
+    shocks:
+      - {type: tariff, importers: ["USA"], exporters: all, sectors: goods, rate: 0.35}
+      - {type: tariff, importers: domestic, exporters: ["USA"], sectors: goods, rate: 0.35}
+
+  - id: us_tariff_35_goods_canada_row_retaliate
+    label: "US 35% tariff on goods; Canada and the rest of the world retaliate on US goods"
+    shocks:
+      - {type: tariff, importers: ["USA"], exporters: all, sectors: goods, rate: 0.35}
+      - {type: tariff, importers: domestic, exporters: ["USA"], sectors: goods, rate: 0.35}
+      - {type: tariff, importers: ["ROW"], exporters: ["USA"], sectors: goods, rate: 0.35}
+
+  - id: us_tariff_50_metals_canada_row_retaliate
+    label: "US 50% metals tariff; Canada and the rest of the world retaliate on US metals"
+    shocks:
+      - {type: tariff, importers: ["USA"], exporters: all, sectors: [BMT, FMT], rate: 0.50}
+      - {type: tariff, importers: domestic, exporters: ["USA"], sectors: [BMT, FMT], rate: 0.50}
+      - {type: tariff, importers: ["ROW"], exporters: ["USA"], sectors: [BMT, FMT], rate: 0.50}

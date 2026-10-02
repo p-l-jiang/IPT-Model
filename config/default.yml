@@ -1,0 +1,77 @@
+# IPT-Model: main configuration (calibrated to 2022).
+#
+# Multi-sector Eaton-Kortum model with input-output linkages (Caliendo and
+# Parro, 2015) for Canada's 13 provinces and territories, the United States and
+# the rest of the world. Other configurations extend this file and override
+# only what they change (see config/replication_*.yml).
+
+name: default
+description: >
+  13 Canadian provinces and territories, the United States and the rest of the
+  world; 37 ICIO-based sectors; calibrated to 2022 with data-consistent trade
+  imbalances and region-specific input-output structures.
+
+paths:
+  processed: data/processed
+  statcan_cache: data/raw/statcan          # downloaded StatCan tables (git-ignored)
+  icio_file: data/raw/icio/ICIO2025_{year}.csv
+  fx_file: data/raw/fx/FXUSDCAD.csv
+  census_da: data/raw/census/2021_da_extract.csv
+  distances: data/processed/distances_2021.csv
+  output: output/{name}
+
+years:
+  target: 2022            # calibration year (trade flows, SUTs, ICIO, population)
+  panel: [2010, 2022]     # years used to estimate trade costs (detail flows begin in 2010)
+
+regions:
+  domestic: ["NL", "PE", "NS", "NB", "QC", "ON", "MB", "SK", "AB", "BC", "YT", "NT", "NU"]
+  foreign: ["USA", "ROW"] # ["ROW"] merges the United States into the rest of the world
+  # Region codes must be quoted: YAML reads an unquoted ON (Ontario) as TRUE.
+
+sectors:
+  scheme: base37          # or a CSV aggregating the base sectors (see config/concordances/)
+
+statcan:
+  trade_flows_table: "12-10-0101-01"   # interprovincial and international trade flows, detail level
+  us_trade_table: "12-10-0100-01"      # exports and imports by trading partner and industry
+  population_table: "17-10-0005-01"    # population estimates on July 1
+  price_index_table: "18-10-0003-01"   # inter-city indexes of price differentials
+  sut_url: "https://www150.statcan.gc.ca/n1/pub/15-602-x/2017001/csv/15-602-x_csv-scsv_{year}_eng.zip"
+
+io_parameters:
+  source: regional        # regional (provincial SUTs + ICIO) | national (Canada-wide) | global (world average, legacy)
+
+trade_elasticities:
+  method: boc2018_rule
+  source_table: config/parameters/boc2018_trade_elasticities.csv
+  components: config/parameters/theta_components_base37.csv
+  significance_z: 1.96    # use the 2016 estimate when |t| >= 1.96, else the 1993 estimate
+  adjustment: 2.0         # added to every sector (average elasticity of about 10)
+  services_theta: 5.0     # before the adjustment
+
+trade_costs:
+  sample: interprovincial # interprovincial | all (adds international pairs and a border dummy)
+  regressors: [log_dist, adjacent]
+  exclude_sectors: [UTL, CON, PAD]
+  min_observations: 20
+
+calibration:
+  deficits: data          # data (hold observed imbalances fixed) | purge (solve with zero deficits first)
+
+solver:
+  tolerance: 1.0e-10      # sup norm of the equilibrium residuals (relative excess labour demand)
+  max_iter: 100           # Newton steps
+
+migration:
+  elasticity: 0           # 0 = no interprovincial migration; 1.5 in the 2019 paper's labour-mobility variant
+
+aggregation:
+  canada_weights: income  # income | real_income | population
+
+scenario_defaults:
+  tariff_treatment: iceberg   # iceberg (legacy: no tariff revenue) | ad_valorem (Caliendo-Parro, revenue rebated)
+
+scenarios:
+  - config/scenarios/internal_trade.yml
+  - config/scenarios/us_tariffs.yml

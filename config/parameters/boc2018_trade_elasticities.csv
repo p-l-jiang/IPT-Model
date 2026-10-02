@@ -1,0 +1,25 @@
+boc_sector,isic_rev3,theta_2016,se_2016,theta_1993,se_1993
+Other energy,"10, 12, 23",69.1,5.6,51.1,18.1
+Ores,13,43.0,9.4,15.7,2.8
+Pharmacy,2423,29.4,4.4,4.8,1.8
+Oil and gas,11,18.2,2.1,51.1,18.1
+Wood,"02, 20",15.8,1.0,10.8,2.5
+"Machinery, n.e.c.",29,13.0,2.5,1.5,1.8
+Electrical machinery,31,12.3,3.5,10.6,1.4
+Medical and communication,"30, 32, 33",9.8,4.4,7.1,1.7
+Metals (fabricated),28,9.6,2.2,4.3,2.2
+Paper,21,9.1,1.8,9.1,1.7
+Other transportation,"351, 352, 359",8.7,0.6,0.4,1.1
+Printing,22,8.3,2.2,9.1,1.7
+Recyclable,37,7.6,1.4,5.0,0.9
+Metals (intermediate),27,6.2,1.9,8.0,2.5
+Rubber,25,5.0,2.2,1.7,1.4
+Auto,34,4.5,2.3,1.0,0.8
+Aircraft,353,3.5,3.1,0.4,1.1
+Non-metal products,26,3.0,1.4,2.8,1.4
+"Other manufacturing, n.e.c.",36,2.9,1.9,5.0,0.9
+Chemicals,"24 (excl. 2423)",2.2,1.8,4.8,1.8
+Non-metals,14,1.9,1.7,15.7,2.8
+Clothing,17-19,1.7,1.0,5.6,1.1
+Food,15-16,1.5,0.4,2.6,0.6
+Farm,"01, 05",1.1,0.2,8.1,1.9

@@ -1,0 +1,38 @@
+base_sector,sector_id,sector_name,goods
+AGR,AGM,"Agriculture, Mining",TRUE
+MIE,AGM,"Agriculture, Mining",TRUE
+MIN,AGM,"Agriculture, Mining",TRUE
+MIS,AGM,"Agriculture, Mining",TRUE
+FOD,FTX,"Food, Textiles",TRUE
+TEX,FTX,"Food, Textiles",TRUE
+WOD,WOD,Wood,TRUE
+PAP,PAP,Paper,TRUE
+PET,CHR,"Chemicals, Rubber",TRUE
+CHM,CHR,"Chemicals, Rubber",TRUE
+RUB,CHR,"Chemicals, Rubber",TRUE
+NMM,MET,Metals,TRUE
+BMT,MET,Metals,TRUE
+FMT,MET,Metals,TRUE
+ELC,EQV,"Equipment, Vehicles",TRUE
+ELQ,EQV,"Equipment, Vehicles",TRUE
+MAC,EQV,"Equipment, Vehicles",TRUE
+MTV,EQV,"Equipment, Vehicles",TRUE
+OTE,EQV,"Equipment, Vehicles",TRUE
+MFN,MNE,"Manufacturing, n.e.c.",TRUE
+UTL,UTL,Utilities,FALSE
+CON,CON,Construction,FALSE
+TRD,WRT,Wholesale and Retail,FALSE
+ACC,HOT,Hotels and Restaurants,FALSE
+TRN,TRP,Transport,FALSE
+TEL,COM,Communication,FALSE
+FIN,FIN,Finance,FALSE
+REA,REA,Real Estate,FALSE
+ITS,SFT,Software,FALSE
+PRF,OBS,Other Business Services,FALSE
+ADM,OBS,Other Business Services,FALSE
+PAD,PAD,Public Admin.,FALSE
+EDU,EDU,Education,FALSE
+HTH,HTH,Health and Social,FALSE
+PUB,OSV,Other Services,FALSE
+ART,OSV,Other Services,FALSE
+OSV,OSV,Other Services,FALSE

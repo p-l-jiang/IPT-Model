@@ -1,0 +1,38 @@
+sector_id,boc_components,note
+AGR,Farm,"BoC 'Farm' (ISIC Rev.3 01, 05). Forestry (ISIC 02) sits in BoC 'Wood' and is not averaged in."
+MIE,Oil and gas,"Oil and gas dominates Canadian energy extraction; coal (BoC 'Other energy') not averaged in."
+MIN,Ores,"Metal ores; BoC 'Non-metals' (ISIC 14) not averaged in."
+MIS,,Mining support services are a service: services value applies.
+FOD,Food,
+TEX,Clothing,"BoC Table 1 reports the textiles/clothing/leather sector (ISIC 17-19) as 'Clothing'."
+WOD,Wood,
+PAP,Paper;Printing,Simple average of the two components.
+PET,Other energy,"ISIC Rev.3 23 (coke, refined petroleum) is in BoC 'Other energy'."
+CHM,Chemicals,"BoC 'Pharmacy' (ISIC 2423) not averaged in."
+RUB,Rubber,
+NMM,Non-metal products,
+BMT,Metals (intermediate),
+FMT,Metals (fabricated),
+ELC,Medical and communication,"ISIC Rev.3 30, 32, 33 (computers, communication equipment, medical/optical instruments)."
+ELQ,Electrical machinery,ISIC Rev.3 31.
+MAC,"Machinery, n.e.c.",
+MTV,Auto,
+OTE,Other transportation,"BoC 'Aircraft' (ISIC 353) not averaged in."
+MFN,"Other manufacturing, n.e.c.",
+UTL,,Services and non-tradables: services value applies.
+CON,,
+TRD,,
+TRN,,
+ACC,,
+PUB,,
+TEL,,
+ITS,,
+FIN,,
+REA,,
+PRF,,
+ADM,,
+PAD,,
+EDU,,
+HTH,,
+ART,,
+OSV,,

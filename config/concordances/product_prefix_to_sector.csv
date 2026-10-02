@@ -1,0 +1,112 @@
+prefix,sector_id,note
+PRM,EXCLUDE,"Primary inputs and taxes/subsidies on products (not traded products; valuation is at basic prices)"
+GVA,EXCLUDE,Value-added total row in the use table
+TOTAL,EXCLUDE,Aggregate row
+FIC1,EXCLUDE,"Fictive commodities (repair and maintenance, operating supplies, office supplies; 2010-2016 vintages); their inputs are already recorded under the underlying products"
+FIC2,EXCLUDE,"Fictive commodities (advertising, travel; 2010-2016 vintages)"
+FIC3,TRN,Transportation margins (2010-2016 vintages); output of the transportation industries
+ENE113,AGR,Fuel wood (forestry; ISIC 02)
+ENE211,MIE,"Crude oil, bitumen, natural gas and NGLs (ISIC 06)"
+ENE212,MIE,Coal (ISIC 05)
+ENE221,UTL,"Electricity, steam (ISIC 35)"
+ENE324,PET,Refined petroleum products and coke (ISIC 19)
+ENE32,PET,"Solid fuel products n.e.c. (2013-2021); fuel wood and solid fuel products n.e.c. (2022 vintage)"
+IMG111,AGR,Imputed feed produced for own consumption
+IMG112,AGR,Imputed fertilizer (manure) produced for own consumption
+IMS5311,REA,Imputed rental of owner-occupied dwellings (ISIC 68)
+IMS541502,ITS,Own-account software (ISIC 62)
+IMS541702,PRF,Own-account research and development (ISIC 72)
+IMS551001,FIN,Holding company services (imputed; ISIC 64.2)
+IMS551002,PRF,Head office services (imputed; ISIC 70.1)
+MPG111,AGR,Crop products (ISIC 01)
+MPG112,AGR,Animal products (ISIC 01)
+MPG113,AGR,Forestry products (ISIC 02)
+MPG114,AGR,Fish and seafood (ISIC 03)
+MPG2122,MIN,Metal ores (ISIC 07)
+MPG2123,MIN,Non-metallic minerals (ISIC 08)
+MPG23,CON,Construction works (ISIC 41-43)
+MPG311,FOD,Food products (ISIC 10)
+MPG312,FOD,Beverages and tobacco/cannabis products (ISIC 11-12)
+MPG31A,TEX,Textiles (ISIC 13)
+MPG31B,TEX,"Clothing, leather and footwear (ISIC 14-15)"
+MPG321,WOD,Wood products (ISIC 16)
+MPG322,PAP,Paper products (ISIC 17)
+MPG323,PAP,Printed products (ISIC 18)
+MPG324,PET,Other petroleum and coal products (ISIC 19)
+MPG325,CHM,"Chemicals, synthetic rubber and plastics in primary forms, pharmaceuticals (ISIC 20-21)"
+MPG326,RUB,Rubber and plastic products (ISIC 22)
+MPG327,NMM,Non-metallic mineral products (ISIC 23)
+MPG331,BMT,"Basic metals incl. steel pipes and tubes, castings, scrap (ISIC 24)"
+MPG332,FMT,Fabricated metal products (ISIC 25)
+MPG332A02,MAC,Metal valves and pipe fittings (ISIC 28.13)
+MPG332A03,MAC,Ball and roller bearings (ISIC 28.14)
+MPG333,MAC,Machinery and equipment n.e.c. (ISIC 28)
+MPG334,ELC,"Computer, electronic, optical and electromedical products (ISIC 26)"
+MPG335,ELQ,Electrical equipment and household appliances (ISIC 27)
+MPG3361,MTV,"Passenger cars, light-duty trucks, heavy trucks (ISIC 29.1)"
+MPG3362,MTV,"Buses, bodies, trailers (ISIC 29.2)"
+MPG3363,MTV,Motor vehicle parts (ISIC 29.3)
+MPG3364,OTE,Aircraft and parts (ISIC 30.3)
+MPG3365,OTE,Railway rolling stock (ISIC 30.2)
+MPG3366,OTE,Ships and boats (ISIC 30.1)
+MPG3369,OTE,Other transportation equipment (ISIC 30.9)
+MPG337,MFN,Furniture (ISIC 31)
+MPG339,MFN,Other manufactured products incl. medical supplies (ISIC 32)
+MPG511,PUB,"Newspapers, periodicals, books (ISIC 58.1; NAICS 2012 codes, older vintages)"
+MPG513,PUB,"Newspapers, periodicals, books (ISIC 58.1)"
+MPS115,AGR,Support services for agriculture and forestry (ISIC 01.6/02.4)
+MPS11X,AGR,Custom work services for forestry
+MPS21311,MIS,Support services for mining and oil and gas (ISIC 09)
+MPS21A,MIS,Oil and gas and mineral exploration (ISIC 09)
+MPS221,UTL,"Natural gas distribution, water, sewage (ISIC 35-37)"
+MPS23,CON,Repair construction services (ISIC 41-43)
+MPS31A,TEX,Fabric weaving and finishing services (ISIC 13)
+MPS323,PAP,Printing services (ISIC 18)
+MPS3328,FMT,"Coating, engraving, heat treating of metals (ISIC 25.6)"
+MPS3X0,MFN,Custom manufacturing services
+MPS41,TRD,Wholesale margins and commissions (ISIC 46)
+MPS44,TRD,Retail margins (ISIC 47)
+MPS45,TRD,Retail margins (ISIC 47)
+MPS4A0,TRD,"Retail margins, used motor vehicles, retail commissions (ISIC 45/47)"
+MPS48,TRN,Transportation services (ISIC 49-52)
+MPS488002,MFN,Aircraft maintenance and repair services (ISIC 33.15)
+MPS49,TRN,"Postal, courier and warehousing services (ISIC 52-53)"
+MPS511,PUB,"Publishing services incl. software (ISIC 58; NAICS 2012 codes, older vintages)"
+MPS5111,PUB,Licensing fees for published products (ISIC 58)
+MPS512,PUB,Motion picture and sound recording (ISIC 59)
+MPS513,PUB,"Publishing incl. software publishing and advertising space (ISIC 58)"
+MPS515,PUB,"Broadcasting (ISIC 60; NAICS 2012 codes, older vintages)"
+MPS516,PUB,Broadcasting and programme distribution fees (ISIC 60)
+MPS517,TEL,Telecommunications (ISIC 61)
+MPS518,ITS,"Data processing, hosting (ISIC 63.1)"
+MPS519,ITS,Other information services and online content (ISIC 63)
+MPS51AX,PUB,Licensing of rights for literary and artistic works
+MPS52,FIN,Financial and insurance services (ISIC 64-66)
+MPS531,REA,Real estate services (ISIC 68)
+MPS532,ADM,Rental and leasing services (ISIC 77)
+MPS533,ADM,Licensing of non-financial intangible assets (ISIC 77.4)
+MPS541,PRF,"Professional, scientific and technical services (ISIC 69-75)"
+MPS5415,ITS,Computer systems design and custom software (ISIC 62)
+MPS551,FIN,Holding company services (ISIC 64.2)
+MPS561,ADM,Administrative and support services (ISIC 78-82)
+MPS562,UTL,"Waste management and remediation (ISIC 38-39, grouped with utilities as in ICIO sector E)"
+MPS610,EDU,Education services (ISIC 85)
+MPS62,HTH,Health and social services (ISIC 86-88)
+MPS71,ART,"Arts, entertainment, recreation and gambling (ISIC 90-93)"
+MPS72,ACC,Accommodation and food services incl. prepared meals (ISIC 55-56)
+MPS811100,TRD,Motor vehicle maintenance and repair (ISIC 45.2)
+MPS811A,MFN,Repair and maintenance of machinery and equipment (ISIC 33/95)
+MPS812,OSV,Personal services (ISIC 96)
+MPS812A02,TRN,Parking services (ISIC 52.21)
+MPS813,OSV,Membership organisations (ISIC 94)
+MPS814,OSV,Private household services incl. babysitting (ISIC 97)
+MPS9A,OSV,Sales of other services by non-profit institutions serving households (ISIC 94)
+MPS9B,PAD,Sales of other government services (ISIC 84)
+NGS611,EDU,Education services provided by governments (ISIC 85)
+NGS62,HTH,Health and social services provided by governments (ISIC 86-88)
+NGS91,PAD,Defence and other government services (ISIC 84)
+NNP610,EDU,Education services provided by NPISHs (ISIC 85)
+NNP62,HTH,Health and social services provided by NPISHs (ISIC 86-88)
+NNP710,ART,"Arts, entertainment and recreation services provided by NPISHs (ISIC 90-93)"
+NNP813,OSV,"Religious, labour, political and civic organisations (ISIC 94)"
+NNP999,OSV,Other services provided by NPISHs (ISIC 94)

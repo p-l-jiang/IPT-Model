@@ -1,0 +1,38 @@
+sector_id,sector_name,isic_rev4,icio_codes,goods
+AGR,"Agriculture, hunting, forestry, fishing and aquaculture",01-03,A01;A02;A03,TRUE
+MIE,"Mining and quarrying, energy producing products",05-06,B05;B06,TRUE
+MIN,"Mining and quarrying, non-energy producing products",07-08,B07;B08,TRUE
+MIS,Mining support service activities,09,B09,FALSE
+FOD,"Food products, beverages and tobacco",10-12,C10T12,TRUE
+TEX,"Textiles, textile products, leather and footwear",13-15,C13T15,TRUE
+WOD,Wood and products of wood and cork,16,C16,TRUE
+PAP,Paper products and printing,17-18,C17_18,TRUE
+PET,Coke and refined petroleum products,19,C19,TRUE
+CHM,Chemical and pharmaceutical products,20-21,C20;C21,TRUE
+RUB,Rubber and plastics products,22,C22,TRUE
+NMM,Other non-metallic mineral products,23,C23,TRUE
+BMT,Basic metals,24,C24A;C24B,TRUE
+FMT,Fabricated metal products,25,C25,TRUE
+ELC,"Computer, electronic and optical equipment",26,C26,TRUE
+ELQ,Electrical equipment,27,C27,TRUE
+MAC,"Machinery and equipment, nec",28,C28,TRUE
+MTV,"Motor vehicles, trailers and semi-trailers",29,C29,TRUE
+OTE,Other transport equipment,30,C301;C302T309,TRUE
+MFN,Manufacturing nec; repair and installation of machinery and equipment,31-33,C31T33,TRUE
+UTL,Utilities,35-39,D;E,FALSE
+CON,Construction,41-43,F,FALSE
+TRD,Wholesale and retail trade; repair of motor vehicles,45-47,G,FALSE
+TRN,Transportation and related services,49-53,H49;H50;H51;H52;H53,FALSE
+ACC,Accommodation and food service activities,55-56,I,FALSE
+PUB,"Publishing, audiovisual and broadcasting activities",58-60,J58T60,FALSE
+TEL,Telecommunications,61,J61,FALSE
+ITS,IT and other information services,62-63,J62_63,FALSE
+FIN,Financial and insurance activities,64-66,K,FALSE
+REA,Real estate activities,68,L,FALSE
+PRF,"Professional, scientific and technical activities",69-75,M,FALSE
+ADM,Administrative and support services,77-82,N,FALSE
+PAD,Public administration and defence; compulsory social security,84,O,FALSE
+EDU,Education,85,P,FALSE
+HTH,Human health and social work activities,86-88,Q,FALSE
+ART,"Arts, entertainment and recreation",90-93,R,FALSE
+OSV,Other service activities,94-98,S;T,FALSE
