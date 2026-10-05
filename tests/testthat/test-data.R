@@ -87,3 +87,22 @@ test_that("configuration validation rejects YAML booleans in region lists", {
   cfg$regions$domestic[6] <- TRUE
   expect_error(validate_config(cfg), "quote them")
 })
+
+test_that("configuration overrides set nested values parsed as YAML", {
+  cfg <- load_config(file.path(ipt_root(), "config", "default.yml"),
+                     c("migration.elasticity=1.5", 'regions.foreign=["ROW"]', "name=variant",
+                       "trade_costs.regressors=[dist_1000km, adjacent]"))
+  expect_equal(cfg$migration$elasticity, 1.5)
+  expect_equal(cfg$regions$foreign, "ROW")
+  expect_equal(cfg$paths$output, "output/variant")
+  expect_equal(cfg$trade_costs$regressors, c("dist_1000km", "adjacent"))
+  expect_error(set_config_value(cfg, "novalue"), "key.subkey=value")
+})
+
+test_that("uniform trade elasticities distinguish goods and services", {
+  cfg <- load_config(file.path(ipt_root(), "config", "default.yml"),
+                     c("trade_elasticities.method=uniform", "trade_elasticities.goods_theta=6.5",
+                       "trade_elasticities.services_theta=5"))
+  th <- load_trade_elasticities(cfg)
+  expect_equal(unname(th[c("MTV", "FOD", "FIN", "TRD")]), c(6.5, 6.5, 5, 5))
+})

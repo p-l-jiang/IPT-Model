@@ -61,10 +61,30 @@ test_that("adjacency is symmetric and uses known regions", {
   expect_equal(adj(c("PE", "NB", "BC", "NS", "NT"), c("NB", "PE", "NT", "NL", "MB")), c(1, 1, 1, 0, 0))
 })
 
-test_that("the Albrecht-Tombe sector scheme aggregates all base sectors", {
+test_that("the paper sector schemes aggregate all base sectors and have elasticities", {
+  schemes <- c(albrecht_tombe_2016 = 22, alvarez_krznar_tombe_2019 = 18, manucha_tombe_2022 = 17)
+  for (p in names(schemes)) {
+    cfg <- list(sectors = list(scheme = file.path(ipt_root(), "config", "concordances",
+                                                  paste0("sector_scheme_", p, ".csv"))))
+    scheme <- load_sector_scheme(cfg)
+    expect_setequal(scheme$base_sector, load_base_sectors()$sector_id)
+    expect_length(unique(scheme$sector_id), schemes[[p]])
+    # Goods flags are consistent within each aggregate sector.
+    expect_equal(nrow(dplyr::distinct(scheme, sector_id, goods)), schemes[[p]])
+    theta <- readr::read_csv(file.path(ipt_root(), "config", "parameters", paste0("theta_", p, ".csv")),
+                             show_col_types = FALSE)
+    expect_setequal(theta$sector_id, unique(scheme$sector_id))
+  }
+  # Alvarez et al. (2019) have 9 goods and 9 service sectors.
   cfg <- list(sectors = list(scheme = file.path(ipt_root(), "config", "concordances",
-                                                "sector_scheme_albrecht_tombe_2016.csv")))
-  scheme <- load_sector_scheme(cfg)
-  expect_setequal(scheme$base_sector, load_base_sectors()$sector_id)
-  expect_length(unique(scheme$sector_id), 22)
+                                                "sector_scheme_alvarez_krznar_tombe_2019.csv")))
+  expect_equal(sum(goods_sectors(cfg)), 9)
+})
+
+test_that("published benchmarks are well formed", {
+  b <- readr::read_csv(file.path(ipt_root(), "config", "benchmarks", "published_results.csv"),
+                       show_col_types = FALSE)
+  expect_setequal(unique(b$paper), c("albrecht_tombe_2016", "alvarez_krznar_tombe_2019", "manucha_tombe_2022"))
+  expect_false(anyNA(b$value))
+  expect_equal(anyDuplicated(b[, c("paper", "experiment", "region", "measure")]), 0)
 })

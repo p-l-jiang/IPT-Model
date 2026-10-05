@@ -11,6 +11,8 @@
 #     applied. Sectors without a BoC component (services) receive
 #     services_theta + adjustment.
 #   * "fixed": values read from a CSV (columns sector_id, theta).
+#   * "uniform": goods_theta for goods-producing sectors and services_theta
+#     for the others (e.g. the robustness checks of Alvarez et al., 2019).
 
 #' Derive the BoC-rule elasticities, returning the full audit table.
 derive_boc_elasticities <- function(te) {
@@ -62,6 +64,12 @@ load_trade_elasticities <- function(cfg) {
   } else if (te$method == "fixed") {
     tab <- readr::read_csv(te$file, show_col_types = FALSE)
     theta <- setNames(tab$theta, tab$sector_id)[sectors]
+  } else if (te$method == "uniform") {
+    goods <- goods_sectors(cfg)[sectors]
+    if (is.null(te$goods_theta) || is.null(te$services_theta)) {
+      stopf("trade_elasticities$method uniform needs goods_theta and services_theta.")
+    }
+    theta <- setNames(ifelse(goods, te$goods_theta, te$services_theta), sectors)
   } else {
     stopf("Unknown trade_elasticities$method: %s", te$method)
   }

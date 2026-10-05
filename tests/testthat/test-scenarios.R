@@ -61,3 +61,51 @@ test_that("unknown regions produce a helpful error", {
                                           exporters = "all", factor = 0.9)))
   expect_error(build_shocks(sc, scenario_base(), cfg), "quote region codes")
 })
+
+test_that("measured-cost shocks can target pairs, asymmetries and fractions", {
+  cfg <- scenario_cfg()
+  base <- scenario_base()
+  costs <- tibble(origin = c("ON", "QC", "USA", "ON"), dest = c("QC", "ON", "ON", "USA"), sector = "MTV",
+                  tau_bar = 2, tau_index = 2, tau_hat_nongeo = 0.8, tau_hat_asym = c(0.9, 1, 1, 1),
+                  tau_hat_all = 0.5)
+  # Default pairs are interprovincial.
+  sh <- build_shocks(list(id = "a", shocks = list(list(type = "eliminate_measured", sectors = "MTV"))),
+                     base, cfg, costs)
+  expect_equal(unname(sh$tau_hat["USA", "ON", "MTV"]), 1)
+  expect_equal(unname(sh$tau_hat["ON", "QC", "MTV"]), 0.5)
+  # External pairs only, one direction.
+  sh <- build_shocks(list(id = "b", shocks = list(list(type = "eliminate_measured", sectors = "MTV",
+                                                       importers = "foreign", exporters = "domestic"))),
+                     base, cfg, costs)
+  expect_equal(unname(sh$tau_hat["USA", "ON", "MTV"]), 0.5)
+  expect_equal(unname(sh$tau_hat["ON", "USA", "MTV"]), 1)
+  # Asymmetries apply to the costlier direction only.
+  sh <- build_shocks(list(id = "c", shocks = list(list(type = "eliminate_asymmetries", sectors = "MTV"))),
+                     base, cfg, costs)
+  expect_equal(unname(sh$tau_hat[c("QC", "ON"), c("ON", "QC"), "MTV"][cbind(1:2, 1:2)]), c(0.9, 1))
+  # Two half eliminations remove the geometric average of the two measures.
+  sh <- build_shocks(list(id = "d", shocks = list(
+    list(type = "eliminate_nongeographic", sectors = "MTV", fraction = 0.5),
+    list(type = "eliminate_asymmetries", sectors = "MTV", fraction = 0.5))), base, cfg, costs)
+  expect_equal(unname(sh$tau_hat["QC", "ON", "MTV"]), sqrt(0.8 * 0.9))
+})
+
+test_that("autarky shocks are prohibitive and need balanced trade when regions are isolated", {
+  cfg <- scenario_cfg()
+  base <- scenario_base()
+  sh <- build_shocks(list(id = "x", report = "gains_from_trade",
+                          shocks = list(list(type = "autarky", importers = "domestic", exporters = "domestic"))),
+                     base, cfg)
+  expect_true(all(is.infinite(sh$tau_hat["ON", "QC", ])))
+  expect_true(all(is.finite(sh$tau_hat["ON", "USA", ])))
+  expect_equal(sh$report, "gains_from_trade")
+  # Isolating Canada from the world with an external imbalance is infeasible.
+  full <- build_shocks(list(id = "y", shocks = list(
+    list(type = "autarky", importers = "domestic", exporters = "foreign"),
+    list(type = "autarky", importers = "foreign", exporters = "domestic"))), base, cfg)
+  base$D <- c(ON = 1, QC = 1, USA = -1, ROW = -1)
+  base$VA <- c(ON = 10, QC = 10, USA = 10, ROW = 10)
+  expect_error(check_autarky_feasible(full$tau_hat, base, "y"), "balanced trade")
+  base$D <- c(ON = 1, QC = -1, USA = 1, ROW = -1)
+  expect_true(check_autarky_feasible(full$tau_hat, base, "y"))
+})

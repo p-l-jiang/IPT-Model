@@ -104,3 +104,21 @@ test_that("the solver is robust to very high trade elasticities and large shocks
   expect_true(sol$converged)
   expect_lt(max(unlist(equilibrium_residuals(sol, base))), 1e-8)
 })
+
+test_that("autarky reproduces the gains from trade of the ACR formula", {
+  # With J = 1, phi = 1 and balanced trade, welfare in autarky relative to the
+  # observed equilibrium is pi[n, n]^(1 / theta).
+  base <- make_synthetic_base(N = 4, J = 1, seed = 6, deficits = FALSE, io = FALSE, theta = c(S1 = 5))
+  tau_hat <- array(Inf, dim(base$pi), dimnames(base$pi))
+  diag(tau_hat[, , 1]) <- 1
+  sol <- solve_counterfactual(base, tau_hat = tau_hat)
+  expect_equal(unname((sol$I / base$I) / sol$P_hat), unname(diag(base$pi[, , 1])^(1 / 5)), tolerance = 1e-8)
+  expect_equal(unname(diag(sol$pi[, , 1])), rep(1, 4))
+  # Roundabout production: pi[n, n]^(1 / (theta phi)).
+  base <- make_synthetic_base(N = 3, J = 1, seed = 7, deficits = FALSE, io = TRUE, theta = c(S1 = 4))
+  tau_hat <- array(Inf, dim(base$pi), dimnames(base$pi))
+  diag(tau_hat[, , 1]) <- 1
+  sol <- solve_counterfactual(base, tau_hat = tau_hat)
+  expect_equal(unname((sol$I / base$I) / sol$P_hat),
+               unname(diag(base$pi[, , 1])^(1 / (4 * base$phi[, 1]))), tolerance = 1e-8)
+})
