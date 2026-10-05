@@ -1,30 +1,81 @@
-# Tables 5 and 6 of Albrecht and Tombe (2016). As in the legacy replication
-# script, the Table 6 experiments apply to all sectors with measured trade
-# costs (utilities, construction and public administration are excluded from
-# the trade-cost estimation).
+# Experiments of Albrecht and Tombe (2016): Table 5 (gains from trade and 10%
+# lower iceberg costs), Table 6 (measured-cost experiments) and section 4.3.3.
+# Scenario ids match the experiment names in config/benchmarks/published_results.csv.
+# Measured-cost experiments apply to all sectors with measured costs
+# (utilities, construction and public administration have no estimates).
 scenarios:
-  - id: t5c4_internal_costs_minus10
-    label: "10% lower interprovincial trade costs"
+  - id: gft_all
+    label: "Gains from trade: observed equilibrium relative to autarky"
+    report: gains_from_trade
+    shocks:
+      - {type: autarky, importers: all, exporters: all}
+
+  - id: gft_internal
+    label: "Gains from internal trade: relative to no interprovincial trade"
+    report: gains_from_trade
+    shocks:
+      - {type: autarky, importers: domestic, exporters: domestic}
+
+  - id: gft_external
+    label: "Gains from external trade: relative to no international trade"
+    report: gains_from_trade
+    shocks:
+      - {type: autarky, importers: domestic, exporters: foreign}
+      - {type: autarky, importers: foreign, exporters: domestic}
+
+  - id: iceberg_internal_10
+    label: "10% lower interprovincial trade costs (tau_hat = 0.9)"
     shocks:
       - {type: iceberg, importers: domestic, exporters: domestic, sectors: all, factor: 0.9}
 
-  - id: t5c5_external_costs_minus10
-    label: "10% lower trade costs between Canada and the rest of the world"
+  # The paper's Table 5 figures (2.9% for Canada, 2.1-4.7% by province) are
+  # reproduced when only the costs of Canadian imports fall; lowering costs in
+  # both directions roughly doubles the gains (iceberg_external_10_two_way).
+  # Table 6's measured-cost experiment, by contrast, matches the two-way cut.
+  - id: iceberg_external_10
+    label: "10% lower costs of imports from the rest of the world (tau_hat = 0.9)"
+    shocks:
+      - {type: iceberg, importers: domestic, exporters: foreign, sectors: all, factor: 0.9}
+
+  - id: iceberg_external_10_two_way
+    label: "10% lower trade costs between Canada and the rest of the world, both directions"
     shocks:
       - {type: iceberg, importers: domestic, exporters: foreign, sectors: all, factor: 0.9}
       - {type: iceberg, importers: foreign, exporters: domestic, sectors: all, factor: 0.9}
 
-  - id: t6c1_measured_costs_minus10
-    label: "10% lower measured interprovincial trade costs"
+  - id: measured_internal_10
+    label: "10% lower measured interprovincial trade costs (augmented index)"
     shocks:
       - {type: measured_cost_reduction, sectors: all, share: 0.10}
 
-  - id: t6c4_eliminate_nongeographic
-    label: "Eliminate non-geographic interprovincial trade barriers"
+  - id: measured_external_10
+    label: "10% lower measured trade costs between Canada and the rest of the world"
+    shocks:
+      - {type: measured_cost_reduction, importers: domestic, exporters: foreign, sectors: all, share: 0.10}
+      - {type: measured_cost_reduction, importers: foreign, exporters: domestic, sectors: all, share: 0.10}
+
+  - id: eliminate_asymmetries
+    label: "Eliminate interprovincial trade-cost asymmetries"
+    shocks:
+      - {type: eliminate_asymmetries, sectors: all}
+
+  - id: eliminate_nondistance
+    label: "Eliminate non-distance interprovincial trade costs"
     shocks:
       - {type: eliminate_nongeographic, sectors: all}
 
-  - id: t6c5_eliminate_measured
-    label: "Eliminate all measured interprovincial trade costs"
+  - id: eliminate_all_internal
+    label: "Eliminate all measured interprovincial trade costs (augmented index)"
     shocks:
       - {type: eliminate_measured, sectors: all}
+
+  - id: measured_internal_50
+    label: "Halve measured interprovincial trade costs"
+    shocks:
+      - {type: measured_cost_reduction, sectors: all, share: 0.50}
+
+  - id: quebec_border_10
+    label: "10% higher trade costs between Quebec and the other provinces"
+    shocks:
+      - {type: iceberg, importers: ["QC"], exporters: domestic, sectors: all, factor: 1.1}
+      - {type: iceberg, importers: domestic, exporters: ["QC"], sectors: all, factor: 1.1}

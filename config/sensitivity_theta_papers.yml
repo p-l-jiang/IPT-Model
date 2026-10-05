@@ -11,4 +11,4 @@ description: >
 
 trade_elasticities:
   method: fixed
-  file: config/parameters/theta_tombe_2019_replication.csv
+  file: config/parameters/theta_albrecht_tombe_2016_base37.csv

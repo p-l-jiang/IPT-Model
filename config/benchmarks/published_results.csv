@@ -1,0 +1,701 @@
+paper,source,experiment,region,measure,value,note
+albrecht_tombe_2016,Table 5,gft_all,AB,welfare,18.3,
+albrecht_tombe_2016,Table 5,gft_internal,AB,welfare,4.7,
+albrecht_tombe_2016,Table 5,gft_external,AB,welfare,9.3,
+albrecht_tombe_2016,Table 5,iceberg_internal_10,AB,welfare,3.6,
+albrecht_tombe_2016,Table 5,iceberg_external_10,AB,welfare,2.5,
+albrecht_tombe_2016,Table 5,gft_all,BC,welfare,21.4,
+albrecht_tombe_2016,Table 5,gft_internal,BC,welfare,4.7,
+albrecht_tombe_2016,Table 5,gft_external,BC,welfare,10.9,
+albrecht_tombe_2016,Table 5,iceberg_internal_10,BC,welfare,3.9,
+albrecht_tombe_2016,Table 5,iceberg_external_10,BC,welfare,2.9,
+albrecht_tombe_2016,Table 5,gft_all,MB,welfare,24.2,
+albrecht_tombe_2016,Table 5,gft_internal,MB,welfare,8.1,
+albrecht_tombe_2016,Table 5,gft_external,MB,welfare,8.0,
+albrecht_tombe_2016,Table 5,iceberg_internal_10,MB,welfare,6.0,
+albrecht_tombe_2016,Table 5,iceberg_external_10,MB,welfare,2.5,
+albrecht_tombe_2016,Table 5,gft_all,NB,welfare,41.7,
+albrecht_tombe_2016,Table 5,gft_internal,NB,welfare,8.1,
+albrecht_tombe_2016,Table 5,gft_external,NB,welfare,12.2,
+albrecht_tombe_2016,Table 5,iceberg_internal_10,NB,welfare,6.5,
+albrecht_tombe_2016,Table 5,iceberg_external_10,NB,welfare,4.7,
+albrecht_tombe_2016,Table 5,gft_all,NL,welfare,49.4,
+albrecht_tombe_2016,Table 5,gft_internal,NL,welfare,7.7,
+albrecht_tombe_2016,Table 5,gft_external,NL,welfare,12.0,
+albrecht_tombe_2016,Table 5,iceberg_internal_10,NL,welfare,6.6,
+albrecht_tombe_2016,Table 5,iceberg_external_10,NL,welfare,3.0,
+albrecht_tombe_2016,Table 5,gft_all,NS,welfare,23.5,
+albrecht_tombe_2016,Table 5,gft_internal,NS,welfare,7.5,
+albrecht_tombe_2016,Table 5,gft_external,NS,welfare,8.9,
+albrecht_tombe_2016,Table 5,iceberg_internal_10,NS,welfare,6.1,
+albrecht_tombe_2016,Table 5,iceberg_external_10,NS,welfare,3.0,
+albrecht_tombe_2016,Table 5,gft_all,ON,welfare,13.5,
+albrecht_tombe_2016,Table 5,gft_internal,ON,welfare,3.2,
+albrecht_tombe_2016,Table 5,gft_external,ON,welfare,8.7,
+albrecht_tombe_2016,Table 5,iceberg_internal_10,ON,welfare,2.6,
+albrecht_tombe_2016,Table 5,iceberg_external_10,ON,welfare,3.1,
+albrecht_tombe_2016,Table 5,gft_all,PE,welfare,32.5,
+albrecht_tombe_2016,Table 5,gft_internal,PE,welfare,11.4,
+albrecht_tombe_2016,Table 5,gft_external,PE,welfare,10.1,
+albrecht_tombe_2016,Table 5,iceberg_internal_10,PE,welfare,7.2,
+albrecht_tombe_2016,Table 5,iceberg_external_10,PE,welfare,2.1,
+albrecht_tombe_2016,Table 5,gft_all,QC,welfare,16.2,
+albrecht_tombe_2016,Table 5,gft_internal,QC,welfare,4.2,
+albrecht_tombe_2016,Table 5,gft_external,QC,welfare,8.9,
+albrecht_tombe_2016,Table 5,iceberg_internal_10,QC,welfare,3.5,
+albrecht_tombe_2016,Table 5,iceberg_external_10,QC,welfare,2.9,
+albrecht_tombe_2016,Table 5,gft_all,SK,welfare,29.0,
+albrecht_tombe_2016,Table 5,gft_internal,SK,welfare,7.1,
+albrecht_tombe_2016,Table 5,gft_external,SK,welfare,11.8,
+albrecht_tombe_2016,Table 5,iceberg_internal_10,SK,welfare,5.2,
+albrecht_tombe_2016,Table 5,iceberg_external_10,SK,welfare,3.0,
+albrecht_tombe_2016,Table 5,gft_all,CAN,welfare,18.3,
+albrecht_tombe_2016,Table 5,gft_internal,CAN,welfare,4.4,
+albrecht_tombe_2016,Table 5,gft_external,CAN,welfare,9.3,
+albrecht_tombe_2016,Table 5,iceberg_internal_10,CAN,welfare,3.6,
+albrecht_tombe_2016,Table 5,iceberg_external_10,CAN,welfare,2.9,
+albrecht_tombe_2016,Table 6,measured_internal_10,AB,welfare,0.9,
+albrecht_tombe_2016,Table 6,measured_external_10,AB,welfare,1.6,
+albrecht_tombe_2016,Table 6,eliminate_asymmetries,AB,welfare,2.4,
+albrecht_tombe_2016,Table 6,eliminate_nondistance,AB,welfare,5.5,
+albrecht_tombe_2016,Table 6,eliminate_all_internal,AB,welfare,51.1,
+albrecht_tombe_2016,Table 6,measured_internal_10,BC,welfare,1.0,
+albrecht_tombe_2016,Table 6,measured_external_10,BC,welfare,2.0,
+albrecht_tombe_2016,Table 6,eliminate_asymmetries,BC,welfare,2.8,
+albrecht_tombe_2016,Table 6,eliminate_nondistance,BC,welfare,4.9,
+albrecht_tombe_2016,Table 6,eliminate_all_internal,BC,welfare,64.6,
+albrecht_tombe_2016,Table 6,measured_internal_10,MB,welfare,1.6,
+albrecht_tombe_2016,Table 6,measured_external_10,MB,welfare,2.0,
+albrecht_tombe_2016,Table 6,eliminate_asymmetries,MB,welfare,5.2,
+albrecht_tombe_2016,Table 6,eliminate_nondistance,MB,welfare,8.4,
+albrecht_tombe_2016,Table 6,eliminate_all_internal,MB,welfare,108.2,
+albrecht_tombe_2016,Table 6,measured_internal_10,NB,welfare,1.8,
+albrecht_tombe_2016,Table 6,measured_external_10,NB,welfare,2.5,
+albrecht_tombe_2016,Table 6,eliminate_asymmetries,NB,welfare,8.0,
+albrecht_tombe_2016,Table 6,eliminate_nondistance,NB,welfare,28.3,
+albrecht_tombe_2016,Table 6,eliminate_all_internal,NB,welfare,130.8,
+albrecht_tombe_2016,Table 6,measured_internal_10,NL,welfare,1.8,
+albrecht_tombe_2016,Table 6,measured_external_10,NL,welfare,1.8,
+albrecht_tombe_2016,Table 6,eliminate_asymmetries,NL,welfare,5.0,
+albrecht_tombe_2016,Table 6,eliminate_nondistance,NL,welfare,23.5,
+albrecht_tombe_2016,Table 6,eliminate_all_internal,NL,welfare,125.1,
+albrecht_tombe_2016,Table 6,measured_internal_10,NS,welfare,1.8,
+albrecht_tombe_2016,Table 6,measured_external_10,NS,welfare,2.2,
+albrecht_tombe_2016,Table 6,eliminate_asymmetries,NS,welfare,7.9,
+albrecht_tombe_2016,Table 6,eliminate_nondistance,NS,welfare,24.3,
+albrecht_tombe_2016,Table 6,eliminate_all_internal,NS,welfare,142.0,
+albrecht_tombe_2016,Table 6,measured_internal_10,ON,welfare,0.6,
+albrecht_tombe_2016,Table 6,measured_external_10,ON,welfare,1.8,
+albrecht_tombe_2016,Table 6,eliminate_asymmetries,ON,welfare,2.8,
+albrecht_tombe_2016,Table 6,eliminate_nondistance,ON,welfare,3.2,
+albrecht_tombe_2016,Table 6,eliminate_all_internal,ON,welfare,26.8,
+albrecht_tombe_2016,Table 6,measured_internal_10,PE,welfare,2.7,
+albrecht_tombe_2016,Table 6,measured_external_10,PE,welfare,2.3,
+albrecht_tombe_2016,Table 6,eliminate_asymmetries,PE,welfare,18.6,
+albrecht_tombe_2016,Table 6,eliminate_nondistance,PE,welfare,35.1,
+albrecht_tombe_2016,Table 6,eliminate_all_internal,PE,welfare,285.4,
+albrecht_tombe_2016,Table 6,measured_internal_10,QC,welfare,0.8,
+albrecht_tombe_2016,Table 6,measured_external_10,QC,welfare,1.8,
+albrecht_tombe_2016,Table 6,eliminate_asymmetries,QC,welfare,2.5,
+albrecht_tombe_2016,Table 6,eliminate_nondistance,QC,welfare,7.1,
+albrecht_tombe_2016,Table 6,eliminate_all_internal,QC,welfare,45.0,
+albrecht_tombe_2016,Table 6,measured_internal_10,SK,welfare,1.4,
+albrecht_tombe_2016,Table 6,measured_external_10,SK,welfare,2.4,
+albrecht_tombe_2016,Table 6,eliminate_asymmetries,SK,welfare,8.7,
+albrecht_tombe_2016,Table 6,eliminate_nondistance,SK,welfare,17.2,
+albrecht_tombe_2016,Table 6,eliminate_all_internal,SK,welfare,88.8,
+albrecht_tombe_2016,Table 6,measured_internal_10,CAN,welfare,0.9,
+albrecht_tombe_2016,Table 6,measured_external_10,CAN,welfare,1.8,
+albrecht_tombe_2016,Table 6,eliminate_asymmetries,CAN,welfare,3.3,
+albrecht_tombe_2016,Table 6,eliminate_nondistance,CAN,welfare,6.8,
+albrecht_tombe_2016,Table 6,eliminate_all_internal,CAN,welfare,51.9,
+albrecht_tombe_2016,Section 4.3.3,measured_internal_50,CAN,welfare,7.6,measured internal costs halved
+albrecht_tombe_2016,Section 4.3.3,quebec_border_10,QC,welfare,-4.8,tau_hat = 1.1 on pairs involving Quebec
+albrecht_tombe_2016,Section 4.3.3,quebec_border_10,ON,welfare,-0.5,
+albrecht_tombe_2016,Section 4.3.3,quebec_border_10,AB,welfare,-0.2,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,AB,measured_cost,56.1,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,AB,exporter_cost,-15.5,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,AB,asymmetry_contribution,4.1,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,AB,nondistance_contribution,7.2,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,BC,measured_cost,78.5,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,BC,exporter_cost,-11.4,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,BC,asymmetry_contribution,6.0,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,BC,nondistance_contribution,10.5,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,MB,measured_cost,74.0,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,MB,exporter_cost,-4.8,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,MB,asymmetry_contribution,11.9,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,MB,nondistance_contribution,9.8,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,NB,measured_cost,66.4,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,NB,exporter_cost,7.3,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,NB,asymmetry_contribution,16.4,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,NB,nondistance_contribution,24.4,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,NL,measured_cost,47.4,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,NL,exporter_cost,-6.8,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,NL,asymmetry_contribution,14.4,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,NL,nondistance_contribution,3.2,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,NS,measured_cost,85.4,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,NS,exporter_cost,14.3,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,NS,asymmetry_contribution,19.0,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,NS,nondistance_contribution,31.5,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,ON,measured_cost,73.5,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,ON,exporter_cost,-15.8,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,ON,asymmetry_contribution,1.3,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,ON,nondistance_contribution,17.1,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,PE,measured_cost,106.1,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,PE,exporter_cost,22.2,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,PE,asymmetry_contribution,30.3,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,PE,nondistance_contribution,32.1,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,QC,measured_cost,62.5,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,QC,exporter_cost,-1.4,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,QC,asymmetry_contribution,13.4,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,QC,nondistance_contribution,17.4,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,SK,measured_cost,62.8,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,SK,exporter_cost,11.9,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,SK,asymmetry_contribution,34.1,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,SK,nondistance_contribution,14.3,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,CAN,measured_cost,67.8,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,CAN,exporter_cost,0.0,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,CAN,asymmetry_contribution,7.8,
+albrecht_tombe_2016,Table 4a,trade_costs_by_exporter,CAN,nondistance_contribution,14.5,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,AGM,measured_cost,24.4,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,AGM,exporter_cost,-25.7,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,AGM,asymmetry_contribution,6.3,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,AGM,nondistance_contribution,-8.3,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,FTX,measured_cost,42.0,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,FTX,exporter_cost,-21.0,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,FTX,asymmetry_contribution,5.8,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,FTX,nondistance_contribution,-4.4,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,WOD,measured_cost,24.9,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,WOD,exporter_cost,-14.4,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,WOD,asymmetry_contribution,2.1,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,WOD,nondistance_contribution,3.6,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,PAP,measured_cost,25.7,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,PAP,exporter_cost,-17.8,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,PAP,asymmetry_contribution,3.4,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,PAP,nondistance_contribution,0.6,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,CHR,measured_cost,12.5,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,CHR,exporter_cost,-16.7,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,CHR,asymmetry_contribution,1.9,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,CHR,nondistance_contribution,1.6,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,MET,measured_cost,63.2,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,MET,exporter_cost,-2.8,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,MET,asymmetry_contribution,9.8,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,MET,nondistance_contribution,11.8,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,EQV,measured_cost,37.4,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,EQV,exporter_cost,-17.0,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,EQV,asymmetry_contribution,4.3,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,EQV,nondistance_contribution,3.1,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,MNE,measured_cost,60.2,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,MNE,exporter_cost,-9.5,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,MNE,asymmetry_contribution,4.8,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,MNE,nondistance_contribution,9.2,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,WRT,measured_cost,101.9,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,WRT,exporter_cost,-14.8,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,WRT,asymmetry_contribution,6.6,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,WRT,nondistance_contribution,14.8,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,HOT,measured_cost,97.0,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,HOT,exporter_cost,3.4,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,HOT,asymmetry_contribution,9.8,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,HOT,nondistance_contribution,29.4,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,TRP,measured_cost,83.5,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,TRP,exporter_cost,-8.6,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,TRP,asymmetry_contribution,10.8,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,TRP,nondistance_contribution,16.9,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,COM,measured_cost,84.8,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,COM,exporter_cost,19.6,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,COM,asymmetry_contribution,12.2,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,COM,nondistance_contribution,55.3,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,FIN,measured_cost,91.7,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,FIN,exporter_cost,-5.0,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,FIN,asymmetry_contribution,12.4,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,FIN,nondistance_contribution,36.2,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,REA,measured_cost,192.4,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,REA,exporter_cost,8.4,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,REA,asymmetry_contribution,12.1,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,REA,nondistance_contribution,57.8,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,SFT,measured_cost,132.3,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,SFT,exporter_cost,18.4,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,SFT,asymmetry_contribution,19.7,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,SFT,nondistance_contribution,54.6,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,OBS,measured_cost,90.6,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,OBS,exporter_cost,-7.4,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,OBS,asymmetry_contribution,8.1,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,OBS,nondistance_contribution,18.7,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,EDU,measured_cost,230.0,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,EDU,exporter_cost,66.5,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,EDU,asymmetry_contribution,15.5,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,EDU,nondistance_contribution,105.3,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,HTH,measured_cost,245.8,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,HTH,exporter_cost,40.1,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,HTH,asymmetry_contribution,16.7,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,HTH,nondistance_contribution,82.8,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,OSV,measured_cost,134.0,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,OSV,exporter_cost,17.1,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,OSV,asymmetry_contribution,10.7,
+albrecht_tombe_2016,Table 4b,trade_costs_by_sector,OSV,nondistance_contribution,44.5,
+albrecht_tombe_2016,Table 11,gravity_distance_elasticity,AGM,coefficient,0.17,log normalized distance; exporter and importer fixed effects
+albrecht_tombe_2016,Table 11,gravity_distance_elasticity,FTX,coefficient,0.2,log normalized distance; exporter and importer fixed effects
+albrecht_tombe_2016,Table 11,gravity_distance_elasticity,WOD,coefficient,0.1,log normalized distance; exporter and importer fixed effects
+albrecht_tombe_2016,Table 11,gravity_distance_elasticity,PAP,coefficient,0.12,log normalized distance; exporter and importer fixed effects
+albrecht_tombe_2016,Table 11,gravity_distance_elasticity,CHR,coefficient,0.06,log normalized distance; exporter and importer fixed effects
+albrecht_tombe_2016,Table 11,gravity_distance_elasticity,MET,coefficient,0.21,log normalized distance; exporter and importer fixed effects
+albrecht_tombe_2016,Table 11,gravity_distance_elasticity,EQV,coefficient,0.15,log normalized distance; exporter and importer fixed effects
+albrecht_tombe_2016,Table 11,gravity_distance_elasticity,MNE,coefficient,0.19,log normalized distance; exporter and importer fixed effects
+albrecht_tombe_2016,Table 11,gravity_distance_elasticity,WRT,coefficient,0.29,log normalized distance; exporter and importer fixed effects
+albrecht_tombe_2016,Table 11,gravity_distance_elasticity,HOT,coefficient,0.22,log normalized distance; exporter and importer fixed effects
+albrecht_tombe_2016,Table 11,gravity_distance_elasticity,TRP,coefficient,0.22,log normalized distance; exporter and importer fixed effects
+albrecht_tombe_2016,Table 11,gravity_distance_elasticity,COM,coefficient,0.08,log normalized distance; exporter and importer fixed effects
+albrecht_tombe_2016,Table 11,gravity_distance_elasticity,FIN,coefficient,0.16,log normalized distance; exporter and importer fixed effects
+albrecht_tombe_2016,Table 11,gravity_distance_elasticity,REA,coefficient,0.34,log normalized distance; exporter and importer fixed effects
+albrecht_tombe_2016,Table 11,gravity_distance_elasticity,SFT,coefficient,0.21,log normalized distance; exporter and importer fixed effects
+albrecht_tombe_2016,Table 11,gravity_distance_elasticity,OBS,coefficient,0.25,log normalized distance; exporter and importer fixed effects
+albrecht_tombe_2016,Table 11,gravity_distance_elasticity,EDU,coefficient,0.24,log normalized distance; exporter and importer fixed effects
+albrecht_tombe_2016,Table 11,gravity_distance_elasticity,HTH,coefficient,0.37,log normalized distance; exporter and importer fixed effects
+albrecht_tombe_2016,Table 11,gravity_distance_elasticity,OSV,coefficient,0.24,log normalized distance; exporter and importer fixed effects
+albrecht_tombe_2016,Table 11,gravity_distance_elasticity,ALL,coefficient,0.2,log normalized distance; exporter and importer fixed effects
+alvarez_krznar_tombe_2019,Table 6,gft_internal,AB,real_gdp_per_capita,5.1,
+alvarez_krznar_tombe_2019,Table 6,gft_external,AB,real_gdp_per_capita,11.4,
+alvarez_krznar_tombe_2019,Table 6,gft_all,AB,real_gdp_per_capita,20.8,
+alvarez_krznar_tombe_2019,Table 6,gft_internal,AB,employment,0.1,
+alvarez_krznar_tombe_2019,Table 6,gft_external,AB,employment,0.9,
+alvarez_krznar_tombe_2019,Table 6,gft_all,AB,employment,1.3,
+alvarez_krznar_tombe_2019,Table 6,gft_internal,BC,real_gdp_per_capita,4.4,
+alvarez_krznar_tombe_2019,Table 6,gft_external,BC,real_gdp_per_capita,13.4,
+alvarez_krznar_tombe_2019,Table 6,gft_all,BC,real_gdp_per_capita,24.2,
+alvarez_krznar_tombe_2019,Table 6,gft_internal,BC,employment,-1.0,
+alvarez_krznar_tombe_2019,Table 6,gft_external,BC,employment,3.6,
+alvarez_krznar_tombe_2019,Table 6,gft_all,BC,employment,5.5,
+alvarez_krznar_tombe_2019,Table 6,gft_internal,MB,real_gdp_per_capita,8.3,
+alvarez_krznar_tombe_2019,Table 6,gft_external,MB,real_gdp_per_capita,8.8,
+alvarez_krznar_tombe_2019,Table 6,gft_all,MB,real_gdp_per_capita,26.0,
+alvarez_krznar_tombe_2019,Table 6,gft_internal,MB,employment,4.7,
+alvarez_krznar_tombe_2019,Table 6,gft_external,MB,employment,-2.7,
+alvarez_krznar_tombe_2019,Table 6,gft_all,MB,employment,7.9,
+alvarez_krznar_tombe_2019,Table 6,gft_internal,NB,real_gdp_per_capita,7.2,
+alvarez_krznar_tombe_2019,Table 6,gft_external,NB,real_gdp_per_capita,16.4,
+alvarez_krznar_tombe_2019,Table 6,gft_all,NB,real_gdp_per_capita,36.6,
+alvarez_krznar_tombe_2019,Table 6,gft_internal,NB,employment,3.1,
+alvarez_krznar_tombe_2019,Table 6,gft_external,NB,employment,7.7,
+alvarez_krznar_tombe_2019,Table 6,gft_all,NB,employment,21.8,
+alvarez_krznar_tombe_2019,Table 6,gft_internal,NL,real_gdp_per_capita,6.9,
+alvarez_krznar_tombe_2019,Table 6,gft_external,NL,real_gdp_per_capita,13.7,
+alvarez_krznar_tombe_2019,Table 6,gft_all,NL,real_gdp_per_capita,26.3,
+alvarez_krznar_tombe_2019,Table 6,gft_internal,NL,employment,2.5,
+alvarez_krznar_tombe_2019,Table 6,gft_external,NL,employment,4.0,
+alvarez_krznar_tombe_2019,Table 6,gft_all,NL,employment,8.2,
+alvarez_krznar_tombe_2019,Table 6,gft_internal,NS,real_gdp_per_capita,9.6,
+alvarez_krznar_tombe_2019,Table 6,gft_external,NS,real_gdp_per_capita,23.7,
+alvarez_krznar_tombe_2019,Table 6,gft_all,NS,real_gdp_per_capita,58.8,
+alvarez_krznar_tombe_2019,Table 6,gft_internal,NS,employment,6.5,
+alvarez_krznar_tombe_2019,Table 6,gft_external,NS,employment,18.0,
+alvarez_krznar_tombe_2019,Table 6,gft_all,NS,employment,52.6,
+alvarez_krznar_tombe_2019,Table 6,gft_internal,NT_NU,real_gdp_per_capita,8.7,
+alvarez_krznar_tombe_2019,Table 6,gft_external,NT_NU,real_gdp_per_capita,10.5,
+alvarez_krznar_tombe_2019,Table 6,gft_all,NT_NU,real_gdp_per_capita,28.8,
+alvarez_krznar_tombe_2019,Table 6,gft_internal,NT_NU,employment,5.2,
+alvarez_krznar_tombe_2019,Table 6,gft_external,NT_NU,employment,-0.3,
+alvarez_krznar_tombe_2019,Table 6,gft_all,NT_NU,employment,11.4,
+alvarez_krznar_tombe_2019,Table 6,gft_internal,ON,real_gdp_per_capita,4.4,
+alvarez_krznar_tombe_2019,Table 6,gft_external,ON,real_gdp_per_capita,9.2,
+alvarez_krznar_tombe_2019,Table 6,gft_all,ON,real_gdp_per_capita,15.4,
+alvarez_krznar_tombe_2019,Table 6,gft_internal,ON,employment,-0.9,
+alvarez_krznar_tombe_2019,Table 6,gft_external,ON,employment,-2.2,
+alvarez_krznar_tombe_2019,Table 6,gft_all,ON,employment,-5.4,
+alvarez_krznar_tombe_2019,Table 6,gft_internal,PE,real_gdp_per_capita,12.6,
+alvarez_krznar_tombe_2019,Table 6,gft_external,PE,real_gdp_per_capita,9.0,
+alvarez_krznar_tombe_2019,Table 6,gft_all,PE,real_gdp_per_capita,33.4,
+alvarez_krznar_tombe_2019,Table 6,gft_internal,PE,employment,10.8,
+alvarez_krznar_tombe_2019,Table 6,gft_external,PE,employment,-2.4,
+alvarez_krznar_tombe_2019,Table 6,gft_all,PE,employment,17.4,
+alvarez_krznar_tombe_2019,Table 6,gft_internal,QC,real_gdp_per_capita,5.0,
+alvarez_krznar_tombe_2019,Table 6,gft_external,QC,real_gdp_per_capita,9.8,
+alvarez_krznar_tombe_2019,Table 6,gft_all,QC,real_gdp_per_capita,18.0,
+alvarez_krznar_tombe_2019,Table 6,gft_internal,QC,employment,-0.2,
+alvarez_krznar_tombe_2019,Table 6,gft_external,QC,employment,-1.4,
+alvarez_krznar_tombe_2019,Table 6,gft_all,QC,employment,-2.3,
+alvarez_krznar_tombe_2019,Table 6,gft_internal,SK,real_gdp_per_capita,6.7,
+alvarez_krznar_tombe_2019,Table 6,gft_external,SK,real_gdp_per_capita,14.1,
+alvarez_krznar_tombe_2019,Table 6,gft_all,SK,real_gdp_per_capita,26.3,
+alvarez_krznar_tombe_2019,Table 6,gft_internal,SK,employment,2.3,
+alvarez_krznar_tombe_2019,Table 6,gft_external,SK,employment,4.5,
+alvarez_krznar_tombe_2019,Table 6,gft_all,SK,employment,8.2,
+alvarez_krznar_tombe_2019,Table 6,gft_internal,YT,real_gdp_per_capita,8.6,
+alvarez_krznar_tombe_2019,Table 6,gft_external,YT,real_gdp_per_capita,19.0,
+alvarez_krznar_tombe_2019,Table 6,gft_all,YT,real_gdp_per_capita,45.5,
+alvarez_krznar_tombe_2019,Table 6,gft_internal,YT,employment,5.0,
+alvarez_krznar_tombe_2019,Table 6,gft_external,YT,employment,11.4,
+alvarez_krznar_tombe_2019,Table 6,gft_all,YT,employment,33.8,
+alvarez_krznar_tombe_2019,Table 6,gft_internal,CAN,real_gdp_per_capita,5.1,
+alvarez_krznar_tombe_2019,Table 6,gft_external,CAN,real_gdp_per_capita,10.9,
+alvarez_krznar_tombe_2019,Table 6,gft_all,CAN,real_gdp_per_capita,19.6,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_internal,AB,real_gdp_per_capita,3.2,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_external,AB,real_gdp_per_capita,6.5,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_all,AB,real_gdp_per_capita,8.9,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_internal,AB,employment,-0.9,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_external,AB,employment,0.4,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_all,AB,employment,-0.2,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_internal,BC,real_gdp_per_capita,2.8,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_external,BC,real_gdp_per_capita,5.7,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_all,BC,real_gdp_per_capita,7.9,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_internal,BC,employment,-1.5,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_external,BC,employment,-0.7,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_all,BC,employment,-1.6,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_internal,MB,real_gdp_per_capita,7.1,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_external,MB,real_gdp_per_capita,11.4,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_all,MB,real_gdp_per_capita,16.1,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_internal,MB,employment,4.8,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_external,MB,employment,7.4,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_all,MB,employment,9.8,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_internal,NB,real_gdp_per_capita,6.0,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_external,NB,real_gdp_per_capita,5.6,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_all,NB,real_gdp_per_capita,10.0,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_internal,NB,employment,3.1,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_external,NB,employment,-0.8,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_all,NB,employment,1.2,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_internal,NL,real_gdp_per_capita,12.8,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_external,NL,real_gdp_per_capita,12.0,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_all,NL,real_gdp_per_capita,21.2,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_internal,NL,employment,13.3,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_external,NL,employment,8.3,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_all,NL,employment,17.1,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_internal,NS,real_gdp_per_capita,4.8,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_external,NS,real_gdp_per_capita,19.8,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_all,NS,real_gdp_per_capita,22.0,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_internal,NS,employment,1.4,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_external,NS,employment,19.8,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_all,NS,employment,18.2,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_internal,NT_NU,real_gdp_per_capita,7.5,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_external,NT_NU,real_gdp_per_capita,7.6,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_all,NT_NU,real_gdp_per_capita,13.3,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_internal,NT_NU,employment,5.3,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_external,NT_NU,employment,2.0,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_all,NT_NU,employment,5.9,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_internal,ON,real_gdp_per_capita,2.9,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_external,ON,real_gdp_per_capita,4.8,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_all,ON,real_gdp_per_capita,7.0,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_internal,ON,employment,-1.3,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_external,ON,employment,-2.0,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_all,ON,employment,-2.8,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_internal,PE,real_gdp_per_capita,16.2,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_external,PE,real_gdp_per_capita,9.6,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_all,PE,real_gdp_per_capita,22.1,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_internal,PE,employment,18.4,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_external,PE,employment,4.8,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_all,PE,employment,18.4,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_internal,QC,real_gdp_per_capita,4.6,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_external,QC,real_gdp_per_capita,6.1,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_all,QC,real_gdp_per_capita,9.6,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_internal,QC,employment,1.0,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_external,QC,employment,-0.2,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_all,QC,employment,0.7,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_internal,SK,real_gdp_per_capita,5.1,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_external,SK,real_gdp_per_capita,5.7,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_all,SK,real_gdp_per_capita,9.6,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_internal,SK,employment,1.9,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_external,SK,employment,-0.7,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_all,SK,employment,0.7,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_internal,YT,real_gdp_per_capita,6.9,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_external,YT,real_gdp_per_capita,4.2,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_all,YT,real_gdp_per_capita,9.8,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_internal,YT,employment,4.5,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_external,YT,employment,-2.8,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_all,YT,employment,1.0,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_internal,CAN,real_gdp_per_capita,3.8,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_external,CAN,real_gdp_per_capita,6.2,
+alvarez_krznar_tombe_2019,Table 7,eliminate_nongeo_goods_all,CAN,real_gdp_per_capita,9.1,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta4,AB,real_gdp_per_capita,6.0,uniform goods trade elasticity 4
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta6.5,AB,real_gdp_per_capita,3.8,uniform goods trade elasticity 6.5
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta8,AB,real_gdp_per_capita,2.8,uniform goods trade elasticity 8
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta4,AB,employment,-2.1,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta6.5,AB,employment,-1.3,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta8,AB,employment,-0.8,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta4,BC,real_gdp_per_capita,6.0,uniform goods trade elasticity 4
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta6.5,BC,real_gdp_per_capita,3.8,uniform goods trade elasticity 6.5
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta8,BC,real_gdp_per_capita,2.7,uniform goods trade elasticity 8
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta4,BC,employment,-2.1,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta6.5,BC,employment,-1.4,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta8,BC,employment,-0.9,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta4,MB,real_gdp_per_capita,13.0,uniform goods trade elasticity 4
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta6.5,MB,real_gdp_per_capita,8.3,uniform goods trade elasticity 6.5
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta8,MB,real_gdp_per_capita,5.9,uniform goods trade elasticity 8
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta4,MB,employment,7.7,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta6.5,MB,employment,5.3,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta8,MB,employment,3.8,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta4,NB,real_gdp_per_capita,10.9,uniform goods trade elasticity 4
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta6.5,NB,real_gdp_per_capita,6.9,uniform goods trade elasticity 6.5
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta8,NB,real_gdp_per_capita,4.9,uniform goods trade elasticity 8
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta4,NB,employment,4.7,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta6.5,NB,employment,3.2,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta8,NB,employment,2.3,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta4,NL,real_gdp_per_capita,20.7,uniform goods trade elasticity 4
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta6.5,NL,real_gdp_per_capita,13.2,uniform goods trade elasticity 6.5
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta8,NL,real_gdp_per_capita,9.0,uniform goods trade elasticity 8
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta4,NL,employment,19.0,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta6.5,NL,employment,12.4,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta8,NL,employment,8.3,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta4,NS,real_gdp_per_capita,10.8,uniform goods trade elasticity 4
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta6.5,NS,real_gdp_per_capita,6.8,uniform goods trade elasticity 6.5
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta8,NS,real_gdp_per_capita,4.7,uniform goods trade elasticity 8
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta4,NS,employment,4.6,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta6.5,NS,employment,3.1,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta8,NS,employment,1.9,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta4,NT_NU,real_gdp_per_capita,12.7,uniform goods trade elasticity 4
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta6.5,NT_NU,real_gdp_per_capita,8.1,uniform goods trade elasticity 6.5
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta8,NT_NU,real_gdp_per_capita,5.6,uniform goods trade elasticity 8
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta4,NT_NU,employment,7.4,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta6.5,NT_NU,employment,4.9,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta8,NT_NU,employment,3.3,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta4,ON,real_gdp_per_capita,5.9,uniform goods trade elasticity 4
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta6.5,ON,real_gdp_per_capita,3.6,uniform goods trade elasticity 6.5
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta8,ON,real_gdp_per_capita,2.6,uniform goods trade elasticity 8
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta4,ON,employment,-2.3,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta6.5,ON,employment,-1.6,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta8,ON,employment,-1.1,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta4,PE,real_gdp_per_capita,27.4,uniform goods trade elasticity 4
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta6.5,PE,real_gdp_per_capita,17.8,uniform goods trade elasticity 6.5
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta8,PE,real_gdp_per_capita,12.2,uniform goods trade elasticity 8
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta4,PE,employment,29.0,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta6.5,PE,employment,19.3,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta8,PE,employment,13.2,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta4,QC,real_gdp_per_capita,8.9,uniform goods trade elasticity 4
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta6.5,QC,real_gdp_per_capita,5.6,uniform goods trade elasticity 6.5
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta8,QC,real_gdp_per_capita,3.9,uniform goods trade elasticity 8
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta4,QC,employment,1.9,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta6.5,QC,employment,1.3,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta8,QC,employment,0.8,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta4,SK,real_gdp_per_capita,9.8,uniform goods trade elasticity 4
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta6.5,SK,real_gdp_per_capita,6.2,uniform goods trade elasticity 6.5
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta8,SK,real_gdp_per_capita,4.3,uniform goods trade elasticity 8
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta4,SK,employment,3.2,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta6.5,SK,employment,2.1,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta8,SK,employment,1.4,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta4,YT,real_gdp_per_capita,13.0,uniform goods trade elasticity 4
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta6.5,YT,real_gdp_per_capita,8.2,uniform goods trade elasticity 6.5
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta8,YT,real_gdp_per_capita,5.8,uniform goods trade elasticity 8
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta4,YT,employment,7.8,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta6.5,YT,employment,5.1,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta8,YT,employment,3.6,
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta4,CAN,real_gdp_per_capita,7.3,uniform goods trade elasticity 4
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta6.5,CAN,real_gdp_per_capita,4.6,uniform goods trade elasticity 6.5
+alvarez_krznar_tombe_2019,Appendix II Table 1,eliminate_nongeo_goods_internal_theta8,CAN,real_gdp_per_capita,3.2,uniform goods trade elasticity 8
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Agriculture,measured_cost,37.4,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Agriculture,geography,16.6,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Agriculture,nongeography,20.8,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Food,measured_cost,60.5,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Food,geography,33.1,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Food,nongeography,27.4,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Mining,measured_cost,15.8,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Mining,geography,3.2,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Mining,nongeography,12.6,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Textile,measured_cost,20.4,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Textile,geography,11.1,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Textile,nongeography,9.3,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Wood and Paper,measured_cost,21.5,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Wood and Paper,geography,8.3,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Wood and Paper,nongeography,13.2,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Petroleum and Chemicals,measured_cost,12.2,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Petroleum and Chemicals,geography,4.9,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Petroleum and Chemicals,nongeography,7.3,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Metals,measured_cost,50.5,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Metals,geography,19.3,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Metals,nongeography,31.2,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Machinery and Equipment,measured_cost,37.0,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Machinery and Equipment,geography,14.6,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Machinery and Equipment,nongeography,22.4,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Other Manufacturing,measured_cost,46.1,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Other Manufacturing,geography,15.8,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Other Manufacturing,nongeography,30.3,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Utilities,measured_cost,101.5,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Utilities,geography,10.5,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Utilities,nongeography,91.0,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Wholesale and retail trade,measured_cost,68.2,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Wholesale and retail trade,geography,29.5,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Wholesale and retail trade,nongeography,38.7,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Hotels and Restaurants,measured_cost,76.1,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Hotels and Restaurants,geography,21.8,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Hotels and Restaurants,nongeography,54.2,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Transportation and warehousing,measured_cost,57.7,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Transportation and warehousing,geography,22.5,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Transportation and warehousing,nongeography,35.2,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Post and Telecommunications,measured_cost,72.1,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Post and Telecommunications,geography,6.4,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Post and Telecommunications,nongeography,65.7,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Business services,measured_cost,71.2,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Business services,geography,23.4,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Business services,nongeography,47.8,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Education and Health,measured_cost,100.8,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Education and Health,geography,26.7,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,Education and Health,nongeography,74.1,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,All,measured_cost,55.1,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,All,geography,20.3,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 1,trade_costs_by_sector_2015,All,nongeography,34.8,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,AB,measured_cost,50.6,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,AB,geography,22.2,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,AB,nongeography,28.3,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,BC,measured_cost,59.2,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,BC,geography,28.0,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,BC,nongeography,31.2,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,MB,measured_cost,59.1,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,MB,geography,17.4,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,MB,nongeography,41.7,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,NB,measured_cost,61.0,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,NB,geography,15.2,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,NB,nongeography,45.8,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,NL,measured_cost,73.2,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,NL,geography,23.2,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,NL,nongeography,50.0,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,NS,measured_cost,66.9,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,NS,geography,21.5,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,NS,nongeography,45.4,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,ON,measured_cost,53.5,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,ON,geography,21.5,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,ON,nongeography,32.0,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,PE,measured_cost,74.0,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,PE,geography,16.2,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,PE,nongeography,57.8,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,QC,measured_cost,53.3,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,QC,geography,13.9,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,QC,nongeography,39.4,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,SK,measured_cost,52.7,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,SK,geography,15.8,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,SK,nongeography,36.9,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,YT,measured_cost,90.6,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,YT,geography,24.3,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,YT,nongeography,66.2,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,CAN,measured_cost,55.1,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,CAN,geography,20.3,"interprovincial, trade-weighted"
+alvarez_krznar_tombe_2019,Table 2,trade_costs_by_province_2015,CAN,nongeography,34.8,"interprovincial, trade-weighted"
+manucha_tombe_2022,Table 3,uniform_internal_10,AB,real_gdp,6.6,
+manucha_tombe_2022,Table 3,uniform_internal_10,CAN,real_gdp,6.7,
+manucha_tombe_2022,Table 3,eliminate_nondistance,AB,real_gdp,3.9,
+manucha_tombe_2022,Table 3,eliminate_nondistance,CAN,real_gdp,4.4,
+manucha_tombe_2022,Table 3,eliminate_asymmetries,AB,real_gdp,3.0,
+manucha_tombe_2022,Table 3,eliminate_asymmetries,CAN,real_gdp,7.9,
+manucha_tombe_2022,Table 3,eliminate_nondistance_services,AB,real_gdp,3.7,
+manucha_tombe_2022,Table 3,eliminate_nondistance_services,CAN,real_gdp,4.2,
+manucha_tombe_2022,Table 3,eliminate_asymmetries_services,AB,real_gdp,2.9,
+manucha_tombe_2022,Table 3,eliminate_asymmetries_services,CAN,real_gdp,4.6,
+manucha_tombe_2022,Table 3,ab_uniform_internal_10,AB,real_gdp,5.2,
+manucha_tombe_2022,Table 3,ab_uniform_internal_10,CAN,real_gdp,1.4,
+manucha_tombe_2022,Table 3,ab_eliminate_nondistance,AB,real_gdp,2.5,
+manucha_tombe_2022,Table 3,ab_eliminate_nondistance,CAN,real_gdp,0.9,
+manucha_tombe_2022,Table 3,ab_eliminate_asymmetries,AB,real_gdp,4.1,
+manucha_tombe_2022,Table 3,ab_eliminate_asymmetries,CAN,real_gdp,1.6,
+manucha_tombe_2022,Table 3,ab_eliminate_nondistance_services,AB,real_gdp,2.4,
+manucha_tombe_2022,Table 3,ab_eliminate_nondistance_services,CAN,real_gdp,0.8,
+manucha_tombe_2022,Table 3,ab_eliminate_asymmetries_services,AB,real_gdp,2.9,
+manucha_tombe_2022,Table 3,ab_eliminate_asymmetries_services,CAN,real_gdp,1.0,
+manucha_tombe_2022,Text p. 39,nwpta_block_average,NWPTA,real_gdp,2.9,"BC, AB, SK, MB remove the average of the two policy-relevant cost measures"
+manucha_tombe_2022,Text p. 39,nwpta_block_max,NWPTA,real_gdp,6.5,upper end of the 2.9-6.5% range
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Crop and animal production,measured_cost,56.3,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Crop and animal production,nondistance_contribution,0.0,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Crop and animal production,asymmetry_contribution,19.1,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Crop and animal production,policy_geometric_average,9.2,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Forestry and logging,measured_cost,48.8,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Forestry and logging,nondistance_contribution,1.2,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Forestry and logging,asymmetry_contribution,11.7,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Forestry and logging,policy_geometric_average,6.3,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,"Fishing, hunting and trapping",measured_cost,133.6,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,"Fishing, hunting and trapping",nondistance_contribution,16.1,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,"Fishing, hunting and trapping",asymmetry_contribution,21.7,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,"Fishing, hunting and trapping",policy_geometric_average,18.9,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Support activities for agriculture and forestry,measured_cost,136.2,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Support activities for agriculture and forestry,nondistance_contribution,26.7,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Support activities for agriculture and forestry,asymmetry_contribution,27.2,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Support activities for agriculture and forestry,policy_geometric_average,26.9,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,"Mining, quarrying, and oil and gas extraction",measured_cost,18.0,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,"Mining, quarrying, and oil and gas extraction",nondistance_contribution,0.01,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,"Mining, quarrying, and oil and gas extraction",asymmetry_contribution,13.7,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,"Mining, quarrying, and oil and gas extraction",policy_geometric_average,6.7,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Utilities,measured_cost,186.9,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Utilities,nondistance_contribution,50.8,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Utilities,asymmetry_contribution,20.8,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Utilities,policy_geometric_average,35.0,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Other activities of the construction industry,measured_cost,83.3,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Other activities of the construction industry,nondistance_contribution,17.6,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Other activities of the construction industry,asymmetry_contribution,14.0,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Other activities of the construction industry,policy_geometric_average,15.8,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Manufacturing,measured_cost,29.0,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Manufacturing,nondistance_contribution,0.4,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Manufacturing,asymmetry_contribution,5.3,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Manufacturing,policy_geometric_average,2.8,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Wholesale trade,measured_cost,67.0,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Wholesale trade,nondistance_contribution,0.8,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Wholesale trade,asymmetry_contribution,29.2,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Wholesale trade,policy_geometric_average,14.1,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Retail trade,measured_cost,202.0,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Retail trade,nondistance_contribution,58.7,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Retail trade,asymmetry_contribution,28.3,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Retail trade,policy_geometric_average,42.7,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Transportation and warehousing,measured_cost,82.6,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Transportation and warehousing,nondistance_contribution,13.4,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Transportation and warehousing,asymmetry_contribution,19.1,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Transportation and warehousing,policy_geometric_average,16.2,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Information and cultural industries,measured_cost,79.9,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Information and cultural industries,nondistance_contribution,37.5,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Information and cultural industries,asymmetry_contribution,21.6,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Information and cultural industries,policy_geometric_average,29.3,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,"Finance, insurance, and real estate",measured_cost,102.4,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,"Finance, insurance, and real estate",nondistance_contribution,11.6,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,"Finance, insurance, and real estate",asymmetry_contribution,48.0,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,"Finance, insurance, and real estate",policy_geometric_average,28.5,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,"Professional, scientific, and technical services",measured_cost,94.0,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,"Professional, scientific, and technical services",nondistance_contribution,5.1,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,"Professional, scientific, and technical services",asymmetry_contribution,38.6,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,"Professional, scientific, and technical services",policy_geometric_average,20.7,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,"Admin. and support, waste management",measured_cost,86.0,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,"Admin. and support, waste management",nondistance_contribution,3.0,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,"Admin. and support, waste management",asymmetry_contribution,38.0,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,"Admin. and support, waste management",policy_geometric_average,19.2,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Educational services,measured_cost,133.0,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Educational services,nondistance_contribution,43.7,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Educational services,asymmetry_contribution,27.6,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Educational services,policy_geometric_average,35.4,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Health care and social assistance,measured_cost,239.0,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Health care and social assistance,nondistance_contribution,45.4,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Health care and social assistance,asymmetry_contribution,81.4,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Health care and social assistance,policy_geometric_average,62.4,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,"Arts, entertainment, and recreation",measured_cost,106.2,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,"Arts, entertainment, and recreation",nondistance_contribution,7.2,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,"Arts, entertainment, and recreation",asymmetry_contribution,16.7,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,"Arts, entertainment, and recreation",policy_geometric_average,11.9,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Accommodation and food services,measured_cost,116.5,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Accommodation and food services,nondistance_contribution,20.8,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Accommodation and food services,asymmetry_contribution,15.5,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Accommodation and food services,policy_geometric_average,18.1,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Other services (except public administration),measured_cost,136.4,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Other services (except public administration),nondistance_contribution,15.8,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Other services (except public administration),asymmetry_contribution,39.1,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Other services (except public administration),policy_geometric_average,26.9,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Non-profit institutions serving households,measured_cost,215.4,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Non-profit institutions serving households,nondistance_contribution,75.2,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Non-profit institutions serving households,asymmetry_contribution,18.2,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Non-profit institutions serving households,policy_geometric_average,43.9,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Government education services,measured_cost,216.5,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Government education services,nondistance_contribution,94.3,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Government education services,asymmetry_contribution,22.4,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Government education services,policy_geometric_average,54.2,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Government health services,measured_cost,295.9,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Government health services,nondistance_contribution,126.5,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Government health services,asymmetry_contribution,33.8,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Government health services,policy_geometric_average,74.1,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Other federal government services,measured_cost,225.0,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Other federal government services,nondistance_contribution,90.4,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Other federal government services,asymmetry_contribution,26.0,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Other federal government services,policy_geometric_average,54.9,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Other provincial/terr government services,measured_cost,253.7,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Other provincial/terr government services,nondistance_contribution,99.8,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Other provincial/terr government services,asymmetry_contribution,39.9,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Other provincial/terr government services,policy_geometric_average,67.2,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Other municipal government services,measured_cost,213.6,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Other municipal government services,nondistance_contribution,67.7,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Other municipal government services,asymmetry_contribution,18.6,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Other municipal government services,policy_geometric_average,41.0,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Other aboriginal government services,measured_cost,442.7,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Other aboriginal government services,nondistance_contribution,197.4,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Other aboriginal government services,asymmetry_contribution,18.3,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Other aboriginal government services,policy_geometric_average,87.6,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Total,measured_cost,60.0,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Total,nondistance_contribution,8.0,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Total,asymmetry_contribution,22.0,"tariff-equivalent %, interprovincial"
+manucha_tombe_2022,Table 1,trade_costs_by_sector_2018,Total,policy_geometric_average,14.8,"tariff-equivalent %, interprovincial"

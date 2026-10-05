@@ -1,0 +1,38 @@
+sector_id,theta,source
+AGR,11.92,"Albrecht and Tombe (2016) Table 9, mapped to the 37 base sectors (as in the legacy replication scripts)"
+MIE,11.92,"Albrecht and Tombe (2016) Table 9, mapped to the 37 base sectors (as in the legacy replication scripts)"
+MIN,11.92,"Albrecht and Tombe (2016) Table 9, mapped to the 37 base sectors (as in the legacy replication scripts)"
+MIS,11.92,"Albrecht and Tombe (2016) Table 9, mapped to the 37 base sectors (as in the legacy replication scripts)"
+FOD,4.56,"Albrecht and Tombe (2016) Table 9, mapped to the 37 base sectors (as in the legacy replication scripts)"
+TEX,4.56,"Albrecht and Tombe (2016) Table 9, mapped to the 37 base sectors (as in the legacy replication scripts)"
+WOD,10.83,"Albrecht and Tombe (2016) Table 9, mapped to the 37 base sectors (as in the legacy replication scripts)"
+PAP,9.07,"Albrecht and Tombe (2016) Table 9, mapped to the 37 base sectors (as in the legacy replication scripts)"
+PET,19.16,"Albrecht and Tombe (2016) Table 9, mapped to the 37 base sectors (as in the legacy replication scripts)"
+CHM,19.16,"Albrecht and Tombe (2016) Table 9, mapped to the 37 base sectors (as in the legacy replication scripts)"
+RUB,19.16,"Albrecht and Tombe (2016) Table 9, mapped to the 37 base sectors (as in the legacy replication scripts)"
+NMM,5.00,"Albrecht and Tombe (2016) Table 9, mapped to the 37 base sectors (as in the legacy replication scripts)"
+BMT,5.02,"Albrecht and Tombe (2016) Table 9, mapped to the 37 base sectors (as in the legacy replication scripts)"
+FMT,5.02,"Albrecht and Tombe (2016) Table 9, mapped to the 37 base sectors (as in the legacy replication scripts)"
+ELC,6.19,"Albrecht and Tombe (2016) Table 9, mapped to the 37 base sectors (as in the legacy replication scripts)"
+ELQ,6.19,"Albrecht and Tombe (2016) Table 9, mapped to the 37 base sectors (as in the legacy replication scripts)"
+MAC,6.19,"Albrecht and Tombe (2016) Table 9, mapped to the 37 base sectors (as in the legacy replication scripts)"
+MTV,6.19,"Albrecht and Tombe (2016) Table 9, mapped to the 37 base sectors (as in the legacy replication scripts)"
+OTE,6.19,"Albrecht and Tombe (2016) Table 9, mapped to the 37 base sectors (as in the legacy replication scripts)"
+MFN,5.00,"Albrecht and Tombe (2016) Table 9, mapped to the 37 base sectors (as in the legacy replication scripts)"
+UTL,5.00,Services value
+CON,5.00,Services value
+TRD,5.00,Services value
+TRN,5.00,Services value
+ACC,5.00,Services value
+PUB,5.00,Services value
+TEL,5.00,Services value
+ITS,5.00,Services value
+FIN,5.00,Services value
+REA,5.00,Services value
+PRF,5.00,Services value
+ADM,5.00,Services value
+PAD,5.00,Services value
+EDU,5.00,Services value
+HTH,5.00,Services value
+ART,5.00,Services value
+OSV,5.00,Services value

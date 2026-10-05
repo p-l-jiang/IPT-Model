@@ -1,0 +1,63 @@
+# Setup of Alvarez, Krznar and Tombe (2019, IMF Working Paper 19/158): the
+# provinces and territories, the United States and the rest of the world, 18
+# sectors (9 goods, 9 services), Canada-wide input-output coefficients,
+# Caliendo-Parro trade elasticities for goods and 5 for services, labour
+# mobility with elasticity 1.5, balanced trade, and their gravity
+# specification: distance in thousands of km, a neighbour indicator and an
+# interprovincial-trade indicator by year, with exporter-year and importer-year
+# fixed effects, estimated on interprovincial and international pairs.
+#
+# Differences from the paper that the data impose: 2016 instead of 2015 (the
+# repository's ICIO tables start in 2016), a 2016-2022 estimation panel instead
+# of 1997-2015, the Northwest Territories and Nunavut kept separate, no Yukon
+# distances (Yukon pairs have no geographic component). The paper does not
+# list its aggregated elasticities; config/parameters/theta_alvarez_krznar_tombe_2019.csv
+# averages the Caliendo-Parro estimates within each sector as Albrecht and
+# Tombe (2016) did. docs/replication.md compares the results with the paper.
+extends: default.yml
+name: alvarez_krznar_tombe_2019
+description: >
+  Alvarez, Krznar and Tombe (2019) setup: 13 provinces and territories + US + rest of the
+  world, 18 sectors, labour mobility, balanced trade, level-distance gravity.
+
+years:
+  target: 2016
+  panel: [2016, 2022]
+
+sectors:
+  scheme: config/concordances/sector_scheme_alvarez_krznar_tombe_2019.csv
+
+io_parameters:
+  source: national
+
+trade_elasticities:
+  method: fixed
+  file: config/parameters/theta_alvarez_krznar_tombe_2019.csv
+
+trade_costs:
+  sample: all
+  regressors: [dist_1000km, adjacent, interprovincial]
+  year_interactions: [interprovincial]
+  geographic: [dist_1000km, adjacent]
+  exclude_sectors: [CON, GOV]   # no interprovincial flows in the paper's data
+  measured_index: symmetric
+  # The paper removes non-geographic costs down to exp(a1 distance + a2 neighbour),
+  # which is below one for close neighbours; no floor at within-region costs.
+  floor_geographic: false
+  # The paper's equation also has an intra-provincial indicator. Adding the
+  # within-region pairs (log cost zero) lowers the distance coefficients and
+  # moves the results further from the paper (docs/replication.md), so they are
+  # left out; set own_pairs: true to include them.
+  own_pairs: false
+
+calibration:
+  deficits: purge         # the paper's model has balanced trade (footnote 29)
+
+migration:
+  elasticity: 1.5
+
+aggregation:
+  canada_weights: income  # initial shares of nominal GDP
+
+scenarios:
+  - config/scenarios/alvarez_krznar_tombe_2019.yml

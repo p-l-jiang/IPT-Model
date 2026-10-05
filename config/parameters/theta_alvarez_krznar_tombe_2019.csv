@@ -1,0 +1,19 @@
+sector_id,theta,source
+AGR,8.11,Caliendo and Parro (2015) agriculture
+FOD,2.55,Caliendo and Parro (2015) food
+MIN,15.72,Caliendo and Parro (2015) mining
+TEX,5.56,Caliendo and Parro (2015) textile
+WPP,9.95,"Caliendo and Parro (2015) mean of wood (10.83) and paper (9.07)"
+PCH,15.06,"Caliendo and Parro (2015) mean of petroleum (51.08), chemicals (4.75), plastic (1.66), minerals (2.76)"
+MET,6.15,"Caliendo and Parro (2015) mean of basic metals (7.99) and metal products (4.30)"
+MEQ,6.05,"Caliendo and Parro (2015) mean of machinery (1.52), office (12.79), electrical (10.60), communication (7.07), medical (8.98), auto (1.01), other transport (0.37)"
+OMF,5.00,Caliendo and Parro (2015) other manufacturing
+UTL,5.00,Services value
+CON,5.00,Services value
+WRT,5.00,Services value
+HOT,5.00,Services value
+TRP,5.00,Services value
+COM,5.00,Services value
+FBS,5.00,Services value
+GOV,5.00,Services value
+EHO,5.00,Services value

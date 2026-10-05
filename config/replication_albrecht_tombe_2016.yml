@@ -1,27 +1,24 @@
-# Setup of Albrecht and Tombe (2016, Canadian Journal of Economics 49(1)):
-# 10 provinces and the rest of the world (US included), 22 sectors, 2010 data,
-# Canada-wide input-output coefficients, Caliendo-Parro-based trade
-# elasticities and 2006-census normalized distances.
+# Setup of Albrecht and Tombe (2016, Canadian Journal of Economics 49(1);
+# working paper version May 2015): 10 provinces and the rest of the world (US
+# included), 22 sectors, Canada-wide input-output coefficients, Caliendo-Parro
+# trade elasticities (their Table 9), balanced trade, gravity on log normalized
+# distance with exporter and importer fixed effects, exporter-specific
+# (asymmetric) trade costs and the augmented Head-Ries index for the
+# measured-cost experiments of their Table 6.
 #
-# The unified pipeline's corrections apply (consistent baseline, product-level
-# concordance, etc.), so results differ from the legacy replication script.
-# Requires data/raw/icio/ICIO2025_2010.csv (OECD ICIO 2025 edition, not
-# included in the repository; download from https://oe.cd/icio).
+# Calibration year. The paper uses 2010. The repository holds the ICIO tables
+# for 2016-2022, so this configuration uses 2016; with
+# data/raw/icio/ICIO2025_2010.csv (https://oe.cd/icio) set years to 2010.
+# docs/replication.md compares the results with the paper.
 extends: default.yml
 name: albrecht_tombe_2016
 description: >
-  Albrecht and Tombe (2016) setup: 10 provinces + rest of the world, 22 sectors, 2010.
-
-paths:
-  # Normalized distances from the legacy 2006-census script (the raw census file
-  # is not in the repository; see data/README.md). census_da is null so that
-  # scripts/02_build_distances.R does not rebuild (or overwrite) this file.
-  census_da: null
-  distances: data/raw/legacy/2006_dist_mat_legacy.csv
+  Albrecht and Tombe (2016) setup: 10 provinces + rest of the world, 22 sectors,
+  national input-output structure, balanced trade.
 
 years:
-  target: 2010
-  panel: [2010, 2010]
+  target: 2016
+  panel: [2016, 2016]     # one cross-section, as in the paper
 
 regions:
   domestic: ["NL", "PE", "NS", "NB", "QC", "ON", "MB", "SK", "AB", "BC"]
@@ -38,11 +35,16 @@ trade_elasticities:
   file: config/parameters/theta_albrecht_tombe_2016.csv
 
 trade_costs:
+  sample: interprovincial
   regressors: [log_dist]
   exclude_sectors: [UTL, CON, PAD]
+  measured_index: augmented   # tau_tilde = tau_bar (t_i / t_n)^(1/2), paper section 4.3.1
+
+calibration:
+  deficits: purge         # the paper's model has balanced trade (proposition 1)
 
 aggregation:
-  canada_weights: real_income
+  canada_weights: real_income   # initial shares of real GDP (proposition 3, Table 8)
 
 scenarios:
   - config/scenarios/albrecht_tombe_2016.yml

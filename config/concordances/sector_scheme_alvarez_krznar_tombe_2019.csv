@@ -1,0 +1,38 @@
+base_sector,sector_id,sector_name,goods
+AGR,AGR,"Agricultural products, fishing, forestry",TRUE
+FOD,FOD,"Food, beverage, tobacco",TRUE
+MIE,MIN,Mining,TRUE
+MIN,MIN,Mining,TRUE
+MIS,MIN,Mining,TRUE
+TEX,TEX,"Textile, apparel, leather products",TRUE
+WOD,WPP,"Wood and paper, printing",TRUE
+PAP,WPP,"Wood and paper, printing",TRUE
+PUB,WPP,"Wood and paper, printing",TRUE
+PET,PCH,"Petroleum, chemical and non-metallic mineral products, rubber, plastics",TRUE
+CHM,PCH,"Petroleum, chemical and non-metallic mineral products, rubber, plastics",TRUE
+RUB,PCH,"Petroleum, chemical and non-metallic mineral products, rubber, plastics",TRUE
+NMM,PCH,"Petroleum, chemical and non-metallic mineral products, rubber, plastics",TRUE
+BMT,MET,Metals and metal products,TRUE
+FMT,MET,Metals and metal products,TRUE
+ELC,MEQ,Machinery and equipment (electrical and machinery; transport equipment),TRUE
+ELQ,MEQ,Machinery and equipment (electrical and machinery; transport equipment),TRUE
+MAC,MEQ,Machinery and equipment (electrical and machinery; transport equipment),TRUE
+MTV,MEQ,Machinery and equipment (electrical and machinery; transport equipment),TRUE
+OTE,MEQ,Machinery and equipment (electrical and machinery; transport equipment),TRUE
+MFN,OMF,Other manufacturing including furniture,TRUE
+UTL,UTL,Utilities,FALSE
+CON,CON,Construction,FALSE
+TRD,WRT,Wholesale and retail trade,FALSE
+ACC,HOT,Hotels and restaurants,FALSE
+TRN,TRP,Transportation and warehousing,FALSE
+TEL,COM,Post and telecommunications,FALSE
+FIN,FBS,"Financial intermediation, real estate, insurance, computer, R&D and other business activities",FALSE
+REA,FBS,"Financial intermediation, real estate, insurance, computer, R&D and other business activities",FALSE
+ITS,FBS,"Financial intermediation, real estate, insurance, computer, R&D and other business activities",FALSE
+PRF,FBS,"Financial intermediation, real estate, insurance, computer, R&D and other business activities",FALSE
+ADM,FBS,"Financial intermediation, real estate, insurance, computer, R&D and other business activities",FALSE
+PAD,GOV,Government services,FALSE
+EDU,EHO,"Education, health and other services",FALSE
+HTH,EHO,"Education, health and other services",FALSE
+ART,EHO,"Education, health and other services",FALSE
+OSV,EHO,"Education, health and other services",FALSE
