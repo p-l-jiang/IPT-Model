@@ -1,0 +1,41 @@
+# Experiments of Alvarez, Krznar and Tombe (2019): Table 6 (gains from trade)
+# and Table 7 (eliminating non-geographic trade barriers for goods). Scenario
+# ids match the experiment names in config/benchmarks/published_results.csv.
+# As in the paper, pairs with negative non-geographic costs are left unchanged.
+scenarios:
+  - id: gft_internal
+    label: "Gains from internal trade: relative to no interprovincial trade"
+    report: gains_from_trade
+    shocks:
+      - {type: autarky, importers: domestic, exporters: domestic}
+
+  - id: gft_external
+    label: "Gains from external trade: relative to no international trade"
+    report: gains_from_trade
+    shocks:
+      - {type: autarky, importers: domestic, exporters: foreign}
+      - {type: autarky, importers: foreign, exporters: domestic}
+
+  - id: gft_all
+    label: "Gains from trade: observed equilibrium relative to autarky"
+    report: gains_from_trade
+    shocks:
+      - {type: autarky, importers: all, exporters: all}
+
+  - id: eliminate_nongeo_goods_internal
+    label: "Eliminate non-geographic interprovincial trade barriers (goods)"
+    shocks:
+      - {type: eliminate_nongeographic, sectors: goods}
+
+  - id: eliminate_nongeo_goods_external
+    label: "Eliminate non-geographic barriers between the provinces and the world (goods)"
+    shocks:
+      - {type: eliminate_nongeographic, importers: domestic, exporters: foreign, sectors: goods}
+      - {type: eliminate_nongeographic, importers: foreign, exporters: domestic, sectors: goods}
+
+  - id: eliminate_nongeo_goods_all
+    label: "Eliminate non-geographic internal and external trade barriers (goods)"
+    shocks:
+      - {type: eliminate_nongeographic, sectors: goods}
+      - {type: eliminate_nongeographic, importers: domestic, exporters: foreign, sectors: goods}
+      - {type: eliminate_nongeographic, importers: foreign, exporters: domestic, sectors: goods}

@@ -1,0 +1,18 @@
+sector_id,theta,source
+AGR,6.87,"Inferred: matches the 56.3% measured cost of crop and animal production in Manucha and Tombe (2022, Table 1) on 2018 data"
+MIN,15.78,"Inferred: matches the 18.0% measured cost of mining, quarrying, and oil and gas extraction (Table 1)"
+MFG,8.90,"Inferred: matches the 29.0% measured cost of manufacturing (Table 1)"
+UTL,5.00,Services value (paper)
+CON,5.00,Services value (paper)
+TRD,5.00,Services value (paper)
+TRN,5.00,Services value (paper); inverting Table 1 gives 5.00
+INF,5.00,Services value (paper); inverting Table 1 gives 5.08
+FIR,5.00,Services value (paper)
+PRF,5.00,Services value (paper); inverting Table 1 gives 4.87
+ADM,5.00,Services value (paper); inverting Table 1 gives 4.89
+EDU,5.00,Services value (paper)
+HTH,5.00,Services value (paper)
+ART,5.00,Services value (paper); inverting Table 1 gives 5.18
+ACC,5.00,Services value (paper); inverting Table 1 gives 5.00
+OSV,5.00,Services value (paper)
+GOV,5.00,Services value (paper)

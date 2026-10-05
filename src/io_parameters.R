@@ -183,6 +183,13 @@ build_io_parameters <- function(cfg, year, icio) {
     }
   }
 
+  if (!is.null(cfg$io_parameters$sector_values)) {
+    pv <- apply_sector_values(phi, beta, readr::read_csv(cfg$io_parameters$sector_values,
+                                                         show_col_types = FALSE), dom)
+    phi <- pv$phi
+    beta <- pv$beta
+  }
+
   assert_finite(phi, "phi")
   assert_finite(gamma, "gamma")
   assert_finite(beta, "beta")
@@ -190,6 +197,28 @@ build_io_parameters <- function(cfg, year, icio) {
        aggregates = bind_rows(sut |> mutate(source = "SUT"),
                               ico |> mutate(source = "ICIO")),
        clamped_phi = rbind(dom_par$clamped_phi, for_par$clamped_phi))
+}
+
+#' Replace value-added and final-demand shares by published values.
+#'
+#' Used to reproduce a paper's calibration where it reports these parameters
+#' (Albrecht and Tombe, 2016, Table 9); input-output coefficients gamma stay
+#' as estimated from the data.
+#'
+#' @param values Table with columns sector_id, phi and beta.
+#' @param regions Rows of `phi` and `beta` to replace.
+#' @return List with `phi` and `beta`; beta is rescaled to sum to one.
+apply_sector_values <- function(phi, beta, values, regions) {
+  sectors <- colnames(phi)
+  missing <- setdiff(sectors, values$sector_id)
+  if (length(missing) > 0) stopf("Sector values lack sectors: %s", paste(missing, collapse = ", "))
+  v <- values[match(sectors, values$sector_id), ]
+  if (any(v$phi <= 0 | v$phi > 1) || any(v$beta < 0)) stopf("Sector values out of range.")
+  for (r in regions) {
+    phi[r, ] <- v$phi
+    beta[r, ] <- v$beta / sum(v$beta)
+  }
+  list(phi = phi, beta = beta)
 }
 
 #' Total value added by region (CAD millions): provinces from the SUT, foreign

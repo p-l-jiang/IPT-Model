@@ -32,23 +32,50 @@ read_config_file <- function(path) {
 #' Load and validate a model configuration.
 #'
 #' @param path Path to a YAML configuration (default: config/default.yml).
+#' @param overrides Character vector of "key.subkey=value" settings applied on
+#'   top of the file (values are parsed as YAML, e.g. "migration.elasticity=1.5"
+#'   or 'regions.foreign=["ROW"]').
 #' @return A list with all settings; `cfg$config_file` records the source file.
-load_config <- function(path = "config/default.yml") {
+load_config <- function(path = "config/default.yml", overrides = character(0)) {
   cfg <- read_config_file(path)
+  for (o in overrides) cfg <- set_config_value(cfg, o)
   cfg$config_file <- path
+  cfg$overrides <- overrides
   cfg$paths$output <- glue_path(cfg$paths$output, name = cfg$name)
   validate_config(cfg)
   cfg
 }
 
+#' Apply one "key.subkey=value" override to a configuration list.
+set_config_value <- function(cfg, assignment) {
+  eq <- regexpr("=", assignment, fixed = TRUE)
+  if (eq < 2) stopf("Overrides must have the form key.subkey=value; got '%s'.", assignment)
+  keys <- strsplit(substr(assignment, 1, eq - 1), ".", fixed = TRUE)[[1]]
+  value <- yaml::yaml.load(substr(assignment, eq + 1, nchar(assignment)))
+  set_in <- function(x, keys, value) {
+    if (length(keys) == 1) {
+      x[keys] <- list(value)
+      return(x)
+    }
+    x[[keys[1]]] <- set_in(x[[keys[1]]] %||% list(), keys[-1], value)
+    x
+  }
+  set_in(cfg, keys, value)
+}
+
 #' Configuration for a pipeline script: `--config <file>` on the command line,
-#' otherwise config/default.yml.
+#' otherwise config/default.yml, plus any number of `--set key=value`
+#' overrides (use `--set name=<new name>` to keep the outputs of a variant
+#' separate).
 script_config <- function(default = "config/default.yml") {
   args <- commandArgs(trailingOnly = TRUE)
   k <- match("--config", args)
   path <- if (!is.na(k) && length(args) > k) args[k + 1] else default
-  cfg <- load_config(path)
-  log_info("Configuration: ", path, " (", cfg$name, ")")
+  sets <- which(args == "--set")
+  overrides <- args[sets[sets < length(args)] + 1]
+  cfg <- load_config(path, overrides)
+  log_info("Configuration: ", path, " (", cfg$name, ")",
+           if (length(overrides) > 0) paste0(" with ", paste(overrides, collapse = ", ")) else "")
   cfg
 }
 
@@ -81,8 +108,8 @@ validate_config <- function(cfg) {
   if (!cfg$io_parameters$source %in% c("regional", "national", "global")) {
     stopf("io_parameters$source must be 'regional', 'national' or 'global'.")
   }
-  if (!cfg$calibration$deficits %in% c("data", "purge")) {
-    stopf("calibration$deficits must be 'data' or 'purge'.")
+  if (!cfg$calibration$deficits %in% c("data", "balanced", "purge")) {
+    stopf("calibration$deficits must be 'data', 'balanced' or 'purge'.")
   }
   invisible(TRUE)
 }

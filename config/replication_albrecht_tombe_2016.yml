@@ -1,27 +1,33 @@
-# Setup of Albrecht and Tombe (2016, Canadian Journal of Economics 49(1)):
-# 10 provinces and the rest of the world (US included), 22 sectors, 2010 data,
-# Canada-wide input-output coefficients, Caliendo-Parro-based trade
-# elasticities and 2006-census normalized distances.
+# Setup of Albrecht and Tombe (2016, Canadian Journal of Economics 49(1);
+# working paper version May 2015): 10 provinces and the rest of the world (US
+# included), 22 sectors, Canada-wide input-output coefficients with the paper's
+# value-added and final-demand shares (Table 9), Caliendo-Parro trade
+# elasticities (Table 9), balanced trade, gravity on log normalized (pairwise)
+# distance with exporter and importer fixed effects, exporter-specific
+# (asymmetric) trade costs and the augmented Head-Ries index for the
+# measured-cost experiments of their Table 6.
 #
-# The unified pipeline's corrections apply (consistent baseline, product-level
-# concordance, etc.), so results differ from the legacy replication script.
-# Requires data/raw/icio/ICIO2025_2010.csv (OECD ICIO 2025 edition, not
-# included in the repository; download from https://oe.cd/icio).
+# Calibration year 2010, as in the paper (the Statistics Canada detail-level
+# trade flows also begin in 2010). docs/replication.md compares the results
+# with the paper.
 extends: default.yml
 name: albrecht_tombe_2016
 description: >
-  Albrecht and Tombe (2016) setup: 10 provinces + rest of the world, 22 sectors, 2010.
+  Albrecht and Tombe (2016) setup: 10 provinces + rest of the world, 22 sectors,
+  national input-output structure, balanced trade.
 
 paths:
-  # Normalized distances from the legacy 2006-census script (the raw census file
-  # is not in the repository; see data/README.md). census_da is null so that
-  # scripts/02_build_distances.R does not rebuild (or overwrite) this file.
-  census_da: null
-  distances: data/raw/legacy/2006_dist_mat_legacy.csv
+  # Mean distance between residents (appendix B), from the committed census
+  # extract (which lacks Yukon, not needed here).
+  census_da: data/raw/census/2021_da_extract.csv
+  distances: data/processed/distances_2021_pairwise.csv
+
+distances:
+  method: pairwise
 
 years:
   target: 2010
-  panel: [2010, 2010]
+  panel: [2010, 2010]     # one cross-section, as in the paper
 
 regions:
   domestic: ["NL", "PE", "NS", "NB", "QC", "ON", "MB", "SK", "AB", "BC"]
@@ -32,17 +38,31 @@ sectors:
 
 io_parameters:
   source: national
+  # Value-added and final-demand shares of Table 9 (OECD STAN); the input
+  # coefficients, which the paper does not report, come from the 2010
+  # supply-use tables.
+  sector_values: config/parameters/io_albrecht_tombe_2016.csv
 
 trade_elasticities:
   method: fixed
   file: config/parameters/theta_albrecht_tombe_2016.csv
 
 trade_costs:
+  sample: interprovincial
   regressors: [log_dist]
   exclude_sectors: [UTL, CON, PAD]
+  measured_index: augmented   # tau_tilde = tau_bar (t_i / t_n)^(1/2), paper section 4.3.1
+
+calibration:
+  # Observed trade shares, balanced trade (proposition 1 and section 4.1: the
+  # initial trade shares are those of the data).
+  deficits: balanced
+
+migration:
+  elasticity: 0           # no labour mobility in the main results (appendix D explores it)
 
 aggregation:
-  canada_weights: real_income
+  canada_weights: real_income   # initial shares of real GDP (proposition 3, Table 8)
 
 scenarios:
   - config/scenarios/albrecht_tombe_2016.yml

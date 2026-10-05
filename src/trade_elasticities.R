@@ -11,6 +11,8 @@
 #     applied. Sectors without a BoC component (services) receive
 #     services_theta + adjustment.
 #   * "fixed": values read from a CSV (columns sector_id, theta).
+#   * "uniform": goods_theta for goods-producing sectors and services_theta
+#     for the others (e.g. the robustness checks of Alvarez et al., 2019).
 
 #' Derive the BoC-rule elasticities, returning the full audit table.
 derive_boc_elasticities <- function(te) {
@@ -62,11 +64,36 @@ load_trade_elasticities <- function(cfg) {
   } else if (te$method == "fixed") {
     tab <- readr::read_csv(te$file, show_col_types = FALSE)
     theta <- setNames(tab$theta, tab$sector_id)[sectors]
+  } else if (te$method == "uniform") {
+    goods <- goods_sectors(cfg)[sectors]
+    if (is.null(te$goods_theta) || is.null(te$services_theta)) {
+      stopf("trade_elasticities$method uniform needs goods_theta and services_theta.")
+    }
+    theta <- setNames(ifelse(goods, te$goods_theta, te$services_theta), sectors)
   } else {
     stopf("Unknown trade_elasticities$method: %s", te$method)
   }
   if (anyNA(theta)) stopf("Missing trade elasticity for: %s",
                           paste(sectors[is.na(theta)], collapse = ", "))
   if (any(theta <= 0)) stopf("Trade elasticities must be positive.")
+  theta
+}
+
+#' Elasticities used to measure trade costs (Head-Ries index, asymmetries).
+#'
+#' The model's elasticities by default. `trade_costs$measurement_elasticities`
+#' (a table with columns sector_id and theta) replaces them for the sectors it
+#' lists, e.g. to reproduce the cost levels a paper reports when they cannot be
+#' reproduced from the data with the paper's elasticities; the model itself
+#' keeps `theta`.
+measurement_elasticities <- function(cfg, theta) {
+  f <- cfg$trade_costs$measurement_elasticities
+  if (is.null(f)) return(theta)
+  m <- readr::read_csv(f, show_col_types = FALSE)
+  unknown <- setdiff(m$sector_id, names(theta))
+  if (length(unknown) > 0) stopf("Measurement elasticities for unknown sectors: %s",
+                                 paste(unknown, collapse = ", "))
+  if (any(m$theta <= 0)) stopf("Measurement elasticities must be positive.")
+  theta[m$sector_id] <- m$theta
   theta
 }

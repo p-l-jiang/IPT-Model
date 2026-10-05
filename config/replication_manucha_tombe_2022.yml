@@ -1,0 +1,53 @@
+# Setup of Manucha and Tombe (2022, Macdonald-Laurier Institute, "Liberalizing
+# internal trade through mutual recognition"): the 13 provinces and
+# territories and the rest of the world, 2018 data, trade elasticities of 5
+# for services, labour mobility, Head-Ries costs decomposed with log
+# normalized distance (non-distance costs) and exporter-specific costs
+# (asymmetries).
+#
+# Goods elasticities. The paper takes them from Fontagne, Guimbard and Orefice
+# (2022) without listing them. Because the Head-Ries index depends only on
+# trade shares and theta, they can be recovered from the paper's measured
+# costs (its Table 1) on the same 2018 data: inverting Table 1 for the service
+# sectors returns 4.9-5.2, the paper's stated value, which validates the data;
+# the goods sectors give 8.9 (manufacturing), 15.8 (mining) and 6.9
+# (agriculture). See config/parameters/theta_manucha_tombe_2022.csv.
+#
+# Differences from the paper: 17 sectors instead of 32 (the base sectors come
+# from the ICIO, which does not split crops, forestry and fishing, the five
+# construction industries, wholesale and retail trade, or government services
+# by level), and no federal taxes and transfers (the paper uses the fiscal
+# model of Tombe and Winter, 2021, which this model does not include; observed
+# trade imbalances are held fixed instead). docs/replication.md compares the
+# results with the paper.
+extends: default.yml
+name: manucha_tombe_2022
+description: >
+  Manucha and Tombe (2022) setup: 13 provinces and territories + rest of the world,
+  2018, manufacturing as one sector, elasticities of about 5, labour mobility.
+
+years:
+  target: 2018
+  panel: [2018, 2018]
+
+regions:
+  foreign: ["ROW"]
+
+sectors:
+  scheme: config/concordances/sector_scheme_manucha_tombe_2022.csv
+
+trade_elasticities:
+  method: fixed
+  file: config/parameters/theta_manucha_tombe_2022.csv
+
+trade_costs:
+  sample: interprovincial
+  regressors: [log_dist]
+  exclude_sectors: [CON, GOV]
+  measured_index: symmetric
+
+migration:
+  elasticity: 1.5
+
+scenarios:
+  - config/scenarios/manucha_tombe_2022.yml

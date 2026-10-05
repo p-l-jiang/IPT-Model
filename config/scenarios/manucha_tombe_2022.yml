@@ -1,0 +1,73 @@
+# Experiments of Manucha and Tombe (2022), Table 3 and text. Scenario ids match
+# the experiment names in config/benchmarks/published_results.csv. "Remove
+# non-distance trade costs" eliminates the non-geographic component of the
+# Head-Ries index; "remove trade cost asymmetries" lowers each cost to that of
+# the cheaper direction. Alberta's unilateral liberalization removes costs on
+# imports into Alberta only. The NWPTA block removes the geometric average of
+# the two measures among British Columbia, Alberta, Saskatchewan and Manitoba.
+scenarios:
+  - id: uniform_internal_10
+    label: "Uniform 10% reduction in interprovincial trade costs"
+    shocks:
+      - {type: iceberg, importers: domestic, exporters: domestic, sectors: all, factor: 0.9}
+
+  - id: eliminate_nondistance
+    label: "Remove non-distance trade costs"
+    shocks:
+      - {type: eliminate_nongeographic, sectors: all}
+
+  - id: eliminate_asymmetries
+    label: "Remove trade cost asymmetries"
+    shocks:
+      - {type: eliminate_asymmetries, sectors: all}
+
+  - id: eliminate_nondistance_services
+    label: "Remove non-distance trade costs in service sectors only"
+    shocks:
+      - {type: eliminate_nongeographic, sectors: services}
+
+  - id: eliminate_asymmetries_services
+    label: "Remove trade cost asymmetries in service sectors only"
+    shocks:
+      - {type: eliminate_asymmetries, sectors: services}
+
+  - id: ab_uniform_internal_10
+    label: "Alberta: uniform 10% reduction in costs of imports from other provinces"
+    shocks:
+      - {type: iceberg, importers: ["AB"], exporters: domestic, sectors: all, factor: 0.9}
+
+  - id: ab_eliminate_nondistance
+    label: "Alberta: remove non-distance costs on imports"
+    shocks:
+      - {type: eliminate_nongeographic, importers: ["AB"], exporters: domestic, sectors: all}
+
+  - id: ab_eliminate_asymmetries
+    label: "Alberta: remove asymmetries on imports"
+    shocks:
+      - {type: eliminate_asymmetries, importers: ["AB"], exporters: domestic, sectors: all}
+
+  - id: ab_eliminate_nondistance_services
+    label: "Alberta: remove non-distance costs on service imports"
+    shocks:
+      - {type: eliminate_nongeographic, importers: ["AB"], exporters: domestic, sectors: services}
+
+  - id: ab_eliminate_asymmetries_services
+    label: "Alberta: remove asymmetries on service imports"
+    shocks:
+      - {type: eliminate_asymmetries, importers: ["AB"], exporters: domestic, sectors: services}
+
+  - id: nwpta_block_average
+    label: "NWPTA provinces remove the average policy-relevant cost among themselves"
+    shocks:
+      - {type: eliminate_nongeographic, importers: ["BC", "AB", "SK", "MB"], exporters: ["BC", "AB", "SK", "MB"], sectors: all, fraction: 0.5}
+      - {type: eliminate_asymmetries, importers: ["BC", "AB", "SK", "MB"], exporters: ["BC", "AB", "SK", "MB"], sectors: all, fraction: 0.5}
+
+  - id: nwpta_block_nondistance
+    label: "NWPTA provinces remove non-distance costs among themselves"
+    shocks:
+      - {type: eliminate_nongeographic, importers: ["BC", "AB", "SK", "MB"], exporters: ["BC", "AB", "SK", "MB"], sectors: all}
+
+  - id: nwpta_block_asymmetries
+    label: "NWPTA provinces remove asymmetries among themselves"
+    shocks:
+      - {type: eliminate_asymmetries, importers: ["BC", "AB", "SK", "MB"], exporters: ["BC", "AB", "SK", "MB"], sectors: all}

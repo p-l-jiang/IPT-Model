@@ -64,8 +64,10 @@ $VA'_n = \hat w_n \hat L_n VA_n$ and the numeraire $\sum_n VA'_n = \sum_n VA_n$
 (world value added). Deficits are held fixed in units of world value added,
 $D'_n = D_n$ (Caliendo and Parro, 2015), unless a scenario changes them.
 
-**Labour mobility (optional).** With location preferences drawn from a Fréchet
-distribution with dispersion $\kappa$, population in the mobile regions
+**Labour mobility.** With location preferences drawn from a Fréchet
+distribution with dispersion $\kappa$ (`migration$elasticity`: 1.5 by default,
+as in Alvarez, Krznar and Tombe, 2019, and Manucha and Tombe, 2022; 0 turns
+mobility off, as in Albrecht and Tombe, 2016), population in the mobile regions
 $\mathcal M$ (the provinces and territories) satisfies
 
 $$\hat L_n = \frac{\hat U_n^{\kappa}}{\sum_{m\in\mathcal M} \ell_m \hat U_m^{\kappa}},
@@ -141,17 +143,67 @@ $$\bar\tau_{nij} = \left(\frac{\pi_{nnj}\,\pi_{iij}}{\pi_{nij}\,\pi_{inj}}\right
 which equals $\sqrt{\tau_{nij}\tau_{inj}/(\tau_{nnj}\tau_{iij})}$ in the model.
 It is symmetric and defined when trade is positive in both directions.
 
-Following Albrecht and Tombe (2016), measured interprovincial costs are
-decomposed by sector-specific regressions pooled over 2010-2022,
+**Geographic decomposition.** Measured costs are decomposed by
+sector-specific regressions pooled over the panel years,
 
-$$\log\bar\tau_{nit} = b\,\log\frac{d_{ni}}{\sqrt{d_{nn}d_{ii}}} + c\,\mathrm{adj}_{ni} + \mu_{nt} + \nu_{it} + \varepsilon_{nit},$$
+$$\log\bar\tau_{nit} = \sum_k b_k\,x_{k,ni} + \mu_{nt} + \nu_{it} + \varepsilon_{nit},$$
 
-estimated by OLS on pairs of provinces/territories with standard errors
-clustered by origin and destination. Distance is normalized by internal
-distances, so the geographic component
-$\tau^{geo}_{ni} = \exp(b\log d^{norm}_{ni} + c\,\mathrm{adj}_{ni})$ is unit-free
-and equals one for pairs as close as the average within-region distance. The
-non-geographic component is $\bar\tau/\tau^{geo}$.
+estimated by OLS with exporter-year and importer-year fixed effects and
+standard errors clustered by origin and destination. The geographic component
+is $\tau^{geo}_{ni} = \exp(\sum_{k\in G} b_k x_{k,ni})$ over the geographic
+regressors $G$; the non-geographic component $\bar\tau/\tau^{geo}$ contains
+the fixed effects, any border indicators and the residual. Two specifications
+are implemented (`trade_costs` in the configuration):
+
+* *Albrecht and Tombe (2016)*, the default: $x$ = log distance relative to
+  internal distances, $\log(d_{ni}/\sqrt{d_{nn}d_{ii}})$, and (in the main
+  model) an adjacency indicator, estimated on interprovincial pairs over
+  2010-2022. The geographic component is unit-free and equals one for pairs as
+  close as the average within-region distance.
+* *Alvarez, Krznar and Tombe (2019)*: $x$ = distance in thousands of km and a
+  neighbour indicator, plus an interprovincial-trade indicator by year that is
+  not part of $G$, estimated on interprovincial and international pairs
+  (`config/sensitivity_gravity_levels.yml`).
+
+The share of measured costs attributed to geography depends heavily on this
+choice: normalized distance jumps from 1 within a region to about 4-30
+between provinces, so the log specification attributes most of the cost of
+crossing a provincial border to geography; distance in levels attributes it to
+the non-geographic component. Neither is identified by interprovincial data
+alone (see `docs/replication.md`).
+
+With the log specification, the geographic component also depends on how
+internal distances are measured: because the fixed effects absorb any common
+rescaling of normalized distance, the coefficients do not change, but
+$	au^{geo}$ does. The main model measures distance between population
+centroids (`distances$method: centroid`); Albrecht and Tombe (2016) and
+Manucha and Tombe (2022) use the mean distance between residents
+(`pairwise`, Head and Mayer, 2002), whose internal distances are 1.3-1.5
+times larger. With it, the non-geographic share of measured costs is larger
+(`docs/data.md`, `docs/replication.md`).
+
+**Asymmetric costs.** Following Waugh (2010) and Albrecht and Tombe (2016,
+appendix B), let $\tau_{nij} = t^{s}_{nij}\,t_{ij}$ with a symmetric part and
+an exporter-specific cost $t_{ij}$. Then
+
+$$\log\frac{\pi_{nij}}{\pi_{nnj}} = g_j\,x_{ni} + \iota_{nj} + \eta_{ij} + e_{nij},$$
+
+estimated on interprovincial pairs with importer-year and exporter-year fixed
+effects, identifies $\log t_{ij} = -(\iota_{ij} + \eta_{ij})/\theta_j$ (the
+sum of a region's importer and exporter effects, which does not depend on the
+normalization of the fixed effects). Removing asymmetries lowers each cost to
+that of the cheaper direction, $\hat\tau_{nij} = \min(1, t_{nj}/t_{ij})$. The
+augmented index $\tilde\tau_{nij} = \bar\tau_{nij}(t_{ij}/t_{nj})^{1/2} =
+\tau_{nij}/\sqrt{\tau_{nnj}\tau_{iij}}$ measures directional costs and is used
+by the measured-cost scenarios when `trade_costs$measured_index` is
+`augmented` (as in Albrecht and Tombe's Table 6).
+
+`scripts/05_estimate_trade_costs.R` writes the decomposition for every pair
+with two-way trade in the calibration year, the exporter-specific costs and
+trade-weighted summaries (`trade_cost_summary.csv`): measured costs
+$\bar\tau - 1$, the geographic component, the non-geographic component (as
+$\bar\tau - \tau^{geo}$ and $\bar\tau/\tau^{geo} - 1$) and the
+contribution of asymmetries $\max(1, t_i/t_n) - 1$.
 
 ## Scenarios
 
@@ -160,14 +212,32 @@ non-geographic component is $\bar\tau/\tau^{geo}$.
 | `iceberg` | $\hat\tau = $ `factor` for the listed importer-exporter pairs (never for own trade) |
 | `tariff` (`iceberg` treatment, default) | $\hat\tau = 1 + $ `rate`; no tariff revenue (legacy) |
 | `tariff` (`ad_valorem` treatment) | $t' = t + $ `rate`; revenue rebated to the importer |
-| `measured_cost_reduction` | $\hat\tau = (1 + (1-s)(\bar\tau - 1))/\bar\tau$ for $\bar\tau>1$ |
-| `eliminate_nongeographic` | $\hat\tau = \min(\tau^{geo}/\bar\tau, 1)$ |
-| `eliminate_measured` | $\hat\tau = \min(1/\bar\tau, 1)$ |
+| `autarky` | $\hat\tau = \infty$ for the listed pairs |
+| `measured_cost_reduction` | $\hat\tau = (1 + (1-s)(\bar\tau - 1))/\bar\tau$ for $\bar\tau>1$ ($\tilde\tau$ with the augmented index) |
+| `eliminate_nongeographic` | $\hat\tau = \min(\max(\tau^{geo}, 1)/\bar\tau, 1)^{f}$ |
+| `eliminate_asymmetries` | $\hat\tau = \min(1, t_n/t_i)^{f}$ |
+| `eliminate_measured` | $\hat\tau = \min(1/\bar\tau, 1)^{f}$ |
 
-The last three apply to interprovincial pairs in the target year, for the
-sectors listed in the scenario. Pairs without distance data (Yukon, with the
-committed census extract) have no $\tau^{geo}$ and are left unchanged by
-`eliminate_nongeographic`.
+The measured-cost shocks apply in the calibration year to the listed
+importer-exporter pairs (interprovincial pairs by default) and sectors; $f$
+(`fraction`, default 1) is the share of the log cost removed, so two shocks
+with $f = 1/2$ remove the geometric average of two measures. Pairs without an
+estimate are left unchanged; in particular, pairs without distance data have
+no $\tau^{geo}$. The floor
+$\max(\tau^{geo}, 1)$ keeps geography from making trade with another region
+cheaper than trade within one (`trade_costs$floor_geographic: false` removes
+it, as in Alvarez et al., 2019).
+
+**Gains from trade.** With `report: gains_from_trade`, a scenario of
+prohibitive costs is reported as the gain of the observed equilibrium relative
+to the counterfactual, $1/\hat x - 1$ for every outcome $x$, and the
+Canada-wide figure averages the regional gains with baseline weights (Albrecht
+and Tombe, 2016, proposition 3). With balanced trade and one sector this is the
+Arkolakis-Costinot-Rodríguez-Clare formula $\pi_{nn}^{-1/(\theta\phi)} - 1$
+(checked in the test suite). Isolating a group of regions requires their trade
+imbalances to sum to zero, so these experiments are run on balanced-trade
+baselines (`calibration$deficits: purge`); the solver stops if a region is left
+without any supplier of a good it uses.
 
 ## References
 
@@ -190,5 +260,11 @@ committed census extract) have no $\tau^{geo}$ and are left unchanged by
   *American Economic Review* 91(4): 858-876.
 * Head, K. and T. Mayer (2002). "Illusory border effects: Distance mismeasurement
   inflates estimates of home bias in trade." CEPII Working Paper 2002-01.
+* Alvarez, J., I. Krznar and T. Tombe (2019). "Internal trade in Canada: Case
+  for liberalization." IMF Working Paper 19/158.
+* Manucha, R. and T. Tombe (2022). *Liberalizing internal trade through mutual
+  recognition: A legal and economic analysis.* Macdonald-Laurier Institute.
 * Tombe, T. and X. Zhu (2019). "Trade, migration, and productivity: A
   quantitative analysis of China." *American Economic Review* 109(5): 1843-1872.
+* Waugh, M. E. (2010). "International trade and income differences." *American
+  Economic Review* 100(5): 2093-2124.

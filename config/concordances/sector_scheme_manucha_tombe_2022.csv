@@ -1,0 +1,38 @@
+base_sector,sector_id,sector_name,goods
+AGR,AGR,"Agriculture, forestry, fishing and hunting",TRUE
+MIE,MIN,"Mining, quarrying, and oil and gas extraction",TRUE
+MIN,MIN,"Mining, quarrying, and oil and gas extraction",TRUE
+MIS,MIN,"Mining, quarrying, and oil and gas extraction",TRUE
+FOD,MFG,Manufacturing,TRUE
+TEX,MFG,Manufacturing,TRUE
+WOD,MFG,Manufacturing,TRUE
+PAP,MFG,Manufacturing,TRUE
+PET,MFG,Manufacturing,TRUE
+CHM,MFG,Manufacturing,TRUE
+RUB,MFG,Manufacturing,TRUE
+NMM,MFG,Manufacturing,TRUE
+BMT,MFG,Manufacturing,TRUE
+FMT,MFG,Manufacturing,TRUE
+ELC,MFG,Manufacturing,TRUE
+ELQ,MFG,Manufacturing,TRUE
+MAC,MFG,Manufacturing,TRUE
+MTV,MFG,Manufacturing,TRUE
+OTE,MFG,Manufacturing,TRUE
+MFN,MFG,Manufacturing,TRUE
+UTL,UTL,Utilities,FALSE
+CON,CON,Construction,FALSE
+TRD,TRD,Wholesale and retail trade,FALSE
+TRN,TRN,Transportation and warehousing,FALSE
+PUB,INF,Information and cultural industries,FALSE
+TEL,INF,Information and cultural industries,FALSE
+ITS,PRF,"Professional, scientific, and technical services",FALSE
+FIN,FIR,"Finance, insurance, and real estate",FALSE
+REA,FIR,"Finance, insurance, and real estate",FALSE
+PRF,PRF,"Professional, scientific, and technical services",FALSE
+ADM,ADM,"Administrative and support, waste management",FALSE
+EDU,EDU,Educational services,FALSE
+HTH,HTH,Health care and social assistance,FALSE
+ART,ART,"Arts, entertainment, and recreation",FALSE
+ACC,ACC,Accommodation and food services,FALSE
+OSV,OSV,Other services (except public administration),FALSE
+PAD,GOV,Government services,FALSE

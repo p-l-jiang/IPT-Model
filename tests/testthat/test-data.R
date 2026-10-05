@@ -87,3 +87,57 @@ test_that("configuration validation rejects YAML booleans in region lists", {
   cfg$regions$domestic[6] <- TRUE
   expect_error(validate_config(cfg), "quote them")
 })
+
+test_that("configuration overrides set nested values parsed as YAML", {
+  cfg <- load_config(file.path(ipt_root(), "config", "default.yml"),
+                     c("migration.elasticity=1.5", 'regions.foreign=["ROW"]', "name=variant",
+                       "trade_costs.regressors=[dist_1000km, adjacent]"))
+  expect_equal(cfg$migration$elasticity, 1.5)
+  expect_equal(cfg$regions$foreign, "ROW")
+  expect_equal(cfg$paths$output, "output/variant")
+  expect_equal(cfg$trade_costs$regressors, c("dist_1000km", "adjacent"))
+  expect_error(set_config_value(cfg, "novalue"), "key.subkey=value")
+})
+
+test_that("uniform trade elasticities distinguish goods and services", {
+  cfg <- load_config(file.path(ipt_root(), "config", "default.yml"),
+                     c("trade_elasticities.method=uniform", "trade_elasticities.goods_theta=6.5",
+                       "trade_elasticities.services_theta=5"))
+  th <- load_trade_elasticities(cfg)
+  expect_equal(unname(th[c("MTV", "FOD", "FIN", "TRD")]), c(6.5, 6.5, 5, 5))
+})
+
+test_that("published sector values replace phi and beta in the chosen regions only", {
+  phi <- matrix(0.5, 3, 2, dimnames = list(c("ON", "QC", "ROW"), c("S1", "S2")))
+  beta <- matrix(0.5, 3, 2, dimnames = dimnames(phi))
+  v <- tibble::tibble(sector_id = c("S2", "S1"), phi = c(0.3, 0.6), beta = c(0.3, 0.9))
+  out <- apply_sector_values(phi, beta, v, c("ON", "QC"))
+  expect_equal(unname(out$phi["QC", ]), c(0.6, 0.3))
+  expect_equal(unname(out$beta["ON", ]), c(0.75, 0.25))
+  expect_equal(unname(out$phi["ROW", ]), c(0.5, 0.5))
+  expect_error(apply_sector_values(phi, beta, v[1, ], "ON"), "lack sectors: S1")
+})
+
+test_that("measurement elasticities replace the model's for the listed sectors only", {
+  f <- tempfile(fileext = ".csv")
+  readr::write_csv(tibble::tibble(sector_id = "FOD", theta = 3.5), f)
+  theta <- c(FOD = 2.5, FIN = 5)
+  cfg <- list(trade_costs = list(measurement_elasticities = f))
+  expect_equal(measurement_elasticities(cfg, theta), c(FOD = 3.5, FIN = 5))
+  expect_equal(measurement_elasticities(list(trade_costs = list()), theta), theta)
+  readr::write_csv(tibble::tibble(sector_id = "XXX", theta = 3.5), f)
+  expect_error(measurement_elasticities(cfg, theta), "unknown sectors: XXX")
+})
+
+test_that("pairwise distances are population-weighted means over pairs of residents", {
+  da <- tibble::tibble(region = c("A", "A", "B", "B"), lon = c(0, 0, 2, 2), lat = c(0, 1, 0, 1),
+                       population = c(1, 3, 2, 2))
+  D <- pairwise_distances(da, cell = 0.01)
+  d01 <- haversine_km(0, 0, 0, 1)
+  expect_equal(D["A", "A"], 2 * 0.25 * 0.75 * d01)
+  expect_equal(D["B", "B"], 2 * 0.5 * 0.5 * d01)
+  cross <- 0.25 * 0.5 * (haversine_km(0, 0, 2, 0) + haversine_km(0, 0, 2, 1)) +
+    0.75 * 0.5 * (haversine_km(0, 1, 2, 0) + haversine_km(0, 1, 2, 1))
+  expect_equal(D["A", "B"], cross)
+  expect_equal(D["B", "A"], cross)
+})

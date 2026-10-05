@@ -18,7 +18,17 @@ lines <- c(sprintf("# Scenario results: %s", cfg$name), "",
            sprintf("Configuration `%s`, calibration year %d. Percent changes relative to the baseline.",
                    cfg$config_file, cfg$years$target), "")
 for (s in scenarios) {
-  sol <- run_scenario(s, base, cfg, costs)
+  sol <- tryCatch(run_scenario(s, base, cfg, costs), error = function(e) {
+    warnf("Scenario %s failed: %s", s$id, conditionMessage(e))
+    NULL
+  })
+  if (is.null(sol)) {
+    summary_rows[[s$id]] <- tibble(scenario = s$id, label = s$label, canada_real_income = NA_real_,
+                                   canada_real_income_per_capita = NA_real_, converged = FALSE,
+                                   iterations = NA_real_)
+    lines <- c(lines, sprintf("## %s", s$label), "", sprintf("Scenario id: `%s` (failed; see log).", s$id), "")
+    next
+  }
   if (!sol$converged) warnf("Scenario %s did not converge.", s$id)
   res <- write_scenario_results(sol, base, cfg, output_dir(cfg, s$id))
   can <- res$canada

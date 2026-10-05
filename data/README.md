@@ -15,12 +15,11 @@ See [`docs/data.md`](../docs/data.md) for how each source is used.
 
 ## raw/icio
 
-`ICIO2025_<year>.csv` for 2016-2022: OECD Inter-Country Input-Output tables,
-2025 edition, extended version (China and Mexico split into CN1/CN2 and
-MX1/MX2), current USD millions. Source: <https://oe.cd/icio>. To calibrate to
-another year, download that year's CSV and save it under the same naming
-pattern. The 2010 and 2015 tables are needed by the two replication
-configurations.
+`<year>.csv` for 1995-2022: OECD Inter-Country Input-Output tables, 2025
+edition, extended version (China and Mexico split into CN1/CN2 and MX1/MX2),
+current USD millions. Source: <https://oe.cd/icio>. A calibration year needs its
+ICIO table and the Statistics Canada trade-flow and supply and use tables
+(2010 onward).
 
 ## raw/fx
 
@@ -30,23 +29,30 @@ dollar, May 2007 - May 2025. Source:
 
 ## raw/census
 
-`2021_da_extract.csv`: one row per 2021 census dissemination block with the
-province/territory, the representative point (latitude, longitude) of its
-dissemination area and the block population (Statistics Canada, Geographic
-Attribute File, catalogue 92-151-X, 2021). This extract was produced by the
-legacy 2021 distance script, which dropped **Yukon** (see `docs/data.md`). To
-restore Yukon, download `2021_92-151_X.csv` from
-<https://www12.statcan.gc.ca/census-recensement/2021/geo/aip-pia/attribute-attribs/index2021-eng.cfm?year=2021>,
-save it here and set `paths$census_da` to it; `src/distance.R` reads both the
-raw file and the extract.
+The distances in `data/processed/distances_2021.csv` are built from the 2021
+census Geographic Attribute File (Statistics Canada, catalogue 92-151-X:
+dissemination-block populations and dissemination-area representative points),
+`2021_92-151_X.csv`, which `paths$census_da` points to. The file is large and
+git-ignored: to rebuild the distances, download it from
+<https://www12.statcan.gc.ca/census-recensement/2021/geo/aip-pia/attribute-attribs/index2021-eng.cfm?year=2021>
+into this folder and run `scripts/02_build_distances.R` (without it, step 2
+keeps the committed distances).
+
+`2021_da_extract.csv` is the extract produced by the legacy 2021 distance
+script. It lacks **Yukon** (the script looked for "Yukon Territory"; see
+`docs/data.md`); `src/distance.R` reads both it and the raw file. The
+Albrecht and Tombe replication builds its pairwise distances
+(`data/processed/distances_2021_pairwise.csv`, ten provinces) from it.
 
 ## raw/legacy
 
 `2006_dist_mat_legacy.csv`: normalized distances between the ten provinces
-computed by the legacy script from the 2006 Geographic Attribute File (used by
-the Albrecht and Tombe, 2016, replication configuration). The raw 2006 file is
-not in the repository, so this file could not be regenerated with the
-corrected reader; it lies within about 6% of correctly weighted 2021 values.
+computed by the legacy script from the 2006 Geographic Attribute File. The raw
+2006 file is not in the repository, so this file could not be regenerated with
+the corrected reader; it lies within about 6% of correctly weighted 2021
+values. No configuration uses it (the Albrecht and Tombe replication uses the
+2021 census distances); it is kept for reference and can be selected with
+`paths$distances`.
 
 ## raw/statcan (not committed)
 
@@ -67,9 +73,13 @@ model can be re-estimated and re-run without downloading anything:
 | `phi.csv`, `beta.csv`, `gamma.csv.gz`, `io_parameters.rds` | production and demand parameters |
 | `measured_trade_costs.csv.gz` | Head-Ries trade costs |
 | `gravity_coefficients.csv` | distance and adjacency elasticities by sector |
-| `trade_cost_decomposition.csv` | geographic / non-geographic components, 2022 |
+| `exporter_costs.csv` | exporter-specific (asymmetric) trade costs by region, sector and year |
+| `trade_cost_decomposition.csv` | geographic, non-geographic and asymmetric components for every pair, 2022 |
+| `trade_cost_summary.csv` | trade-weighted averages of the components by sector, exporter and importer |
 | `trade_elasticities.csv` | trade elasticities with their derivation |
 | `baseline.rds`, `baseline_diagnostics.csv` | calibrated baseline and diagnostics |
 
 `processed/distances_2021.csv` (and `_centroids.csv`) are shared by
-configurations that use 2021 census distances.
+configurations that use 2021 census distances between population centroids;
+`processed/distances_2021_pairwise.csv` holds mean distances between residents
+(no Yukon), used by the Albrecht and Tombe replication.

@@ -143,12 +143,31 @@ summarise_sectors <- function(sol, base) {
     filter(baseline_output > 0)
 }
 
+#' Express percent changes from the baseline to the counterfactual as changes
+#' from the counterfactual to the baseline, 100 (1 / (1 + x / 100) - 1). Used
+#' for gains-from-trade experiments, which compare the observed equilibrium
+#' with autarky.
+invert_changes <- function(df, keep = c("region", "sector", "tariff_revenue_share",
+                                         "baseline_output", "baseline_employment_share")) {
+  cols <- setdiff(names(df)[vapply(df, is.numeric, logical(1))], keep)
+  df |> mutate(across(all_of(cols), \(x) 100 * (1 / (1 + x / 100) - 1)))
+}
+
 #' Write all result tables of one scenario to an output folder.
+#'
+#' For scenarios with report: gains_from_trade, region and sector results are
+#' the gains of the baseline relative to the counterfactual and the Canada-wide
+#' figure averages the regional gains with baseline weights (Albrecht and
+#' Tombe, 2016, proposition 3).
 write_scenario_results <- function(sol, base, cfg, dir) {
   ensure_dir(dir)
   regions <- summarise_regions(sol, base)
-  canada <- summarise_canada(regions, base, cfg)
   sectors <- summarise_sectors(sol, base)
+  if (identical(sol$shocks$report, "gains_from_trade")) {
+    regions <- invert_changes(regions)
+    sectors <- invert_changes(sectors)
+  }
+  canada <- summarise_canada(regions, base, cfg)
   write_table(regions, file.path(dir, "regions.csv"))
   write_table(canada, file.path(dir, "canada.csv"))
   write_table(sectors, file.path(dir, "sectors.csv"))

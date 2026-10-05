@@ -66,6 +66,11 @@ solve_prices <- function(log_w, log_kappa, base, log_p_init = NULL, tol = 1e-13,
       m <- log_pi[, , j] - theta[j] * (log_kappa[, , j] + matrix(log_c[, j], N, N, byrow = TRUE))
       log_p_new[, j] <- -row_log_sum_exp(m) / theta[j]
     }
+    if (any(!is.finite(log_p_new))) {
+      bad <- which(!is.finite(log_p_new), arr.ind = TRUE)
+      stopf("No remaining supplier for: %s (prohibitive trade costs and no local production).",
+            paste(base$regions[bad[, 1]], base$sectors[bad[, 2]], sep = "/", collapse = ", "))
+    }
     if (max(abs(log_p_new - log_p)) < tol) {
       log_p <- log_p_new
       return(list(log_p = log_p, log_c = log_unit_cost(log_w, log_p, base$phi, base$gamma),

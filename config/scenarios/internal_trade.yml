@@ -1,4 +1,8 @@
-# Internal-trade experiments (Tables 5 and 6 of the Tombe papers).
+# Internal-trade experiments of the main model. Ids follow the tables of
+# Albrecht and Tombe (2016) (t5 = Table 5, t6 = Table 6, cN = column N), with
+# all sectors as in that paper, and add the goods-only experiment of Alvarez,
+# Krznar and Tombe (2019) and the services-only one of Manucha and Tombe (2022).
+# docs/replication.md compares the results with the published figures.
 scenarios:
   - id: t5c4_internal_costs_minus10
     label: "10% lower interprovincial trade costs (all sectors)"
@@ -6,22 +10,42 @@ scenarios:
       - {type: iceberg, importers: domestic, exporters: domestic, sectors: all, factor: 0.9}
 
   - id: t5c5_external_costs_minus10
-    label: "10% lower trade costs between Canada and foreign regions (all sectors)"
+    label: "10% lower trade costs between Canada and foreign regions, both directions (all sectors)"
     shocks:
       - {type: iceberg, importers: domestic, exporters: foreign, sectors: all, factor: 0.9}
       - {type: iceberg, importers: foreign, exporters: domestic, sectors: all, factor: 0.9}
 
-  - id: t6c1_measured_costs_minus10
-    label: "10% lower measured interprovincial trade costs (goods)"
+  - id: t5c5_import_costs_minus10
+    label: "10% lower costs of Canadian imports from foreign regions (all sectors)"
     shocks:
-      - {type: measured_cost_reduction, sectors: goods, share: 0.10}
+      - {type: iceberg, importers: domestic, exporters: foreign, sectors: all, factor: 0.9}
+
+  - id: t6c1_measured_costs_minus10
+    label: "10% lower measured interprovincial trade costs (all sectors)"
+    shocks:
+      - {type: measured_cost_reduction, sectors: all, share: 0.10}
+
+  - id: t6c3_eliminate_asymmetries
+    label: "Eliminate interprovincial trade-cost asymmetries (all sectors)"
+    shocks:
+      - {type: eliminate_asymmetries, sectors: all}
 
   - id: t6c4_eliminate_nongeographic
+    label: "Eliminate non-geographic interprovincial trade barriers (all sectors)"
+    shocks:
+      - {type: eliminate_nongeographic, sectors: all}
+
+  - id: t6c4_eliminate_nongeographic_goods
     label: "Eliminate non-geographic interprovincial trade barriers (goods)"
     shocks:
       - {type: eliminate_nongeographic, sectors: goods}
 
-  - id: t6c5_eliminate_measured
-    label: "Eliminate all measured interprovincial trade costs (goods)"
+  - id: t6c4_eliminate_nongeographic_services
+    label: "Eliminate non-geographic interprovincial trade barriers (services)"
     shocks:
-      - {type: eliminate_measured, sectors: goods}
+      - {type: eliminate_nongeographic, sectors: services}
+
+  - id: t6c5_eliminate_measured
+    label: "Eliminate all measured interprovincial trade costs (all sectors)"
+    shocks:
+      - {type: eliminate_measured, sectors: all}
