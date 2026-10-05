@@ -1,0 +1,29 @@
+# Main model with the trade-cost decomposition of Alvarez, Krznar and Tombe
+# (2019): distance in thousands of km and a neighbour indicator form the
+# geographic component; an interprovincial-trade indicator by year and the
+# exporter-year and importer-year fixed effects are non-geographic. Estimated on
+# interprovincial and international pairs, which requires ICIO years (2016-2022).
+#
+# The main model follows Albrecht and Tombe (2016): log distance relative to
+# internal distances, estimated on interprovincial pairs. That specification
+# attributes most of the jump in costs at provincial borders to geography
+# (normalized distance rises from 1 within a province to 4-30 between
+# provinces), while distance in levels attributes it to non-geographic
+# barriers. The two bracket the policy-relevant share of measured costs; see
+# docs/replication.md.
+extends: default.yml
+name: sensitivity_gravity_levels
+description: >
+  Main model with the level-distance gravity specification of Alvarez, Krznar and Tombe (2019).
+
+years:
+  panel: [2016, 2022]
+
+trade_costs:
+  sample: all
+  regressors: [dist_1000km, adjacent, interprovincial]
+  year_interactions: [interprovincial]
+  geographic: [dist_1000km, adjacent]
+
+scenarios:
+  - config/scenarios/internal_trade.yml
