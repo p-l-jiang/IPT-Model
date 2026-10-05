@@ -7,13 +7,13 @@
 # interprovincial-trade indicator by year, with exporter-year and importer-year
 # fixed effects, estimated on interprovincial and international pairs.
 #
-# Differences from the paper that the data impose: 2016 instead of 2015 (the
-# repository's ICIO tables start in 2016), a 2016-2022 estimation panel instead
-# of 1997-2015, the Northwest Territories and Nunavut kept separate, no Yukon
-# distances (Yukon pairs have no geographic component). The paper does not
-# list its aggregated elasticities; config/parameters/theta_alvarez_krznar_tombe_2019.csv
-# averages the Caliendo-Parro estimates within each sector as Albrecht and
-# Tombe (2016) did. docs/replication.md compares the results with the paper.
+# Differences from the paper that the data impose: a 2010-2015 estimation
+# panel instead of 1997-2015 (the Statistics Canada detail-level trade flows
+# begin in 2010), and the Northwest Territories and Nunavut kept separate. The
+# paper does not list its aggregated elasticities;
+# config/parameters/theta_alvarez_krznar_tombe_2019.csv averages the
+# Caliendo-Parro estimates within each sector as Albrecht and Tombe (2016) did.
+# docs/replication.md compares the results with the paper.
 extends: default.yml
 name: alvarez_krznar_tombe_2019
 description: >
@@ -21,8 +21,8 @@ description: >
   world, 18 sectors, labour mobility, balanced trade, level-distance gravity.
 
 years:
-  target: 2016
-  panel: [2016, 2022]
+  target: 2015
+  panel: [2010, 2015]
 
 sectors:
   scheme: config/concordances/sector_scheme_alvarez_krznar_tombe_2019.csv
@@ -51,7 +51,9 @@ trade_costs:
   own_pairs: false
 
 calibration:
-  deficits: purge         # the paper's model has balanced trade (footnote 29)
+  # Balanced trade (footnote 29) from "an initial equilibrium that exactly
+  # matches observed trade flows" (section IV): observed trade shares.
+  deficits: balanced
 
 migration:
   elasticity: 1.5

@@ -64,8 +64,10 @@ $VA'_n = \hat w_n \hat L_n VA_n$ and the numeraire $\sum_n VA'_n = \sum_n VA_n$
 (world value added). Deficits are held fixed in units of world value added,
 $D'_n = D_n$ (Caliendo and Parro, 2015), unless a scenario changes them.
 
-**Labour mobility (optional).** With location preferences drawn from a Fréchet
-distribution with dispersion $\kappa$, population in the mobile regions
+**Labour mobility.** With location preferences drawn from a Fréchet
+distribution with dispersion $\kappa$ (`migration$elasticity`: 1.5 by default,
+as in Alvarez, Krznar and Tombe, 2019, and Manucha and Tombe, 2022; 0 turns
+mobility off, as in Albrecht and Tombe, 2016), population in the mobile regions
 $\mathcal M$ (the provinces and territories) satisfies
 
 $$\hat L_n = \frac{\hat U_n^{\kappa}}{\sum_{m\in\mathcal M} \ell_m \hat U_m^{\kappa}},
@@ -170,6 +172,16 @@ crossing a provincial border to geography; distance in levels attributes it to
 the non-geographic component. Neither is identified by interprovincial data
 alone (see `docs/replication.md`).
 
+With the log specification, the geographic component also depends on how
+internal distances are measured: because the fixed effects absorb any common
+rescaling of normalized distance, the coefficients do not change, but
+$	au^{geo}$ does. The main model measures distance between population
+centroids (`distances$method: centroid`); Albrecht and Tombe (2016) and
+Manucha and Tombe (2022) use the mean distance between residents
+(`pairwise`, Head and Mayer, 2002), whose internal distances are 1.3-1.5
+times larger. With it, the non-geographic share of measured costs is larger
+(`docs/data.md`, `docs/replication.md`).
+
 **Asymmetric costs.** Following Waugh (2010) and Albrecht and Tombe (2016,
 appendix B), let $\tau_{nij} = t^{s}_{nij}\,t_{ij}$ with a symmetric part and
 an exporter-specific cost $t_{ij}$. Then
@@ -210,8 +222,8 @@ The measured-cost shocks apply in the calibration year to the listed
 importer-exporter pairs (interprovincial pairs by default) and sectors; $f$
 (`fraction`, default 1) is the share of the log cost removed, so two shocks
 with $f = 1/2$ remove the geometric average of two measures. Pairs without an
-estimate are left unchanged; in particular, pairs without distance data
-(Yukon, with the committed census extract) have no $\tau^{geo}$. The floor
+estimate are left unchanged; in particular, pairs without distance data have
+no $\tau^{geo}$. The floor
 $\max(\tau^{geo}, 1)$ keeps geography from making trade with another region
 cheaper than trade within one (`trade_costs$floor_geographic: false` removes
 it, as in Alvarez et al., 2019).

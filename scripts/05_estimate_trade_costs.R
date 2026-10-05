@@ -6,7 +6,7 @@
 
 source("src/load.R")
 cfg <- script_config()
-theta <- load_trade_elasticities(cfg)
+theta <- measurement_elasticities(cfg, load_trade_elasticities(cfg))
 panel <- readr::read_csv(processed_path(cfg, "trade_flows.csv.gz"), show_col_types = FALSE)
 distances <- load_distances(cfg)
 

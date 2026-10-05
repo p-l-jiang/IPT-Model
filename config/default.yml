@@ -39,8 +39,12 @@ statcan:
   price_index_table: "18-10-0003-01"   # inter-city indexes of price differentials
   sut_url: "https://www150.statcan.gc.ca/n1/pub/15-602-x/2017001/csv/15-602-x_csv-scsv_{year}_eng.zip"
 
+distances:
+  method: centroid        # centroid (between population-weighted centroids) | pairwise (mean distance between residents, Head and Mayer 2002)
+
 io_parameters:
   source: regional        # regional (provincial SUTs + ICIO) | national (Canada-wide) | global (world average, legacy)
+  # sector_values: <csv>  # optional: published phi and beta by sector (columns sector_id, phi, beta) for all provinces
 
 trade_elasticities:
   method: boc2018_rule
@@ -57,7 +61,7 @@ trade_costs:
   min_observations: 20
 
 calibration:
-  deficits: data          # data (hold observed imbalances fixed) | purge (solve with zero deficits first)
+  deficits: data          # data (hold observed imbalances fixed) | balanced (observed trade shares, zero imbalances) | purge (solve the model with zero imbalances first)
 
 solver:
   tolerance: 1.0e-10      # sup norm of the equilibrium residuals (relative excess labour demand)

@@ -170,7 +170,7 @@ check_autarky_feasible <- function(tau_hat, base, scenario_id) {
   imbalance <- tapply(base$D, comp, sum)
   if (any(abs(imbalance) > 1e-6 * sum(base$VA))) {
     stopf(paste0("Scenario %s isolates groups of regions whose trade imbalances do not sum to zero; ",
-                 "gains-from-trade experiments need balanced trade (calibration$deficits: purge)."),
+                 "gains-from-trade experiments need balanced trade (calibration$deficits: balanced or purge)."),
           scenario_id)
   }
   invisible(TRUE)

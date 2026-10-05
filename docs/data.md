@@ -12,9 +12,9 @@ calibration year is 2022 in the main configuration.
 | Statistics Canada, catalogue [15-602-X](https://www150.statcan.gc.ca/n1/en/catalogue/15-602-X) | Provincial and territorial supply and use tables, detail level | 2010-2022 | cache | downloaded (CSV archive per year) |
 | Statistics Canada, table [17-10-0005-01](https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1710000501) | Population on July 1 | 1971- | cache | downloaded |
 | Statistics Canada, table [18-10-0003-01](https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810000301) | Inter-city indexes of price differentials (all items) | 2000-2019 | cache | downloaded |
-| OECD [Inter-Country Input-Output tables](https://oe.cd/icio), 2025 edition, extended version | Intermediate and final use by country and industry (USD millions) | 2016-2022 in the repository | `data/raw/icio/ICIO2025_<year>.csv` | committed; other years must be downloaded |
+| OECD [Inter-Country Input-Output tables](https://oe.cd/icio), 2025 edition, extended version | Intermediate and final use by country and industry (USD millions) | 1995-2022 | `data/raw/icio/<year>.csv` | committed |
 | Bank of Canada, series [FXUSDCAD](https://www.bankofcanada.ca/valet/observations/FXUSDCAD/csv) | Daily CAD per USD | May 2007 - May 2025 | `data/raw/fx/FXUSDCAD.csv` | committed |
-| Statistics Canada, census Geographic Attribute File (92-151-X), 2021 | Dissemination-block population and dissemination-area representative points | 2021 | `data/raw/census/2021_da_extract.csv` | committed extract (Yukon missing; see below) |
+| Statistics Canada, census Geographic Attribute File (92-151-X), 2021 | Dissemination-block population and dissemination-area representative points | 2021 | `data/raw/census/2021_92-151_X.csv`; `data/raw/census/2021_da_extract.csv` | raw file git-ignored (the distances built from it are committed); extract committed (Yukon missing; see below) |
 | Charbonneau and Landry (2018), Table 1 | Sectoral trade elasticities | 1993 and 2016 estimates | `config/parameters/boc2018_trade_elasticities.csv` | transcribed |
 | Albrecht and Tombe (2016, working paper of May 2015), Alvarez, Krznar and Tombe (2019), Manucha and Tombe (2022) | Published results, measured trade costs and gravity estimates used for the replication comparison | 2010, 2015, 2018 | `config/benchmarks/published_results.csv` | transcribed (see `docs/replication.md`) |
 
@@ -108,12 +108,25 @@ value added is CAD 2,675 billion (SUT) against 2,631 billion (ICIO).
 
 ## Distances
 
-Provinces and territories are located at their population-weighted centroids
-(dissemination-area representative points weighted by dissemination-block
-population). Internal distance is the population-weighted mean distance from
-dissemination areas to the centroid; normalized distance is
-$d_{ni}/\sqrt{d_{nn}d_{ii}}$. Great-circle distances use the haversine formula
-with the WGS84 equatorial radius.
+Provinces and territories are represented by dissemination-area
+representative points weighted by dissemination-block population. Two
+measures are available (`distances$method`):
+
+* `centroid` (main model): distance between population-weighted centroids;
+  internal distance is the population-weighted mean distance from the
+  dissemination areas to the centroid (`data/processed/distances_2021.csv`,
+  from the raw 2021 file).
+* `pairwise`: population-weighted mean distance between the residents of two
+  regions, and within a region (Head and Mayer, 2002), the measure of
+  Albrecht and Tombe (2016) and Manucha and Tombe (2022). Points are
+  aggregated to a 0.05-degree grid first. Internal distances are 1.3-1.5 times
+  the centroid-based ones (Ontario 209 km against 137 km), so normalized
+  distances are about a quarter smaller. `data/processed/distances_2021_pairwise.csv`
+  is built from the committed extract, which lacks Yukon; it is used by the
+  Albrecht and Tombe replication (ten provinces).
+
+Normalized distance is $d_{ni}/\sqrt{d_{nn}d_{ii}}$. Great-circle distances
+use the haversine formula with the WGS84 equatorial radius.
 
 Adjacency (`config/concordances/adjacency.csv`) is symmetric: shared land
 borders plus the Confederation Bridge (PE-NB). Ferry links (NS-NL, NS-PE) and
@@ -125,16 +138,14 @@ used when the gravity sample includes international pairs.
 
 ## Known data limitations
 
-* **Yukon distances.** The committed 2021 census extract was produced by a
-  legacy script that dropped Yukon (it looked for "Yukon Territory"). Yukon's
-  pairs therefore drop out of the gravity regressions. They are still shocked
-  by the scenarios that use measured costs alone (`measured_cost_reduction`,
-  `eliminate_measured`), but their geographic component cannot be computed, so
-  `eliminate_nongeographic` leaves them unchanged. To fix this, place the 2021
-  Geographic Attribute File (`2021_92-151_X.csv`, from
-  `www12.statcan.gc.ca/census-recensement/2021/geo/aip-pia/attribute-attribs/`)
-  in `data/raw/census/`, point `paths$census_da` to it and re-run
-  `scripts/02_build_distances.R`; the reader identifies provinces by code.
+* **Census file not committed.** The distances are built from the raw 2021
+  Geographic Attribute File (`2021_92-151_X.csv`), which is too large to commit;
+  the resulting `data/processed/distances_2021.csv` is committed, and step 2
+  keeps it when the raw file is absent. The legacy extract
+  (`data/raw/census/2021_da_extract.csv`) lacks Yukon, which is why Yukon had no
+  distances before 5 October 2026, and why pairwise distances are only
+  available for the other twelve regions until they are rebuilt from the raw
+  file (`--set distances.method=pairwise --set paths.distances=...`).
 * **2006 distances.** The raw 2006 file is not in the repository; the
   normalized distances produced by the legacy script are kept in
   `data/raw/legacy/2006_dist_mat_legacy.csv` for reference. They are within
@@ -145,8 +156,6 @@ used when the gravity sample includes international pairs.
 * **Inter-city price indexes** end in 2019 and do not cover Iqaluit; they are
   only used when Canada-wide results are weighted by real income
   (`aggregation$canada_weights: real_income`).
-* **ICIO years.** The repository holds the 2016-2022 tables. The replication
-  configurations (2010 and 2015) need the corresponding ICIO files.
 * **Industry-based US shares.** The US/ROW split applies industry-based shares
   (12-10-0100-01) to product-based totals (12-10-0101-01). Using shares rather
   than subtracting levels keeps flows non-negative and consistent with the

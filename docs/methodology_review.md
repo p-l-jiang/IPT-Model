@@ -245,13 +245,15 @@ cross-check of the solver
   taxes services. Ad valorem tariffs with revenue rebated to the importer, on
   goods only, are implemented and can be selected
   (`config/variant_tariffs_ad_valorem.yml`); for a 35% US tariff they reduce the
-  estimated real-income loss for Canada from 2.35% to 1.44%.
+  estimated real-income loss for Canada from 2.98% to 1.97%.
 * **Very high trade elasticities.** The BoC rule gives 71.1 for refined
   petroleum, 45.0 for metal ores and 20.2 for oil and gas. With constant returns,
   such values produce near-corner responses: a 10% cut in Canada's external
-  trade costs makes New Brunswick's refining output grow about 100-fold and
-  capture most US petroleum imports. `config/sensitivity_theta_papers.yml`
-  re-runs the model with the elasticities of the Tombe papers.
+  trade costs makes New Brunswick's refining output grow about 130-fold and
+  capture most of the US market (US refining output falls by 83%); with labour
+  mobility the province's population also grows by half.
+  `config/sensitivity_theta_papers.yml` re-runs the model with the elasticities
+  of the Tombe papers.
 * **No congestion force with migration.** With labour mobility there is no fixed
   factor (land, housing) to offset agglomeration; results with migration should
   be read with this in mind.

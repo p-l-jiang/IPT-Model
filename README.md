@@ -81,12 +81,12 @@ counterfactual must return no change) and stops otherwise.
 
 | File | Purpose |
 |---|---|
-| `config/default.yml` | Main model: 13 provinces/territories + USA + ROW, 37 sectors, 2022, region-specific IO, observed trade imbalances, BoC-rule trade elasticities |
+| `config/default.yml` | Main model: 13 provinces/territories + USA + ROW, 37 sectors, 2022, region-specific IO, observed trade imbalances, BoC-rule trade elasticities, interprovincial labour mobility |
 | `config/sensitivity_theta_papers.yml` | Main model with the trade elasticities of Albrecht and Tombe (2016) |
 | `config/sensitivity_gravity_levels.yml` | Main model with the trade-cost decomposition of Alvarez, Krznar and Tombe (2019) (distance in levels) |
 | `config/variant_tariffs_ad_valorem.yml` | US tariff scenarios with ad valorem tariffs on goods and tariff revenue |
-| `config/replication_albrecht_tombe_2016.yml` | Albrecht and Tombe (2016) setup: 10 provinces + ROW, 22 sectors, national IO, balanced trade, asymmetric costs (2016 data; the paper uses 2010) |
-| `config/replication_alvarez_krznar_tombe_2019.yml` | Alvarez, Krznar and Tombe (2019) setup: 18 sectors, labour mobility, balanced trade, level-distance gravity with international pairs (2016 data; the paper uses 2015) |
+| `config/replication_albrecht_tombe_2016.yml` | Albrecht and Tombe (2016) setup: 2010, 10 provinces + ROW, 22 sectors, national IO with the paper's value-added and final-demand shares, mean distance between residents, balanced trade, asymmetric costs |
+| `config/replication_alvarez_krznar_tombe_2019.yml` | Alvarez, Krznar and Tombe (2019) setup: 2015, 18 sectors, labour mobility, balanced trade, level-distance gravity with international pairs (2010-2015 panel) |
 | `config/replication_manucha_tombe_2022.yml` | Manucha and Tombe (2022) setup: 13 regions + ROW, 2018, manufacturing as one sector, labour mobility |
 
 A configuration can `extend` another and override only what it changes. The
@@ -97,12 +97,15 @@ main options are:
 | `years$target` | calibration year (2010-2022, with an ICIO table for that year) |
 | `regions$domestic`, `regions$foreign` | provinces/territories to include; `["USA", "ROW"]` or `["ROW"]` |
 | `sectors$scheme` | `base37` or a CSV aggregating the base sectors |
+| `distances$method` | `centroid` (between population centroids) or `pairwise` (mean distance between residents) |
 | `io_parameters$source` | `regional`, `national`, `global` |
-| `trade_elasticities$method` | `boc2018_rule` or `fixed` (CSV) |
+| `io_parameters$sector_values` | optional CSV of published value-added and final-demand shares by sector |
+| `trade_elasticities$method` | `boc2018_rule`, `fixed` (CSV) or `uniform` (goods and services values) |
 | `trade_costs$sample`, `$regressors`, `$geographic` | gravity sample and regressors (`log_dist`, `dist_1000km`, `adjacent`, `interprovincial`, `border`) |
 | `trade_costs$measured_index` | `symmetric` (Head-Ries) or `augmented` (with exporter-specific costs) |
-| `calibration$deficits` | `data` (hold observed imbalances fixed) or `purge` |
-| `migration$elasticity` | 0 (none) or e.g. 1.5 |
+| `trade_costs$measurement_elasticities` | optional CSV of elasticities used only to measure trade costs |
+| `calibration$deficits` | `data` (hold observed imbalances fixed), `balanced` (observed trade shares, zero imbalances) or `purge` (re-solve with zero imbalances) |
+| `migration$elasticity` | 1.5 (default: interprovincial labour mobility) or 0 (none) |
 | `scenario_defaults$tariff_treatment` | `iceberg` (default, legacy) or `ad_valorem` |
 | `aggregation$canada_weights` | `income`, `real_income`, `population` |
 
@@ -152,45 +155,47 @@ are the gains of the observed equilibrium relative to the counterfactual
 
 ## Results (2022 calibration, October 2026)
 
-Change in Canada's real income (%, baseline-income weights). The last column
+Change in Canada's real income (%, baseline-income weights), with
+interprovincial labour mobility (migration elasticity 1.5). The last column
 gives the published figure of the study whose experiment the scenario follows
 (A&T: Albrecht and Tombe, 2016; AKT: Alvarez, Krznar and Tombe, 2019; MLI:
 Manucha and Tombe, 2022); see [`docs/replication.md`](docs/replication.md).
 
 | Scenario | Main model | Papers' trade elasticities | Published |
 |---|---:|---:|---:|
-| 10% lower interprovincial trade costs | 3.68 | 3.05 | 3.6 (A&T), 6.7 (MLI) |
-| 10% lower costs of Canadian imports from foreign regions | 3.30 | 2.81 | 2.9 (A&T) |
-| 10% lower trade costs with foreign regions, both directions | 9.34 | 6.36 | |
-| 10% lower measured interprovincial trade costs | 0.67 | 0.80 | 0.9 (A&T) |
-| Eliminate interprovincial trade-cost asymmetries | 4.43 | 5.07 | 3.3 (A&T), 7.9 (MLI) |
-| Eliminate non-geographic interprovincial barriers | 4.64 | 6.23 | 6.8 (A&T), 4.4 (MLI) |
-| ... goods only | 0.42 | 0.53 | 3.8 (AKT)* |
-| ... services only | 4.18 | 5.65 | 4.2 (MLI) |
-| Eliminate all measured interprovincial trade costs | 41.9 | 54.2 | 51.9 (A&T) |
-| US 35% tariff on all partners (iceberg, all sectors) | -2.35 | -2.60 | |
-| ... with Canadian retaliation | -3.31 | -3.60 | |
-| ... with Canadian and rest-of-world retaliation | -3.35 | -3.84 | |
-| US 50% tariff on metals | -0.12 | -0.14 | |
-| ... with Canadian and rest-of-world retaliation | -0.20 | -0.31 | |
+| 10% lower interprovincial trade costs | 4.01 | 3.23 | 3.6 (A&T), 6.7 (MLI) |
+| 10% lower costs of Canadian imports from foreign regions | 3.08 | 2.76 | 2.9 (A&T) |
+| 10% lower trade costs with foreign regions, both directions | 9.04 | 6.67 | |
+| 10% lower measured interprovincial trade costs | 0.71 | 0.84 | 0.9 (A&T) |
+| Eliminate interprovincial trade-cost asymmetries | 4.83 | 5.63 | 3.3 (A&T), 7.9 (MLI) |
+| Eliminate non-geographic interprovincial barriers | 4.90 | 6.68 | 6.8 (A&T), 4.4 (MLI) |
+| ... goods only | 0.46 | 0.57 | 3.8 (AKT)* |
+| ... services only | 4.38 | 5.98 | 4.2 (MLI) |
+| Eliminate all measured interprovincial trade costs | 46.2 | 61.0 | 51.9 (A&T) |
+| US 35% tariff on all partners (iceberg, all sectors) | -2.98 | -3.28 | |
+| ... with Canadian retaliation | -3.97 | -4.31 | |
+| ... with Canadian and rest-of-world retaliation | -3.90 | -4.59 | |
+| US 50% tariff on metals | -0.09 | -0.12 | |
+| ... with Canadian and rest-of-world retaliation | -0.19 | -0.29 | |
 
 \* AKT measure geographic costs with distance in levels; with that
 specification (`config/sensitivity_gravity_levels.yml`) the main model gives
-4.96 for goods, 4.81 for asymmetries and 23.1 for all sectors. Which share of
+5.08 for goods, 5.28 for asymmetries and 25.4 for all sectors. Which share of
 measured costs is policy-relevant is the largest source of uncertainty in these
 experiments.
 
 With ad valorem tariffs on goods only (revenue rebated), a 35% US tariff lowers
-Canada's real income by 1.44%, and by 1.94% with Canadian retaliation.
+Canada's real income by 1.97%, and by 2.47% with Canadian retaliation.
 
 These results depend on several modelling choices documented in
 `docs/methodology_review.md` and `docs/replication.md`, notably the trade
 elasticities: the BoC rule gives very high values for refined petroleum (71.1),
 metal ores (45.0) and oil and gas (20.2), which produce near-corner responses to
-uniform cost changes (e.g. a 10% cut in external trade costs raises New
-Brunswick's real income by 63% through an expansion of refining exports). With
-the elasticities of the papers, the main model reproduces Albrecht and Tombe's
-figures closely.
+uniform cost changes. For example, a 10% cut in external trade costs raises
+New Brunswick's refining output 130-fold and its real income by 115% (43% per
+person, as its population grows by half through migration). With the
+elasticities of the papers, the main model comes close to most of Albrecht and
+Tombe's figures.
 
 ## Tests
 
@@ -215,16 +220,21 @@ papers and compares them with their published figures
 
 ## Known limitations
 
-* Yukon is missing from the committed 2021 census extract, so its pairs are not
-  in the gravity regressions and keep their non-geographic barriers when those
-  are eliminated (see `docs/data.md` for how to restore it).
-* The replication configurations use 2016 data for the papers calibrated to
-  2010 and 2015 (the repository holds the ICIO tables for 2016-2022).
 * Which share of measured trade costs is non-geographic (policy-relevant)
   depends on the gravity specification; `config/sensitivity_gravity_levels.yml`
   gives the alternative of Alvarez, Krznar and Tombe (2019). See
   `docs/replication.md`.
-* Results with labour mobility lack a congestion force (no land or housing).
+* The main model measures distance between population centroids. The papers
+  use the mean distance between residents (`distances$method: pairwise`),
+  which attributes less of measured costs to geography (eliminating
+  non-geographic barriers: about 6.3% instead of 4.9%). Switching requires
+  rebuilding the distances from the raw 2021 census file, because the
+  committed extract lacks Yukon.
+* Labour mobility is on by default, and the model has no congestion force
+  (no land or housing) to offset it. Regional results, and national results
+  driven by one region (e.g. New Brunswick's refining under external
+  liberalization), should be read with this in mind; set
+  `migration$elasticity: 0` for fixed populations.
 * The model is static: no transition dynamics, capital accumulation or trade
   imbalance adjustment beyond the `purge` option.
 

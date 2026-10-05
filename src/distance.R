@@ -1,12 +1,18 @@
 # Geographic distances between and within regions.
 #
-# Provinces and territories are located at their population-weighted
-# centroids, computed from census dissemination-block populations and the
-# representative points of the dissemination areas that contain them (census
-# Geographic Attribute Files, catalogue 92-151-X). Internal distance d_nn is the
-# population-weighted mean distance from the dissemination areas to the
-# provincial centroid. Normalized distance is d_ni / sqrt(d_nn * d_ii)
-# (Albrecht and Tombe, 2016).
+# Provinces and territories are represented by census dissemination-block
+# populations at the representative points of the dissemination areas that
+# contain them (census Geographic Attribute Files, catalogue 92-151-X). Two
+# measures (`distances$method`):
+#   * centroid: distance between population-weighted centroids; internal
+#     distance d_nn is the population-weighted mean distance from the
+#     dissemination areas to the centroid;
+#   * pairwise: population-weighted mean distance between residents of the two
+#     regions, d_ni = sum_k sum_l s_k s_l dist(k, l) with population shares s,
+#     and likewise within a region (Head and Mayer, 2002), as in Albrecht and
+#     Tombe (2016) and Manucha and Tombe (2022). Internal distances are about
+#     1.3-1.5 times the centroid-based ones.
+# Normalized distance is d_ni / sqrt(d_nn * d_ii) (Albrecht and Tombe, 2016).
 
 #' Read dissemination-area representative points with dissemination-block
 #' populations from a census Geographic Attribute File, or from the compact
@@ -70,6 +76,39 @@ region_geography <- function(da) {
   centroids |> inner_join(internal, by = "region")
 }
 
+#' Population-weighted mean distances between and within regions (Head and
+#' Mayer, 2002).
+#'
+#' Points are first aggregated to a grid of `cell` degrees; internal distances
+#' change by less than 1% between 0.1 and 0.02 degrees.
+#'
+#' @param da Output of read_da_points().
+#' @return Symmetric matrix of distances (km) with internal distances on the
+#'   diagonal.
+pairwise_distances <- function(da, cell = 0.05) {
+  g <- da |>
+    mutate(gx = floor(lon / cell), gy = floor(lat / cell)) |>
+    group_by(region, gx, gy) |>
+    summarise(lat = stats::weighted.mean(lat, population), lon = stats::weighted.mean(lon, population),
+              population = sum(population), .groups = "drop") |>
+    filter(population > 0)
+  regs <- sort(unique(g$region))
+  pts <- split(g, g$region)
+  D <- matrix(NA_real_, length(regs), length(regs), dimnames = list(regs, regs))
+  for (a in seq_along(regs)) {
+    for (b in a:length(regs)) {
+      A <- pts[[regs[a]]]
+      B <- pts[[regs[b]]]
+      wa <- A$population / sum(A$population)
+      wb <- B$population / sum(B$population)
+      D[a, b] <- D[b, a] <- sum(vapply(seq_len(nrow(A)), function(k) {
+        wa[k] * sum(wb * haversine_km(A$lon[k], A$lat[k], B$lon, B$lat))
+      }, numeric(1)))
+    }
+  }
+  D
+}
+
 #' Representative locations and internal distances of the foreign regions.
 #'
 #' Only used when the gravity sample includes international pairs. The United
@@ -123,8 +162,23 @@ build_distances <- function(cfg) {
                  "missing and their pairs drop out of the gravity regressions."),
           paste(missing, collapse = ", "), cfg$paths$census_da)
   }
+  method <- cfg$distances$method %||% "centroid"
+  if (!method %in% c("centroid", "pairwise")) stopf("distances$method must be 'centroid' or 'pairwise'.")
   geo <- bind_rows(geo, foreign_geography())
+  if (method == "pairwise") {
+    # Pairs of provinces and territories, and internal distances, use the mean
+    # distance between residents; pairs with the foreign regions keep the
+    # distance to their representative points.
+    D <- pairwise_distances(da)
+    dom <- rownames(D)
+    geo$d_internal[match(dom, geo$region)] <- diag(D)
+  }
   out <- distance_matrix(geo)
+  if (method == "pairwise") {
+    both <- out$origin %in% dom & out$dest %in% dom
+    out$distance_km[both] <- D[cbind(out$origin[both], out$dest[both])]
+    out <- out |> mutate(distance_normalized = distance_km / sqrt(d_internal_origin * d_internal_dest))
+  }
   write_table(out, cfg$paths$distances)
   write_table(geo, sub("\\.csv$", "_centroids.csv", cfg$paths$distances))
   out

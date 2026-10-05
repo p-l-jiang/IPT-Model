@@ -21,216 +21,282 @@ one setting at a time from a paper's setup to the main model
 (`config/default.yml`). Its outputs are in `output/replication/`.
 
 ```sh
-Rscript scripts/replication/run_replications.R               # all papers, about 30 minutes
+Rscript scripts/replication/run_replications.R               # all papers, about 40 minutes
 Rscript scripts/replication/run_replications.R --group akt   # one paper: at, akt or mli
 ```
 
 All figures are percent changes in real income (real GDP) for Canada unless
-noted.
+noted. The main model is calibrated to 2022 with labour mobility (migration
+elasticity 1.5).
 
 ## Summary
 
 | Experiment | Published | Paper setup | Main model (2022) | Assessment |
 |---|---:|---:|---:|---|
-| **A&T** gains from trade: all / internal / external | 18.3 / 4.4 / 9.3 | 16.7 / 4.2 / 9.2 | n.a. | Reproduced |
-| A&T 10% lower interprovincial costs | 3.6 | 3.15 | 3.68 | Reproduced |
-| A&T 10% lower external costs | 2.9 | 2.73 | 3.30 | Reproduced as a cut in import costs only (both directions: 6.25 and 9.34) |
-| A&T 10% lower measured internal / external costs | 0.9 / 1.8 | 0.82 / 1.78 | 0.67 / n.a. | Reproduced |
-| A&T eliminate non-distance costs | 6.8 | 6.37 | 4.64 | Reproduced; lower in the main model (elasticities) |
-| A&T eliminate all measured internal costs | 51.9 | 57.6 | 41.9 | Reproduced; lower in the main model (elasticities) |
-| A&T eliminate asymmetries | 3.3 | 5.11 | 4.43 | Larger: current data show larger asymmetries |
-| **AKT** gains from trade: internal / external / all | 5.1 / 10.9 / 19.6 | 4.5 / 10.0 / 18.9 | n.a. | Reproduced |
-| AKT eliminate non-geographic barriers, goods, internal | 3.8 | 5.16 | 0.42 (4.96)* | 1.4 times larger in the paper setup; specification-dependent |
-| AKT same, external / internal and external | 6.2 / 9.1 | 14.4 / 16.6 | n.a. | 2 times larger |
-| AKT internal, uniform goods elasticity 4 / 6.5 / 8 | 7.3 / 4.6 / 3.2 | 10.7 / 6.7 / 5.5 | n.a. | Same pattern, 1.5 times larger |
-| **MLI** uniform 10% lower interprovincial costs | 6.7 | 3.10 | 3.68 | Not reproduced; the paper's own rule of thumb gives 3.1 |
-| MLI remove non-distance costs: all / services | 4.4 / 4.2 | 7.0 / 6.7 | 4.64 / 4.18 | Reproduced by the main model; the 17-sector setup overstates (5.7 / 5.4 with 37 sectors) |
-| MLI remove asymmetries: all / services | 7.9 / 4.6 | 5.0 / 4.2 | 4.43 / n.a. | Lower |
+| **A&T** gains from trade: all / internal / external | 18.3 / 4.4 / 9.3 | 16.3 / 4.5 / 8.4 | n.a. | Reproduced; external gains 10% lower |
+| A&T 10% lower interprovincial costs | 3.6 | 3.44 | 4.01 | Reproduced |
+| A&T 10% lower external costs | 2.9 | 2.63 | 3.08 | Reproduced as a cut in import costs only (both directions: 6.15 and 9.04) |
+| A&T 10% lower measured internal / external costs | 0.9 / 1.8 | 0.84 / 1.66 | 0.71 / n.a. | Reproduced |
+| A&T eliminate non-distance costs | 6.8 | 6.97 | 4.90 | Reproduced; lower in the main model (distance measure, elasticities) |
+| A&T eliminate all measured internal costs | 51.9 | 53.1 | 46.2 | Reproduced |
+| A&T eliminate asymmetries | 3.3 | 4.77 | 4.83 | Larger: larger asymmetries in our data |
+| A&T 10% higher costs on Quebec's trade: Quebec / Ontario | -4.8 / -0.5 | -4.5 / -0.5 | n.a. | Reproduced when the shock covers Quebec's international trade, as the paper's formula says |
+| **AKT** gains from trade: internal / external / all | 5.1 / 10.9 / 19.6 | 4.5 / 10.1 / 18.9 | n.a. | Reproduced |
+| AKT eliminate non-geographic barriers, goods, internal | 3.8 | 5.62 (4.30)† | 0.46 (5.08)* | 1.5 times larger; 1.1 times with the paper's measured costs |
+| AKT same, external / internal and external | 6.2 / 9.1 | 20.1 / 21.7 | n.a. | 2.4-3.2 times larger (international costs) |
+| AKT internal, uniform goods elasticity 4 / 6.5 / 8 | 7.3 / 4.6 / 3.2 | 12.7 / 7.8 / 6.4 | n.a. | Same pattern, 1.7-2 times larger |
+| **MLI** uniform 10% lower interprovincial costs | 6.7 | 3.10 | 4.01 | Not reproduced; the paper's own rule of thumb gives 3.1 |
+| MLI remove non-distance costs: all / services | 4.4 / 4.2 | 6.5 / 6.3 | 4.90 / 4.38 | Close in the main model; 1.5 times larger in the paper setup |
+| MLI remove asymmetries: all / services | 7.9 / 4.6 | 5.1 / 4.2 | 4.83 / 2.72 | Lower: smaller asymmetries in our data |
 
-\* With the main model's gravity specification (Albrecht and Tombe); 4.96 with
+\* With the main model's gravity specification (Albrecht and Tombe); 5.08 with
 the specification of Alvarez et al. (`config/sensitivity_gravity_levels.yml`).
+† With measured trade costs scaled to the paper's Table 1 (see below).
 
 The main conclusions:
 
-1. **The model reproduces Albrecht and Tombe closely** (gains from trade, the
-   elasticity of welfare to trade costs, and the measured-cost experiments), at
-   the national level and in the provincial pattern, using 2016 instead of 2010
-   data. Their measured trade costs are also reproduced (70.5% vs 67.8% on
-   average, nearly identical in several sectors). Their "10% lower external
-   costs" figures (Table 5) are reproduced only if the cut applies to Canadian
-   imports, not to both directions.
+1. **The model reproduces Albrecht and Tombe on their 2010 data**, once their
+   setup is followed in three respects that the earlier replication missed:
+   the value-added and final-demand shares they report (their Table 9), their
+   distance measure (the mean distance between residents, not between
+   population centroids) and their treatment of trade imbalances (observed
+   trade shares with balanced trade). The data match theirs: export shares by
+   province and sector (their Table 1), measured trade costs (their Table 4:
+   66.5% against 67.8% on average), distance elasticities (their Table 11) and
+   non-distance costs (12.9% against 14.5%). Gains from external trade remain
+   10% lower (input-output coefficients, which the paper does not report), and
+   asymmetric costs are larger in our data. Their "10% lower external costs"
+   figures (Table 5) correspond to a cut in import costs only, and their
+   Quebec experiment raises the costs of all of Quebec's trade, including with
+   the rest of the world.
 2. **The gains from trade of Alvarez et al. are reproduced; their
-   non-geographic barriers are not.** With their specification the model gives
-   1.4 (internal) to 2.3 (external) times their gains, because measured trade
-   costs in current Statistics Canada data are higher than the paper reports
-   (79.5% vs 55.1% on average, including in services, whose elasticity of 5 is
-   known) and the United States' non-geographic barriers come out much larger.
-   The main model's much smaller goods result (0.42% vs 3.8%) is almost entirely
-   due to the gravity specification, not to an error.
+   non-geographic barriers are not**, because their measured trade costs are
+   lower than the same data give (55% against 79% on average). The gap is
+   systematic across sectors, including services, whose elasticity is known,
+   and it remains when the costs are computed directly from their source table
+   with their product mapping; the measured costs of the other two papers,
+   which use the same method, are reproduced from these data. With
+   the costs scaled to their Table 1, the internal result (4.3% against 3.8%)
+   and its provincial pattern are close; the external results remain 2.5 times
+   larger. The main model's much smaller goods result (0.46%) is due to the
+   gravity specification.
 3. **Manucha and Tombe's non-distance experiments are reproduced by the main
-   model** (4.6% vs 4.4%, and 4.2% vs 4.2% for services). Its goods elasticities
-   are not published but can be recovered from its Table 1 (manufacturing 8.9,
-   mining 15.8, agriculture 6.9). The paper's 6.7% gain from a uniform 10% cut in
-   interprovincial costs is not reproduced: our model gives 3.1-3.7%, which is
-   what the paper's own first-order approximation (its Table 2) implies.
+   model** (4.9% against 4.4%; services 4.4% against 4.2%). Their goods
+   elasticities are not published but can be recovered from their Table 1
+   (manufacturing 8.9, mining 15.8, agriculture 6.9). Their 6.7% gain from a
+   uniform 10% cut in interprovincial costs is not reproduced: the model gives
+   3.1-4.0%, and the paper's own first-order approximation (its Table 2) gives
+   3.1%.
 4. **Which share of trade costs is "policy-relevant" is the main source of
    uncertainty**, not the solver or the data. In the same 2022 data, the two
-   published decompositions leave on average 3-10% (log distance relative to
-   internal distance; the higher figure counts positive values only) or 42%
-   (distance in levels) of measured interprovincial costs as non-geographic,
-   and the gains from removing them range from 4.6% to 23%.
+   published decompositions leave non-geographic barriers of 2-10% on average
+   (tariff equivalent; log distance relative to internal distance, the higher
+   figure counting positive values only) or 42% (distance in levels), and the
+   gains from removing them range from 4.9% to 25%. The distance measure also
+   matters: with the papers' mean distance between residents, the main
+   model's gain would be about 6.3% instead of 4.9%.
 
 ## Setups compared
 
 | | A&T | AKT | MLI | Main model |
 |---|---|---|---|---|
-| Data year (paper / our setup) | 2010 / 2016 | 2015 / 2016 | 2018 / 2018 | 2022 |
+| Data year (paper / our setup) | 2010 / 2010 | 2015 / 2015 | 2018 / 2018 | 2022 |
 | Regions | 10 provinces, ROW | 12 (NT and NU merged), US, ROW / 13, US, ROW | 13, ROW | 13, US, ROW |
 | Sectors | 22 | 18 | 32 / 17 | 37 |
-| Input-output | national | national | not stated / regional | regional |
+| Input-output | national (OECD STAN) / national, with Table 9 value-added and final-demand shares | national | not stated / regional | regional |
 | Trade elasticities, goods | Caliendo-Parro (their Table 9) | Caliendo-Parro (not listed) / averaged as in A&T | Fontagné et al. (not listed) / recovered from Table 1 | BoC 2018 rule |
 | Trade elasticity, services | 5 | 5 | 5 | 7 |
-| Trade imbalances | balanced | balanced | federal transfers / observed | observed |
-| Labour mobility | none | 1.5 | yes / 1.5 | none |
+| Trade imbalances | balanced, observed trade shares | balanced, observed trade shares | federal transfers / observed | observed |
+| Labour mobility | none | 1.5 | yes / 1.5 | 1.5 |
+| Distance | mean distance between residents (cities, GRUMP) / same (2021 census) | between population centroids (GRUMP) / same (2021 census) | mean distance between residents / between centroids | between centroids |
 | Gravity regressors | log normalized distance | distance (1000 km), neighbour, interprovincial x year | log normalized distance | log normalized distance, adjacency |
-| Gravity sample | provinces, one year | provinces, US, ROW, 1997-2015 / 2016-2022 | provinces, one year | provinces, 2010-2022 |
+| Gravity sample | provinces, one year | provinces, US, ROW, 1997-2015 / 2010-2015 | provinces, one year | provinces, 2010-2022 |
 | Asymmetric costs | yes (Waugh) | no | yes | yes (reported) |
 | Canada aggregate | real GDP shares | nominal GDP shares | not stated / income shares | income shares |
 
-Data year. The repository holds the ICIO tables for 2016-2022, so A&T and AKT
-are run on 2016 data. The A&T setup gives nearly the same results on 2016,
-2018 and 2022 data (10% lower internal costs: 3.15, 3.20, 3.22; gains from
-internal trade: 4.22, 4.23, 4.23; eliminating non-distance costs: 6.37, 6.27,
-5.81), so the year is unlikely to explain the differences below. With the 2010
-and 2015 ICIO tables in `data/raw/icio/`, set `years` in the configurations.
+Data year. The setups use the papers' years. The Statistics Canada
+detail-level trade flows begin in 2010, so the Alvarez et al. regressions use
+2010-2015 instead of 1997-2015. With later data, the Albrecht and Tombe setup
+gives nearly the same internal results on 2010, 2016 and 2022 data (gains from
+internal trade 4.5, 4.2 and 4.3; 10% lower internal costs 3.44, 3.21 and 3.23;
+eliminating non-distance costs 6.97, 7.17 and 6.97) but larger gains from
+external trade (8.4, 10.4 and 10.3), as import shares and input-output linkages
+changed.
 
 ## Albrecht and Tombe (2016)
 
-**Trade costs.** The paper's measured costs (Head-Ries index, Table 4) are
-reproduced: 70.5% on average against 67.8%, with identical values for
-chemicals and rubber (12.5 vs 12.5), wholesale and retail (102 vs 102) and
-education (231 vs 230) and close ones for finance (88 vs 92), transport (80 vs
-84) and metals (60 vs 63).
-The non-distance component averages 10.7% against 14.5%; it is small or
-negative for goods (-12% to 0% here, -8% to +12% in the paper; agriculture and
-mining -8.5 vs -8.3) and large for services (education 101 vs 105, health 82 vs
-83, hotels and restaurants 31 vs 29, wholesale and retail 16 vs 15). The
-asymmetric (exporter-specific) costs are larger in current data: 11.5% on
-average against 7.8%, with the largest differences for exports from
-Newfoundland and Labrador (34 vs 14), Manitoba (25 vs 12), Quebec (22 vs 13) and
-Prince Edward Island (43 vs 30).
+**Data and trade costs.** The 2010 data reproduce the paper's Table 1: Canada's
+provinces export 15.4% of their output abroad and 11.0% to other provinces
+(paper: 15% and 11%), and the sector pattern is the same (equipment and
+vehicles 65% and 12% against 66% and 11%; paper 47% and 18% against 45% and
+19%). Measured costs (Table 4) average 66.5% against 67.8%, with nearly
+identical values by exporter (Quebec 62.7 vs 62.5, New Brunswick 66.5 vs 66.4,
+Ontario 72.5 vs 73.5) and by sector (chemicals and rubber 12.5 vs 12.5,
+wholesale and retail 102 vs 102, health 246 vs 246, education 227 vs 230). The
+distance elasticities match their Table 11 (e.g. agriculture and mining 0.17
+vs 0.17, hotels and restaurants 0.22 vs 0.22, real estate 0.34 vs 0.34,
+wholesale and retail 0.30 vs 0.29, health 0.41 vs 0.37). With the paper's
+distance measure, non-distance costs average 12.9% against 14.5%
+(by exporter: Quebec 17.7 vs 17.4, Nova Scotia 29.8 vs 31.5, Ontario 14.0 vs
+17.1; by sector: wholesale and retail 14.5 vs 14.8, finance 36.1 vs 36.2,
+education 102 vs 105, health 74 vs 83). Asymmetric (exporter-specific) costs
+average 10.1% against 7.8%, with the largest differences for exports from
+Manitoba, Prince Edward Island, Quebec and Newfoundland and Labrador.
 
 **Results by province** (published / paper setup):
 
 | | Gains from internal trade | 10% lower internal costs | 10% lower import costs | Eliminate non-distance costs | Eliminate asymmetries |
 |---|---|---|---|---|---|
-| AB | 4.7 / 5.2 | 3.6 / 3.7 | 2.5 / 2.4 | 5.5 / 6.0 | 2.4 / 2.8 |
-| BC | 4.7 / 4.2 | 3.9 / 3.3 | 2.9 / 2.7 | 4.9 / 5.0 | 2.8 / 2.7 |
-| MB | 8.1 / 7.2 | 6.0 / 5.2 | 2.5 / 2.4 | 8.4 / 11.7 | 5.2 / 8.8 |
-| NB | 8.1 / 7.9 | 6.5 / 6.0 | 4.7 / 3.8 | 28.3 / 26.5 | 8.0 / 9.1 |
-| NL | 7.7 / 6.5 | 6.6 / 4.6 | 3.0 / 3.1 | 23.5 / 22.5 | 5.0 / 9.3 |
-| NS | 7.5 / 6.9 | 6.1 / 5.2 | 3.0 / 2.5 | 24.3 / 19.7 | 7.9 / 8.8 |
-| ON | 3.2 / 3.1 | 2.6 / 2.3 | 3.1 / 2.9 | 3.2 / 2.5 | 2.8 / 5.2 |
-| PE | 11.4 / 10.4 | 7.2 / 7.2 | 2.1 / 1.7 | 35.1 / 43.5 | 18.6 / 20.5 |
-| QC | 4.2 / 3.8 | 3.5 / 2.9 | 2.9 / 2.6 | 7.1 / 7.1 | 2.5 / 5.0 |
-| SK | 7.1 / 7.4 | 5.2 / 5.2 | 3.0 / 2.7 | 17.2 / 17.8 | 8.7 / 11.4 |
-| Canada | 4.4 / 4.2 | 3.6 / 3.2 | 2.9 / 2.7 | 6.8 / 6.4 | 3.3 / 5.1 |
+| AB | 4.7 / 4.6 | 3.6 / 3.4 | 2.5 / 2.2 | 5.5 / 5.8 | 2.4 / 2.2 |
+| BC | 4.7 / 4.8 | 3.9 / 3.8 | 2.9 / 2.6 | 4.9 / 6.0 | 2.8 / 2.8 |
+| MB | 8.1 / 8.1 | 6.0 / 5.8 | 2.5 / 2.3 | 8.4 / 11.8 | 5.2 / 9.4 |
+| NB | 8.1 / 8.1 | 6.5 / 6.3 | 4.7 / 4.3 | 28.3 / 27.9 | 8.0 / 8.1 |
+| NL | 7.7 / 7.8 | 6.6 / 6.1 | 3.0 / 3.2 | 23.5 / 23.1 | 5.0 / 7.5 |
+| NS | 7.5 / 7.8 | 6.1 / 6.0 | 3.0 / 2.9 | 24.3 / 25.2 | 7.9 / 9.2 |
+| ON | 3.2 / 3.2 | 2.6 / 2.6 | 3.1 / 2.8 | 3.2 / 3.0 | 2.8 / 4.5 |
+| PE | 11.4 / 11.1 | 7.2 / 6.8 | 2.1 / 1.9 | 35.1 / 47.1 | 18.6 / 22.5 |
+| QC | 4.2 / 4.2 | 3.5 / 3.4 | 2.9 / 2.6 | 7.1 / 7.9 | 2.5 / 4.4 |
+| SK | 7.1 / 7.2 | 5.2 / 5.1 | 3.0 / 2.6 | 17.2 / 17.3 | 8.7 / 14.8 |
+| Canada | 4.4 / 4.5 | 3.6 / 3.4 | 2.9 / 2.6 | 6.8 / 7.0 | 3.3 / 4.8 |
 
-Other experiments (published / paper setup): gains from all trade 18.3 / 16.7;
-from external trade 9.3 / 9.2; 10% lower measured internal costs 0.9 / 0.8 and
-external costs 1.8 / 1.8; eliminating all measured internal costs 51.9 / 57.6;
-halving measured internal costs 7.6 / 7.4; 10% higher costs between Quebec and
-the other provinces: Alberta -0.2 / -0.2, Ontario -0.5 / -0.6.
+Other experiments (published / paper setup): gains from all trade 18.3 / 16.3;
+from external trade 9.3 / 8.4; 10% lower measured internal costs 0.9 / 0.84 and
+external costs 1.8 / 1.66; eliminating all measured internal costs 51.9 / 53.1;
+halving measured internal costs 7.6 / 7.4; 10% higher costs on Quebec's trade
+with all other regions, which is the paper's experiment ($\hat\tau = 1.1$ "if
+$n$ or $i$ is Quebec"): Quebec -4.8 / -4.5, Ontario -0.5 / -0.5, Alberta -0.2 /
+-0.2. Raising only the costs of Quebec's trade with the other provinces gives
+Quebec -1.7.
 
 **Diagnosis.**
 
+* *Input-output structure.* The paper takes Canada-wide input-output
+  parameters from the OECD STAN tables; the setup uses the 2010 supply and use
+  tables, whose input-output multipliers for goods are smaller (they sum to
+  0.55 across goods sectors, against 0.71 in the paper's Table 9). Gains from
+  external trade, which come mostly from goods, are therefore smaller: 7.4%
+  with our parameters. With the paper's value-added and final-demand shares,
+  which Table 9 reports, they rise to 8.4% (gains from all trade from 14.6% to
+  16.3%, the import-cost cut from 2.42% to 2.63%), and the multipliers to 0.62.
+  The remaining gap lies in the input coefficients, which the paper does not
+  report.
+* *Distance measure.* The paper normalizes the population-weighted mean
+  distance between the residents of two provinces by the same measure within
+  each province (appendix B). Distances between population centroids, used
+  before, give internal distances 1.3-1.5 times smaller, so normalized
+  distances are about a quarter larger. The fixed effects absorb most of this
+  rescaling, so the distance elasticities barely change, but more of measured
+  costs is attributed to geography: non-distance costs average 8.0% instead of
+  12.9% (paper: 14.5%), and eliminating them gives 5.8% instead of 7.5% with
+  our input-output shares (bridge below; 7.0% with the paper's).
+* *Trade imbalances.* The paper keeps the observed trade shares and imposes
+  balanced trade on the income levels (proposition 1; "initial equilibrium
+  trade shares are as described in section 2.2"). Solving the model with zero
+  deficits instead (`purge`) lowers Canadian import shares by up to 4 points
+  in 2010 and gains from external trade from 7.4% to 7.2%.
 * *External costs.* Lowering the costs of trade between Canada and the rest of
-  the world by 10% in both directions gives 6.25%, more than twice the paper's
-  2.9%. Lowering only the costs of Canadian imports gives 2.73% and the paper's
-  provincial pattern (above). Lowering only export costs gives 2.40%. The
-  paper's Table 5 figures therefore correspond to a cut in import costs (or to a
-  rest of the world that does not respond to cheaper Canadian goods), although
-  the text suggests both directions. Its Table 6 experiment on measured external
-  costs, by contrast, matches the two-way cut (1.78 vs 1.8). The scenario files
-  keep both versions (`iceberg_external_10`, `iceberg_external_10_two_way`).
-* *Asymmetries.* The gains from removing asymmetries (5.1% vs 3.3%) follow from
-  the larger exporter-specific costs in current data. The estimation follows
-  the paper (appendix B) and is tested on synthetic data with known costs.
-* *Gains from all trade* are somewhat lower for Newfoundland and Labrador (29
-  vs 49) and New Brunswick (31 vs 42), whose trade structure changed between
-  2010 and 2016; the national figure is close (16.7 vs 18.3).
+  the world by 10% in both directions gives 6.15%, more than twice the paper's
+  2.9%. Lowering only the costs of Canadian imports gives 2.63% and the paper's
+  provincial pattern (above). The paper's Table 5 figures therefore correspond
+  to a cut in import costs (or to a rest of the world that does not respond to
+  cheaper Canadian goods), although the text suggests both directions. Its
+  Table 6 experiment on measured external costs, by contrast, is close to the
+  two-way cut (1.66 vs 1.8). The scenario files keep both versions
+  (`iceberg_external_10`, `iceberg_external_10_two_way`).
+* *Asymmetries.* The gains from removing asymmetries (4.8% vs 3.3%) follow from
+  the larger exporter-specific costs in our data. The estimation follows the
+  paper (appendix B) and recovers known costs in synthetic data.
+* *Gains from all trade* are lower for Newfoundland and Labrador (27.8 vs
+  49.4) and New Brunswick (27.8 vs 41.7); the national figure is closer (16.3
+  vs 18.3).
 
 ## Alvarez, Krznar and Tombe (2019)
 
-The paper's trade-cost decomposition, which the model did not implement before,
-was added: distance in thousands of km and a neighbour indicator form the
-geographic component; an interprovincial-trade indicator by year and the
-exporter-year and importer-year fixed effects are non-geographic; the
-regressions pool interprovincial and international pairs.
+The paper's trade-cost decomposition is implemented as an option: distance in
+thousands of km and a neighbour indicator form the geographic component; an
+interprovincial-trade indicator by year and the exporter-year and
+importer-year fixed effects are non-geographic; the regressions pool
+interprovincial and international pairs.
 
 **Gains from trade** are reproduced (published / paper setup): internal 5.1 /
-4.5, external 10.9 / 10.0, all 19.6 / 18.9, with the same provincial pattern
-(e.g. internal: Ontario 4.4 / 3.4, Prince Edward Island 12.6 / 10.8, Manitoba
-8.3 / 7.4) and employment responses of the same sign and similar size for most
-provinces. Exceptions are Nova Scotia's external gains (23.7 / 9.2) and the
-northern territories' total gains (28.8 / 54.6 for NT and NU).
+4.5, external 10.9 / 10.1, all 19.6 / 18.9, with the same provincial pattern
+(e.g. internal: Alberta 5.1 / 5.1, Manitoba 8.3 / 7.8, Prince Edward Island
+12.6 / 11.5, Ontario 4.4 / 3.4). Exceptions are Nova Scotia's external gains
+(23.7 / 10.3) and the northern territories' total gains (28.8 / 64.5 for NT
+and NU).
 
 **Eliminating non-geographic barriers for goods** gives larger gains than the
-paper: internal 5.2 vs 3.8, external 14.4 vs 6.2, both 16.6 vs 9.1. By province
-(internal, published / paper setup): AB 3.2 / 4.3, BC 2.8 / 4.1, MB 7.1 / 10.4,
-NB 6.0 / 12.8, NL 12.8 / 14.2, NS 4.8 / 10.3, ON 2.9 / 3.9, PE 16.2 / 23.3, QC
-4.6 / 5.9, SK 5.1 / 10.5. With the paper's uniform goods elasticities (its
-appendix II), which remove any ambiguity about how it aggregated elasticities,
-the model gives 10.7, 6.7 and 5.5 against 7.3, 4.6 and 3.2 for elasticities of
-4, 6.5 and 8: the same response to the elasticity, about 1.5 times the level.
+paper: internal 5.6 vs 3.8, external 20.1 vs 6.2, both 21.7 vs 9.1. By
+province (internal, published / paper setup): AB 3.2 / 5.2, BC 2.8 / 5.1, MB
+7.1 / 11.6, NB 6.0 / 13.1, NL 12.8 / 18.0, NS 4.8 / 12.1, ON 2.9 / 4.3, PE
+16.2 / 25.1, QC 4.6 / 6.8, SK 5.1 / 11.0, YT 6.9 / 19.5. With the paper's
+uniform goods elasticities (its appendix II) the model gives 12.7, 7.8 and 6.4
+against 7.3, 4.6 and 3.2 for elasticities of 4, 6.5 and 8.
 
 **Diagnosis.**
 
-* *Higher measured costs in current data.* The paper's interprovincial costs
-  average 55.1% (Table 1); the same calculation on current Statistics Canada
-  data gives 79.5%. In logs, the paper's costs are 60-90% of ours in every
-  sector but metals (median 73%), including services, whose elasticity of 5 is
-  known, so the gap lies in the data (the paper uses the 2007-2015 trade-flow
-  tables, since revised, and older US data) rather than in the elasticities.
-  The other two papers' costs, from 2010 and 2018 data, are reproduced. Higher
-  measured costs leave larger non-geographic barriers for goods (31.5% vs
-  about 19%) and hence larger gains.
-* *The geographic coefficients* are similar to the paper's (its figure on p.
-  11): distance raises costs by 8-16% per 1,000 km for most goods and services
-  and by about 3% for mining, petroleum and chemicals, and telecommunications
-  (the paper's lowest), and neighbours have 1-19% lower costs (paper: 4-30%).
-  Utilities are the exception (a negative distance effect here, the paper's
-  largest), but they have few trading pairs.
-* *International barriers.* The paper reports non-geographic barriers of about
-  3% with the United States and -13% with the rest of the world (its footnote
-  24 says the geographic terms overstate international distance effects). Here
-  they are 32% for goods traded with the United States and -22% with the rest
-  of the world, so eliminating them is worth much more. The US block of the
-  model comes from the OECD ICIO; the paper used Eora and USA Trade Online.
+* *Measured costs.* The paper's interprovincial costs average 55.1% in 2015
+  (its Table 1); the same calculation on current Statistics Canada data gives
+  78.8%. This is not a processing difference on our side: computing the index
+  directly from the paper's source table (12-10-0088-01, summary level) with
+  its product mapping (appendix I) and elasticities gives 79.0%. In logs the
+  paper's costs are 67-78% of ours in every service sector and 73-91% in goods
+  sectors but metals. For services, whose elasticity of 5 is stated, matching
+  them would require elasticities of 6.5-9. Yet the measured costs of the other
+  two papers, which use the same method, are reproduced from these data, and
+  they are consistent with ours rather than with the IMF paper's: transport costs are 84% in Albrecht and Tombe (2010) and 83% in
+  Manucha and Tombe (2018) but 58% in Alvarez et al. (2015, 80% here);
+  wholesale and retail trade 102% in 2010 but 68% in 2015 (102% here). The
+  difference therefore lies in the IMF paper's data (an earlier vintage of the
+  tables) or their processing, which we cannot reproduce. Higher measured costs
+  leave larger non-geographic barriers (goods: 32% against the paper's 19%)
+  and hence larger gains.
+* *With the paper's measured costs.* Measuring costs with elasticities that
+  reproduce the paper's Table 1 by sector
+  (`config/parameters/theta_measurement_alvarez_krznar_tombe_2019.csv`, run
+  `akt_paper_costs`; the model keeps the paper's elasticities) lowers average
+  costs to 53.6% and the internal goods result to 4.3% (paper 3.8%), with the
+  paper's provincial pattern (correlation 0.89; NL 13.1 vs 12.8, PE 17.7 vs
+  16.2, ON 3.4 vs 2.9, QC 5.1 vs 4.6, NT and NU 7.7 vs 7.5). The rest of the gap
+  comes from the geographic share of costs, 22% here against 37% in the paper.
+* *The geographic coefficients* are similar to the paper's (its p. 11): an
+  extra 1,000 km raises costs by 6-22% for most goods and services and by
+  0-3% for mining, petroleum and chemicals, and telecommunications (the
+  paper's lowest), and neighbours have up to 16% lower costs (paper: 4-30%).
+  Utilities are the exception (no distance effect here, the paper's largest),
+  but they have few trading pairs.
+* *International barriers.* For goods traded with the United States, geography
+  predicts costs of 122% against measured costs of 50%, so the average
+  non-geographic component is negative, as the paper reports (its footnote 24,
+  which says the geographic terms overstate international distance effects).
+  The experiment cuts only positive barriers, which average 7.7% for the
+  United States and 6.7% for the rest of the world and apply to large trade
+  flows; external gains are 20.1% (15.6% with the paper's measured costs)
+  against 6.2%. The US block of the model comes from the OECD ICIO; the paper
+  used Eora and USA Trade Online, so this part cannot be reconciled.
 * *Within-province observations.* The paper's equation includes an
   intra-provincial indicator, which suggests that within-province pairs (log
   cost zero) were in the sample. Including them (`trade_costs$own_pairs`)
-  lowers the distance coefficients and raises the gains further (9.2 internal,
-  33.0 external), and leaves almost no geographic component, contrary to the
+  lowers the distance coefficients and raises the gains further (8.5 internal,
+  32.7 external), and leaves almost no geographic component, contrary to the
   paper's decomposition (geography 57% of barriers), so they are left out.
-* *Yukon.* Without Yukon distances (see `docs/data.md`) Yukon's pairs get no
-  geographic component and are not liberalized, so Yukon loses (-0.6%) instead
-  of gaining 6.9%.
+* *Yukon,* now with census distances, gains 19.5% (paper 6.9%) instead of
+  losing 0.6% when its pairs had no geographic component.
 
-**Why the main model's goods result is so much smaller** (0.42% vs 3.8%). The
+**Why the main model's goods result is so much smaller** (0.46% vs 3.8%). The
 bridge below shows that switching from the paper's specification to that of
-Albrecht and Tombe takes the result from 5.2% to 0.8%; every other difference
-(no migration, observed imbalances, regional input-output tables, 37 sectors,
-BoC elasticities, 2022 data) moves it from 0.8% to 0.4%. With log distance
+Albrecht and Tombe takes the result from 5.6% to 0.8%; every other difference
+(observed imbalances, regional input-output tables, 37 sectors, BoC
+elasticities, 2022 data) moves it from 0.8% to 0.46%. With log distance
 normalized by internal distance, normalized distance rises from 1 within a
 province to 4-30 between provinces, so the regression attributes most of the
 jump in costs at the border to geography; in goods, measured costs are almost
 entirely "geographic". With distance in levels, the same jump is attributed to
-non-geographic barriers. For goods, the main model leaves 2.9% of measured
-costs as non-geographic in 2022 (counting positive values only), the level
-specification 31.5% in 2016. Interprovincial data alone cannot tell the two
-apart; estimates that use within-province shipment distances (Bemrose, Brown
-and Tweedle, 2017: a 6.9% tariff equivalent for goods) lie in between.
+non-geographic barriers. For goods, the main model leaves 3.1% of measured
+costs as non-geographic (counting positive values only), the level
+specification 35.8%. Interprovincial data alone cannot tell the two apart;
+estimates that use within-province shipment distances (Bemrose, Brown and
+Tweedle, 2017: a 6.9% tariff equivalent for goods) lie in between.
 
 ## Manucha and Tombe (2022)
 
@@ -246,36 +312,44 @@ configuration uses.
 
 **Trade costs.** By sector, measured costs match the paper (transport 82.6 vs
 82.6, accommodation 116 vs 117, information 82 vs 80, professional services 91
-vs 94, arts 112 vs 106); the non-distance component matches in manufacturing
-(0.9 vs 0.4), agriculture (0.4 vs 0.0), transport (14 vs 13) and information (44
-vs 38) but is larger in finance and real estate, professional services and
-administrative services. The paper's 32 sectors cannot be built from the
+vs 94, arts 112 vs 106). The paper's 32 sectors cannot be built from the
 ICIO-based sectors (wholesale and retail trade, finance and owner-occupied
-housing, or government services by level are not separate); aggregation raises
-measured costs (70% vs 60% on average) because sectors with very different
-costs are merged (wholesale 67% and retail 202% become one sector at 105%).
+housing, or government and private education and health are not separate);
+aggregation raises measured costs (70% vs 60% on average) because sectors with
+very different costs are merged (wholesale 67% and retail 202% become one
+sector). On the paper's definitions, non-distance costs average 7.7% (paper:
+8.0%) and asymmetric costs 11.3% (paper: 22.0%). By sector, non-distance costs
+are higher than the paper's in the merged service sectors (education 101 and
+health 92, against 44 and 45 for the paper's private services and 94-127 for
+government ones).
 
 **Results** (Canada, published / paper setup / main model): removing
-non-distance costs 4.4 / 7.0 / 4.6; in services only 4.2 / 6.7 / 4.2; removing
-asymmetries 7.9 / 5.0 / 4.4; in services only 4.6 / 4.2 / n.a. Alberta acting
-alone (Canada): uniform 10% cut 1.4 / 0.7; non-distance costs 0.9 / 1.1;
-asymmetries 1.6 / 0.8. For Alberta itself the paper setup gives larger gains
-from unilateral non-distance liberalization (8.4 vs 2.5) and, unlike the paper,
-a small loss when all provinces remove asymmetries (-0.2 vs +3.0): Alberta is a
-low-cost exporter, so removing asymmetries lowers the costs of its competitors
-and its import costs but not its export costs. The NWPTA bloc (British
-Columbia, Alberta, Saskatchewan, Manitoba) gains 4.6% when it removes the
-average of the two measures among its members (paper: 2.9%) and 11.0% when it
-removes non-distance costs (paper's upper bound: 6.5%).
+non-distance costs 4.4 / 6.5 / 4.9; in services only 4.2 / 6.3 / 4.4; removing
+asymmetries 7.9 / 5.1 / 4.8; in services only 4.6 / 4.2 / 2.7. Alberta acting
+alone (Canada): uniform 10% cut 1.4 / 0.68; non-distance costs 0.9 / 0.96;
+asymmetries 1.6 / 0.78. For Alberta itself the setup reproduces the gain from
+a unilateral 10% cut (5.1 vs 5.2) but gives larger gains from unilateral
+non-distance liberalization (7.7 vs 2.5) and, unlike the paper, a small loss
+when all provinces remove asymmetries (-0.3 vs +3.0): Alberta is a low-cost
+exporter, so removing asymmetries lowers the costs of its competitors and its
+import costs but not its export costs. The NWPTA bloc (British Columbia,
+Alberta, Saskatchewan, Manitoba) gains 4.5% when it removes the average of the
+two measures among its members (paper: 2.9%) and 10.1% when it removes
+non-distance costs (paper's upper bound: 6.5%).
 
 **Diagnosis.**
 
-* *Non-distance costs* are overstated by the 17-sector setup through
-  aggregation. With the 37 base sectors and the same elasticities, the average
-  non-distance cost falls from 9.9% to 7.9% (paper: 8.0%) and the gain from
-  removing it from 7.0% to 5.7% (paper: 4.4%; main model: 4.6%).
+* *Non-distance costs* are larger in the 17-sector setup than in the paper's
+  32 sectors because of aggregation. With the 37 base sectors and the same
+  elasticities the gain from removing them falls from 6.5% to 5.4% (paper:
+  4.4%; main model: 4.9%). The paper describes its distance as the mean
+  distance between residents, like Albrecht and Tombe; with that measure
+  (computed from the census extract, which lacks Yukon) the average
+  non-distance cost rises to 14.9% and the gain to 8.9%, further from the
+  paper, so the setup keeps distances between centroids. The merged service
+  sectors prevent a sharper comparison.
 * *The uniform 10% cut.* The paper reports 6.7%. The model gives 3.1% in the
-  paper's setup and 3.7% in the main model, and no setting in the bridge comes
+  paper's setup and 4.0% in the main model, and no setting in the bridge comes
   close to 6.7%. The paper's own rule of thumb (its Table 2: network centrality
   times interprovincial import share, summed over sectors) gives 0.31% of GDP
   per 1% cut, about 3.1% for a 10% cut, which is what the model produces. The
@@ -285,10 +359,12 @@ removes non-distance costs (paper's upper bound: 6.5%).
   diagnosed further without the paper's code.
 * *Asymmetries* are smaller in the model (11% average contribution against the
   paper's 22%), so removing them yields less.
-* *Labour mobility* adds little to national gains (0.1-0.4 points in the
-  bridge) but more than doubles Alberta's own gains in the unilateral
-  experiments (non-distance costs: 8.4% with mobility, 3.6% without; 10%
-  cut: 5.1% and 2.2%), as people move to the liberalizing province.
+* *Labour mobility* adds little to national gains (run `mli_no_migration`:
+  3.04 instead of 3.10 for the uniform cut, 6.21 instead of 6.52 for
+  non-distance costs) but more than doubles Alberta's own gains in the
+  unilateral experiments (uniform cut 5.1% with mobility, 2.2% without;
+  non-distance costs 7.7% and 3.3%; asymmetries 5.6% and 2.4%), as people move
+  to the liberalizing province.
 
 ## Bridges from the papers' setups to the main model
 
@@ -296,47 +372,49 @@ Canada-wide real income (%), one change at a time, cumulative.
 
 **From Albrecht and Tombe:**
 
-| Step | 10% internal | 10% imports | Measured internal 10% | Asymmetries | Non-distance | All measured |
-|---|---:|---:|---:|---:|---:|---:|
-| Paper setup (2016) | 3.15 | 2.73 | 0.82 | 5.11 | 6.37 | 57.6 |
-| + observed trade imbalances | 3.03 | 2.74 | 0.79 | 4.74 | 6.41 | 56.6 |
-| + province-specific input-output | 2.98 | 2.72 | 0.78 | 4.66 | 6.25 | 56.3 |
-| + territories and the US | 3.00 | 2.70 | 0.79 | 4.91 | 5.56 | 57.3 |
-| + 37 sectors (paper elasticities) | 2.95 | 2.69 | 0.75 | 5.19 | 5.65 | 56.5 |
-| + BoC-rule elasticities | 3.30 | 3.18 | 0.65 | 4.64 | 4.12 | 43.6 |
-| + adjacency, pooled panel, symmetric index | 3.30 | 3.18 | 0.69 | 4.52 | 5.11 | 42.0 |
-| + 2022 data (main model) | 3.70 | 3.33 | 0.68 | 4.41 | 4.71 | 42.3 |
+| Step | 10% internal | 10% imports | Measured internal 10% | Asymmetries | Non-distance | All measured | Gains from external trade |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Paper setup (2010) | 3.44 | 2.63 | 0.84 | 4.77 | 6.97 | 53.1 | 8.42 |
+| + value-added and final-demand shares from the 2010 supply-use tables | 3.31 | 2.42 | 0.84 | 4.77 | 7.51 | 54.2 | 7.39 |
+| + distances between population centroids | 3.31 | 2.42 | 0.83 | 5.23 | 5.80 | 54.3 | 7.39 |
+| + observed trade imbalances | 3.25 | 2.40 | 0.82 | 5.01 | 5.93 | 54.7 | n.a. |
+| + province-specific input-output structure | 3.17 | 2.38 | 0.80 | 4.90 | 5.77 | 54.3 | n.a. |
+| + territories and the United States | 3.20 | 2.35 | 0.81 | 5.76 | 4.53 | 55.4 | n.a. |
+| + 37 sectors (paper elasticities) | 3.12 | 2.34 | 0.75 | 5.06 | 5.03 | 55.7 | n.a. |
+| + Bank of Canada-rule elasticities | 3.53 | 2.88 | 0.63 | 4.26 | 4.05 | 46.0 | n.a. |
+| + adjacency, symmetric index | 3.53 | 2.88 | 0.69 | 4.20 | 5.32 | 43.9 | n.a. |
+| + labour mobility (elasticity 1.5) | 3.71 | 2.75 | 0.71 | 4.42 | 5.78 | 49.0 | n.a. |
+| + 2022 data, 2010-2022 panel, income weights (main model) | 4.01 | 3.08 | 0.71 | 4.83 | 4.90 | 46.2 | n.a. |
 
 The elasticities are the main source of differences between the main model and
-the paper; the other choices move results by less than 10%. The main model with
-the paper's elasticities (`config/sensitivity_theta_papers.yml`) gives 3.05,
-2.81, 0.80, 5.07, 6.23 and 54.2, close to the paper's 3.6, 2.9, 0.9, 3.3, 6.8
-and 51.9.
+the paper; the distance measure moves the non-distance experiment, the
+input-output data the external ones, and the other choices move results by
+less than 10%. The main model with the paper's elasticities
+(`config/sensitivity_theta_papers.yml`) gives 3.23, 2.76, 0.84, 5.63, 6.68
+and 61.0, against the paper's 3.6, 2.9, 0.9, 3.3, 6.8 and 51.9.
 
 **From Alvarez, Krznar and Tombe** (eliminating non-geographic barriers for
 goods, internal):
 
 | Step | Result |
 |---|---:|
-| Paper setup (2016) | 5.16 |
-| Albrecht-Tombe gravity specification | 0.81 |
-| + no labour mobility | 0.82 |
-| + observed trade imbalances | 0.76 |
-| + province-specific input-output | 0.77 |
-| + 37 sectors (paper elasticities) | 0.59 |
-| + BoC-rule elasticities | 0.46 |
-| + 2022 data (main model) | 0.42 |
+| Paper setup (2015) | 5.62 |
+| Albrecht-Tombe gravity specification | 0.84 |
+| + observed trade imbalances | 0.91 |
+| + province-specific input-output | 0.92 |
+| + 37 sectors (paper elasticities) | 0.67 |
+| + BoC-rule elasticities | 0.52 |
+| + 2022 data (main model) | 0.46 |
 
 **From Manucha and Tombe:**
 
 | Step | Uniform 10% | Non-distance | Asymmetries | Non-distance, services |
 |---|---:|---:|---:|---:|
-| Paper setup (2018) | 3.10 | 7.00 | 5.04 | 6.69 |
-| No labour mobility | 3.04 | 6.65 | 4.85 | 6.43 |
-| + US as a separate region | 3.04 | 6.65 | 4.85 | 6.43 |
-| + 37 sectors, BoC-rule elasticities | 3.41 | 4.16 | 4.86 | 3.84 |
-| + adjacency, pooled panel | 3.41 | 4.97 | 4.74 | 4.51 |
-| + 2022 data (main model) | 3.68 | 4.64 | 4.43 | 4.18 |
+| Paper setup (2018) | 3.10 | 6.52 | 5.12 | 6.25 |
+| + US as a separate region | 3.11 | 6.53 | 5.13 | 6.26 |
+| + 37 sectors, BoC-rule elasticities | 3.51 | 4.09 | 4.99 | 3.76 |
+| + adjacency, pooled panel | 3.51 | 5.08 | 4.80 | 4.59 |
+| + 2022 data (main model) | 4.01 | 4.90 | 4.83 | 4.38 |
 
 ## What changed in the model
 
@@ -345,6 +423,13 @@ goods, internal):
 * The gravity specification of Alvarez et al. as an option, with international
   pairs, an interprovincial indicator by year and optional within-region pairs;
   `config/sensitivity_gravity_levels.yml` applies it to the main model.
+* The papers' distance measure, the mean distance between residents
+  (`distances$method: pairwise`).
+* Balanced trade with the observed trade shares (`calibration$deficits:
+  balanced`), as in A&T and AKT.
+* Published value-added and final-demand shares (`io_parameters$sector_values`)
+  and elasticities used only to measure trade costs
+  (`trade_costs$measurement_elasticities`).
 * Gains-from-trade (autarky) experiments.
 * Measured-cost experiments for any set of importers and exporters (external
   costs, unilateral liberalization, blocs) and partial eliminations.
@@ -352,7 +437,7 @@ goods, internal):
   within-province costs, eliminating non-geographic barriers cut more than
   eliminating all measured costs (64 pairs, 1.2% of interprovincial trade in
   2022).
-* The main model's internal-trade scenarios now follow the papers' definitions
+* The main model's internal-trade scenarios follow the papers' definitions
   (all sectors, as in A&T; goods, as in AKT; services, as in MLI) and include
   asymmetries and an import-cost variant of the external experiment.
 
@@ -360,11 +445,11 @@ goods, internal):
 
 | Difference | Cause | What would resolve it |
 |---|---|---|
-| AKT non-geographic gains 1.4-2.3 times the paper's | measured costs in current data higher than the paper's; US block from the ICIO | the paper's 2015 data vintage and US data |
-| MLI uniform 10% cut: 6.7 vs 3.1-3.7 | model features absent here (fiscal transfers) or experiment definition | the paper's code |
-| MLI and A&T asymmetries | larger (A&T) or smaller (MLI) exporter-specific costs in our data | finer sectors (MLI); the 2010 data (A&T) |
-| A&T and AKT data years | ICIO tables for 2010 and 2015 not in the repository | add them to `data/raw/icio/` |
-| Yukon in AKT experiments | no Yukon distances | the 2021 census file (`docs/data.md`) |
+| A&T gains from external trade 10% lower | input-output coefficients (OECD STAN in the paper) | the paper's input-output table |
+| A&T asymmetries larger, MLI asymmetries smaller | exporter-specific costs in our data | finer sectors (MLI) |
+| AKT non-geographic gains 1.5 (internal) to 3 (external) times the paper's | the paper's measured costs are lower than the data give; US block from the ICIO | the paper's data |
+| MLI uniform 10% cut: 6.7 vs 3.1-4.0 | model features absent here (fiscal transfers) or experiment definition | the paper's code |
+| Main model distance measure | centroids, not the papers' mean distance between residents | the raw 2021 census file, which includes Yukon (`distances$method: pairwise`) |
 
 ## References
 
@@ -373,6 +458,9 @@ goods, internal):
   Statistics Canada, Analytical Studies Branch Research Paper 394.
 * Fontagné, L., H. Guimbard and G. Orefice (2022). "Tariff-based product-level
   trade elasticities." *Journal of International Economics* 137: 103593.
+* Head, K. and T. Mayer (2002). "Illusory border effects: Distance
+  mismeasurement inflates estimates of home bias in trade." CEPII Working
+  Paper 2002-01.
 * Tombe, T. and J. Winter (2021). "Fiscal integration with internal trade:
   Quantifying the effects of federal transfers in Canada." *Canadian Journal of
   Economics* 54(2): 522-556.

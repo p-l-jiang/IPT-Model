@@ -28,7 +28,7 @@ mli_cfg <- "config/replication_manucha_tombe_2022.yml"
 dom13 <- '["NL", "PE", "NS", "NB", "QC", "ON", "MB", "SK", "AB", "BC", "YT", "NT", "NU"]'
 akt_gravity_at <- c("trade_costs.sample=interprovincial", "trade_costs.regressors=[log_dist, adjacent]",
                     "trade_costs.year_interactions=[]", "trade_costs.geographic=[log_dist, adjacent]",
-                    "years.panel=[2010, 2016]")
+                    "trade_costs.floor_geographic=true")
 
 run <- function(name, group, config, from, sets = character(0), parent = NULL, step = NA_character_) {
   list(name = name, group = group, config = config, from = from, sets = sets, parent = parent, step = step)
@@ -49,22 +49,28 @@ st <- function(name, from, step, sets) list(name = name, from = from, step = ste
 
 runs <- c(
   list(
-    run("albrecht_tombe_2016", "at", at_cfg, 3, step = "Paper setup (2016 data)"),
-    run("alvarez_krznar_tombe_2019", "akt", akt_cfg, 3, step = "Paper setup (2016 data)"),
+    run("albrecht_tombe_2016", "at", at_cfg, 3, step = "Paper setup (2010 data)"),
+    run("alvarez_krznar_tombe_2019", "akt", akt_cfg, 3, step = "Paper setup (2015 data)"),
     run("manucha_tombe_2022", "mli", mli_cfg, 3, step = "Paper setup (2018 data)")
   ),
   list(
-    run("at_year2018", "at", at_cfg, 3, c("name=at_year2018", "years.target=2018", "years.panel=[2018, 2018]"),
-        step = "Paper setup, 2018 data"),
+    run("at_year2016", "at", at_cfg, 3, c("name=at_year2016", "years.target=2016", "years.panel=[2016, 2016]"),
+        step = "Paper setup, 2016 data"),
     run("at_year2022", "at", at_cfg, 3, c("name=at_year2022", "years.target=2022", "years.panel=[2022, 2022]"),
         step = "Paper setup, 2022 data"),
     run("akt_own_pairs", "akt", akt_cfg, 5, c("name=akt_own_pairs", "trade_costs.own_pairs=true"),
         "alvarez_krznar_tombe_2019", "Within-province pairs in the gravity regressions"),
+    run("akt_paper_costs", "akt", akt_cfg, 5,
+        c("name=akt_paper_costs",
+          "trade_costs.measurement_elasticities=config/parameters/theta_measurement_alvarez_krznar_tombe_2019.csv"),
+        "alvarez_krznar_tombe_2019", "Measured costs scaled to the paper's Table 1 (2015)"),
     run("mli_sectors37", "mli", mli_cfg, 3,
         c("name=mli_sectors37", "sectors.scheme=base37",
           "trade_elasticities.file=config/parameters/theta_manucha_tombe_2022_base37.csv",
           "trade_costs.exclude_sectors=[UTL, CON, PAD]"),
-        step = "Paper setup with the 37 base sectors (same elasticities)")
+        step = "Paper setup with the 37 base sectors (same elasticities)"),
+    run("mli_no_migration", "mli", mli_cfg, 6, c("name=mli_no_migration", "migration.elasticity=0"),
+        "manucha_tombe_2022", "Paper setup without labour mobility")
   ),
   lapply(c(4, 6.5, 8), function(th) {
     run(paste0("akt_theta", sub(".", "_", th, fixed = TRUE)), "akt", akt_cfg, 5,
@@ -73,29 +79,32 @@ runs <- c(
         "alvarez_krznar_tombe_2019", paste("Uniform goods elasticity", th))
   }),
   chain("at", at_cfg, scenarios = "[config/scenarios/albrecht_tombe_2016.yml]", list(
-    st("at_b1_deficits", 6, "+ observed trade imbalances", "calibration.deficits=data"),
-    st("at_b2_regional_io", 4, "+ province-specific input-output structure", "io_parameters.source=regional"),
-    st("at_b3_regions", 3, "+ territories and the United States", c(paste0("regions.domestic=", dom13), 'regions.foreign=["USA", "ROW"]')),
-    st("at_b4_sectors", 3, "+ 37 sectors (paper elasticities)", c("sectors.scheme=base37", "trade_elasticities.file=config/parameters/theta_albrecht_tombe_2016_base37.csv")),
-    st("at_b5_theta", 5, "+ Bank of Canada-rule elasticities", "trade_elasticities.method=boc2018_rule"),
-    st("at_b6_gravity", 3, "+ adjacency, 2010-2016 panel, symmetric index", c("trade_costs.regressors=[log_dist, adjacent]", "years.panel=[2010, 2016]", "trade_costs.measured_index=symmetric")),
-    st("at_b7_year", 3, "+ 2022 data (main model)", c("years.target=2022", "years.panel=[2010, 2022]"))
+    st("at_b1_io_data", 4, "+ value-added and final-demand shares from the 2010 supply-use tables", "io_parameters.sector_values=null"),
+    st("at_b2_distances", 5, "+ distances between population centroids",
+       c("paths.distances=data/processed/distances_2021.csv", "distances.method=centroid")),
+    st("at_b3_deficits", 6, "+ observed trade imbalances", "calibration.deficits=data"),
+    st("at_b4_regional_io", 4, "+ province-specific input-output structure", "io_parameters.source=regional"),
+    st("at_b5_regions", 3, "+ territories and the United States", c(paste0("regions.domestic=", dom13), 'regions.foreign=["USA", "ROW"]')),
+    st("at_b6_sectors", 3, "+ 37 sectors (paper elasticities)", c("sectors.scheme=base37", "trade_elasticities.file=config/parameters/theta_albrecht_tombe_2016_base37.csv")),
+    st("at_b7_theta", 5, "+ Bank of Canada-rule elasticities", "trade_elasticities.method=boc2018_rule"),
+    st("at_b8_gravity", 5, "+ adjacency, symmetric index", c("trade_costs.regressors=[log_dist, adjacent]", "trade_costs.measured_index=symmetric")),
+    st("at_b9_migration", 6, "+ labour mobility (elasticity 1.5)", "migration.elasticity=1.5"),
+    st("at_b10_year", 3, "+ 2022 data, 2010-2022 panel, income weights (main model)",
+       c("years.target=2022", "years.panel=[2010, 2022]", "aggregation.canada_weights=income"))
   )),
   chain("akt", akt_cfg, scenarios = "[config/scenarios/alvarez_krznar_tombe_2019.yml]", list(
     st("akt_b1_gravity", 3, "Albrecht-Tombe gravity (log normalized distance)", akt_gravity_at),
-    st("akt_b2_migration", 6, "+ no labour mobility", "migration.elasticity=0"),
-    st("akt_b3_deficits", 6, "+ observed trade imbalances", "calibration.deficits=data"),
-    st("akt_b4_regional_io", 4, "+ province-specific input-output structure", "io_parameters.source=regional"),
-    st("akt_b5_sectors", 3, "+ 37 sectors (paper elasticities)", c("sectors.scheme=base37", "trade_elasticities.file=config/parameters/theta_albrecht_tombe_2016_base37.csv", "trade_costs.exclude_sectors=[UTL, CON, PAD]")),
-    st("akt_b6_theta", 5, "+ Bank of Canada-rule elasticities", "trade_elasticities.method=boc2018_rule"),
-    st("akt_b7_year", 3, "+ 2022 data (main model)", c("years.target=2022", "years.panel=[2010, 2022]"))
+    st("akt_b2_deficits", 6, "+ observed trade imbalances", "calibration.deficits=data"),
+    st("akt_b3_regional_io", 4, "+ province-specific input-output structure", "io_parameters.source=regional"),
+    st("akt_b4_sectors", 3, "+ 37 sectors (paper elasticities)", c("sectors.scheme=base37", "trade_elasticities.file=config/parameters/theta_albrecht_tombe_2016_base37.csv", "trade_costs.exclude_sectors=[UTL, CON, PAD]")),
+    st("akt_b5_theta", 5, "+ Bank of Canada-rule elasticities", "trade_elasticities.method=boc2018_rule"),
+    st("akt_b6_year", 3, "+ 2022 data, 2010-2022 panel (main model)", c("years.target=2022", "years.panel=[2010, 2022]"))
   )),
   chain("mli", mli_cfg, scenarios = "[config/scenarios/manucha_tombe_2022.yml]", list(
-    st("mli_b1_migration", 6, "No labour mobility", "migration.elasticity=0"),
-    st("mli_b2_usa", 3, "+ United States as a separate region", 'regions.foreign=["USA", "ROW"]'),
-    st("mli_b3_sectors", 3, "+ 37 sectors, Bank of Canada-rule elasticities", c("sectors.scheme=base37", "trade_elasticities.method=boc2018_rule", "trade_costs.exclude_sectors=[UTL, CON, PAD]")),
-    st("mli_b4_gravity", 3, "+ adjacency, 2010-2018 panel", c("trade_costs.regressors=[log_dist, adjacent]", "years.panel=[2010, 2018]")),
-    st("mli_b5_year", 3, "+ 2022 data (main model)", c("years.target=2022", "years.panel=[2010, 2022]"))
+    st("mli_b1_usa", 3, "+ United States as a separate region", 'regions.foreign=["USA", "ROW"]'),
+    st("mli_b2_sectors", 3, "+ 37 sectors, Bank of Canada-rule elasticities", c("sectors.scheme=base37", "trade_elasticities.method=boc2018_rule", "trade_costs.exclude_sectors=[UTL, CON, PAD]")),
+    st("mli_b3_gravity", 3, "+ adjacency, 2010-2018 panel", c("trade_costs.regressors=[log_dist, adjacent]", "years.panel=[2010, 2018]")),
+    st("mli_b4_year", 3, "+ 2022 data, 2010-2022 panel (main model)", c("years.target=2022", "years.panel=[2010, 2022]"))
   ))
 )
 # Bridge runs need their own names.

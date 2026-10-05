@@ -75,6 +75,12 @@ test_that("the paper sector schemes aggregate all base sectors and have elastici
                              show_col_types = FALSE)
     expect_setequal(theta$sector_id, unique(scheme$sector_id))
   }
+  # Albrecht and Tombe (2016) report value-added and final-demand shares.
+  v <- readr::read_csv(file.path(ipt_root(), "config", "parameters", "io_albrecht_tombe_2016.csv"),
+                       show_col_types = FALSE)
+  expect_setequal(v$sector_id, unique(load_sector_scheme(list(sectors = list(scheme = file.path(
+    ipt_root(), "config", "concordances", "sector_scheme_albrecht_tombe_2016.csv"))))$sector_id))
+  expect_equal(sum(v$beta), 1, tolerance = 0.01)
   # Alvarez et al. (2019) have 9 goods and 9 service sectors.
   cfg <- list(sectors = list(scheme = file.path(ipt_root(), "config", "concordances",
                                                 "sector_scheme_alvarez_krznar_tombe_2019.csv")))

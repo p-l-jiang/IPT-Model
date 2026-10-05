@@ -122,3 +122,38 @@ test_that("autarky reproduces the gains from trade of the ACR formula", {
   expect_equal(unname((sol$I / base$I) / sol$P_hat),
                unname(diag(base$pi[, , 1])^(1 / (4 * base$phi[, 1]))), tolerance = 1e-8)
 })
+
+test_that("calibration keeps, balances or purges the observed trade imbalances", {
+  cfg <- load_config(file.path(ipt_root(), "config", "replication_albrecht_tombe_2016.yml"))
+  cfg$sectors$scheme <- file.path(ipt_root(), cfg$sectors$scheme)
+  regions <- model_regions(cfg)
+  sectors <- model_sectors(cfg)
+  N <- length(regions)
+  J <- length(sectors)
+  set.seed(21)
+  flows <- expand.grid(dest = regions, origin = regions, sector = sectors, stringsAsFactors = FALSE)
+  flows$value <- stats::runif(nrow(flows), 0.5, 2) * ifelse(flows$dest == flows$origin, 5, 1)
+  flows$year <- 2010
+  gamma <- array(stats::runif(N * J * J), c(N, J, J), dimnames = list(regions, input = sectors, user = sectors))
+  io <- list(phi = matrix(stats::runif(N * J, 0.3, 0.7), N, J, dimnames = list(regions, sectors)),
+             gamma = sweep(gamma, c(1, 3), apply(gamma, c(1, 3), sum), "/"),
+             beta = matrix(1 / J, N, J, dimnames = list(regions, sectors)))
+  theta <- setNames(rep(5, J), sectors)
+  population <- setNames(c(rep(1e6, N - 1), NA), regions)
+  va_data <- setNames(rep(100, N), regions)
+  observed <- shares_from_flows(flow_array(flows, regions, sectors))
+
+  base <- list()
+  for (mode in c("data", "balanced", "purge")) {
+    cfg$calibration$deficits <- mode
+    base[[mode]] <- build_baseline(cfg, tibble::as_tibble(flows), io, theta, population, va_data)
+    sol <- solve_counterfactual(base[[mode]])
+    expect_lt(max(abs(c(sol$w_hat - 1, sol$p_hat - 1))), 1e-8)
+  }
+  expect_gt(max(abs(base$data$D)), 1)
+  expect_equal(base$data$pi, observed)
+  expect_equal(unname(base$balanced$D), rep(0, N))
+  expect_equal(base$balanced$pi, observed)
+  expect_lt(max(abs(base$purge$D)), 1e-8)
+  expect_gt(max(abs(base$purge$pi - observed)), 1e-3)
+})

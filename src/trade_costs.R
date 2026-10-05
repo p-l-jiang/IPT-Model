@@ -144,8 +144,8 @@ pair_regressors <- function(dat, distances, cfg) {
 
 #' Fixed-effect gravity regressions of log measured trade costs, by sector.
 #'
-#' Pairs without distance data (e.g. Yukon when the census extract lacks it)
-#' are kept in `data` but cannot enter the regressions.
+#' Pairs without distance data are kept in `data` but cannot enter the
+#' regressions.
 #'
 #' @return List with `coefficients` (sector, term, estimate, std_error, n_obs),
 #'   `data` (estimation sample with regressors) and `spec`.

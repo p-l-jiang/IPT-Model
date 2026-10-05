@@ -74,7 +74,17 @@ scenarios:
     shocks:
       - {type: measured_cost_reduction, sectors: all, share: 0.50}
 
+  # Section 4.3.3: tau_hat = 1.1 "if n or i is Quebec", i.e. on Quebec's trade
+  # with all other regions, including the rest of the world (Quebec -4.8%,
+  # Ontario -0.5%, Alberta -0.2%). Raising only the costs of trade with the
+  # other provinces gives much smaller losses for Quebec.
   - id: quebec_border_10
+    label: "10% higher trade costs between Quebec and all other regions"
+    shocks:
+      - {type: iceberg, importers: ["QC"], exporters: all, sectors: all, factor: 1.1}
+      - {type: iceberg, importers: all, exporters: ["QC"], sectors: all, factor: 1.1}
+
+  - id: quebec_border_10_provinces
     label: "10% higher trade costs between Quebec and the other provinces"
     shocks:
       - {type: iceberg, importers: ["QC"], exporters: domestic, sectors: all, factor: 1.1}

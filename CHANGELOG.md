@@ -16,6 +16,27 @@ published figures are in `config/benchmarks/published_results.csv`, and
 step-by-step "bridges" to the main model. Findings and diagnosis:
 [`docs/replication.md`](docs/replication.md).
 
+### Data and defaults (changes on `main`, 2 and 5 October)
+
+- OECD ICIO tables for 1995-2015 added; all years renamed `data/raw/icio/<year>.csv`.
+  The Albrecht and Tombe and Alvarez et al. setups now use the papers' years
+  (2010 and 2015; the Alvarez et al. regressions use 2010-2015, the first years
+  of the detail-level trade flows, instead of 1997-2015).
+- Yukon distances computed from the raw 2021 census Geographic Attribute File
+  (`2021_92-151_X.csv`, git-ignored); the committed distances include Yukon.
+  `scripts/02_build_distances.R` now keeps the committed distances when the raw
+  file is absent.
+- Labour mobility is on by default (`migration$elasticity: 1.5`).
+
+With these changes the main model gives: 10% lower interprovincial costs
+4.01% (3.68% before); eliminating non-geographic barriers 4.90% (4.64%), goods
+0.46% (0.42%), services 4.38% (4.18%); asymmetries 4.83% (4.43%); all measured
+costs 46.2% (41.9%); 10% lower external costs 9.04% both ways (9.34%), 3.08%
+for imports only (3.30%). Mobility amplifies the near-corner response of New
+Brunswick's refining to external liberalization (10% lower external costs in
+both directions: real income +115%, +43% per person, population +50%; see
+`docs/methodology_review.md`, section D).
+
 ### Errors fixed
 
 - **"Eliminate non-geographic barriers" could cut costs below within-province
@@ -25,7 +46,8 @@ step-by-step "bridges" to the main model. Findings and diagnosis:
   trade), the shock lowered costs by more than eliminating all measured costs.
   The geographic component is now floored at one (`trade_costs$floor_geographic`;
   the Alvarez et al. replication keeps the paper's unfloored version). Main
-  model, all sectors: 4.89% -> 4.64%; services: 4.45% -> 4.18%; goods unchanged.
+  model without labour mobility, all sectors: 4.89% -> 4.64%; services: 4.45%
+  -> 4.18%; goods unchanged.
 - **Correction to the 2026-10-02 entry (A13).** That entry said the legacy
   level-distance gravity specification made the geographic component depend on
   the units of distance. It does not (the coefficient rescales). The legacy
@@ -34,12 +56,35 @@ step-by-step "bridges" to the main model. Findings and diagnosis:
   indicator). It is now implemented correctly as an option; the main model
   keeps the Albrecht-Tombe specification. `docs/methodology_review.md` is
   corrected.
+- **Trade imbalances in the replications.** The replication setups removed
+  imbalances by solving the model with zero deficits (`purge`), which also
+  changes the trade shares (Canadian import shares fall by up to 4 points in
+  2010). Both papers keep the observed trade shares and impose balanced trade
+  on the levels (Albrecht and Tombe, proposition 1 and section 4.1; Alvarez et
+  al., section IV). New option `calibration$deficits: balanced`, used by both
+  setups (small effect: Albrecht and Tombe's gains from external trade 7.2% ->
+  7.4%).
+- **Distances in the Albrecht and Tombe replication.** The setup measured
+  distance between population centroids; the paper (appendix B) uses the
+  population-weighted mean distance between residents, whose internal
+  distances are 1.3-1.5 times larger, so normalized distances are a quarter
+  smaller and less of measured costs is geographic. New option
+  `distances$method: pairwise` (`data/processed/distances_2021_pairwise.csv`).
+  With it the paper's non-distance costs are reproduced (12.9% on average
+  against its 14.5%; 8.0% before) and so is the gain from removing them (7.0%
+  against 6.8%; 5.3% before).
+- **Quebec experiment (Albrecht and Tombe, section 4.3.3).** The paper raises
+  costs by 10% "if n or i is Quebec", i.e. on all of Quebec's trade including
+  with the rest of the world; the scenario raised only interprovincial costs
+  (Quebec -1.7% against the paper's -4.8%). It now follows the paper (-4.5%;
+  Ontario -0.5%, Alberta -0.2%, as in the paper); the interprovincial version
+  is kept as `quebec_border_10_provinces`.
 - **Replication configurations.** `config/replication_albrecht_tombe_2016.yml`
   now follows the paper (balanced trade, asymmetric costs and the augmented
-  Head-Ries index, real-GDP weights) and runs on data in the repository (2016;
-  it required the missing 2010 ICIO table and unverified legacy 2006 distances).
-  `config/replication_tombe_2019.yml`, which reproduced the legacy script rather
-  than the paper, is replaced by `config/replication_alvarez_krznar_tombe_2019.yml`.
+  Head-Ries index, real-GDP weights, 2010 data). `config/replication_tombe_2019.yml`,
+  which reproduced the legacy script rather than the paper, is replaced by
+  `config/replication_alvarez_krznar_tombe_2019.yml`. The Albrecht and Tombe
+  bridge now ends exactly at the main model (it kept real-GDP weights).
 
 ### Methodology changes
 
@@ -47,13 +92,19 @@ step-by-step "bridges" to the main model. Findings and diagnosis:
   measured-cost experiments now cover all sectors, as in Albrecht and Tombe
   (previously goods only), with goods-only (Alvarez et al.) and services-only
   (Manucha and Tombe) variants; asymmetries and a cut in import costs only are
-  added. Results: 10% lower measured costs 0.23% (goods) -> 0.67% (all
-  sectors); eliminating all measured costs 9.92% (goods) -> 41.9%; eliminating
-  non-geographic barriers 0.42% (goods) and 4.64% (all sectors).
+  added. Results without labour mobility: 10% lower measured costs 0.23%
+  (goods) -> 0.67% (all sectors); eliminating all measured costs 9.92% (goods)
+  -> 41.9%; eliminating non-geographic barriers 0.42% (goods) and 4.64% (all
+  sectors).
 - **External cost experiment.** Albrecht and Tombe's Table 5 figures (2.9% for a
   10% cut) are reproduced only when the cut applies to Canadian imports; a
   two-way cut gives more than twice as much. Both versions are provided
-  (`t5c5_import_costs_minus10`: 3.30%; two-way: 9.34%).
+  (`t5c5_import_costs_minus10`: 3.08%; two-way: 9.04%).
+- **Albrecht and Tombe's input-output parameters.** Their value-added and
+  final-demand shares (Table 9, OECD STAN) are used in their setup
+  (`io_parameters$sector_values`); the input coefficients, which the paper does
+  not report, come from the 2010 supply and use tables. Gains from external
+  trade 7.4% -> 8.4% (paper 9.3%), from all trade 14.6% -> 16.3% (18.3%).
 
 ### Added
 
@@ -64,8 +115,13 @@ step-by-step "bridges" to the main model. Findings and diagnosis:
   of km, neighbour indicator, interprovincial indicator by year, international
   pairs, optional within-region pairs (`trade_costs$regressors`, `$geographic`,
   `$year_interactions`, `$own_pairs`); `config/sensitivity_gravity_levels.yml`
-  applies it to the main model (non-geographic barriers for goods: 4.96%; all
-  sectors: 23.1%).
+  applies it to the main model (non-geographic barriers for goods: 5.08%; all
+  sectors: 25.4%).
+- Pairwise (Head and Mayer, 2002) distances (`distances$method: pairwise`).
+- Published value-added and final-demand shares (`io_parameters$sector_values`)
+  and elasticities used only to measure trade costs
+  (`trade_costs$measurement_elasticities`; used to scale Alvarez et al.'s
+  measured costs to their Table 1 in a diagnostic run).
 - Gains-from-trade experiments (`autarky` shocks, `report: gains_from_trade`),
   with a check that isolated regions can finance their trade imbalances.
 - Measured-cost experiments for any importers and exporters (external costs,
@@ -83,26 +139,36 @@ step-by-step "bridges" to the main model. Findings and diagnosis:
   the stated 5, which validates the data.
 - Tests for the new estimators (recovery of exporter costs and of both gravity
   specifications on synthetic data), autarky (ACR formula), the floor, scenario
-  targeting, configuration overrides and the benchmark file.
+  targeting, the three treatments of imbalances, pairwise distances, published
+  sector values, measurement elasticities, configuration overrides and the
+  benchmark file.
 
 ### Findings (see `docs/replication.md`)
 
-- Albrecht and Tombe: gains from trade, 10% cost cuts, measured-cost
-  experiments and non-distance elimination are reproduced (e.g. 4.2 vs 4.4,
-  3.15 vs 3.6, 0.82 vs 0.9, 6.4 vs 6.8), as are their measured trade costs;
-  removing asymmetries gives more (5.1 vs 3.3).
-- Alvarez et al.: gains from trade reproduced (4.5 / 10.0 / 18.9 vs 5.1 / 10.9 /
-  19.6); eliminating non-geographic barriers for goods gives 1.4-2.3 times their
-  figures, because measured costs in current data are higher than they report.
-  The main model's much smaller goods figure (0.42% vs 3.8%) is due to the
-  gravity specification.
-- Manucha and Tombe: non-distance experiments reproduced by the main model (4.6
-  vs 4.4; services 4.2 vs 4.2). Their 6.7% gain from a uniform 10% cut is not
-  reproduced: the model gives 3.1-3.7%, which is what the paper's own
-  first-order approximation (its Table 2) implies.
+- Albrecht and Tombe, on their 2010 data: their trade data (Table 1), measured
+  costs (Table 4: 66.5% against 67.8%), distance elasticities (Table 11) and
+  non-distance costs are reproduced, and so are their results: gains from
+  internal trade 4.5% (paper 4.4%), 10% lower internal costs 3.4% (3.6%),
+  measured-cost experiments 0.84% and 1.66% (0.9% and 1.8%), non-distance
+  costs 7.0% (6.8%), all internal costs 53.1% (51.9%). Gains from external
+  trade are 10% lower (8.4% against 9.3%; input-output coefficients) and
+  removing asymmetries gives more (4.8% against 3.3%).
+- Alvarez et al.: gains from trade reproduced (4.5 / 10.1 / 18.9 against 5.1 /
+  10.9 / 19.6). Their measured costs cannot be reproduced from current data
+  with the stated elasticities (79% against 55% on average, also when computed
+  directly from their source table and product mapping); the other two papers'
+  costs are. Hence larger non-geographic barriers and gains (goods, internal:
+  5.6% against 3.8%; 4.3% with costs scaled to their Table 1). The main model's
+  much smaller goods figure (0.46%) is due to the gravity specification.
+- Manucha and Tombe: non-distance experiments reproduced by the main model (4.9
+  vs 4.4; services 4.4 vs 4.2). Their 6.7% gain from a uniform 10% cut is not
+  reproduced: the model gives 3.1-4.0%; the paper's own first-order
+  approximation (its Table 2) gives 3.1%.
 - The trade elasticities explain most of the remaining difference between the
   main model and Albrecht and Tombe: with the papers' elasticities the main
-  model gives 3.05, 2.81, 0.80, 6.23 and 54.2 against 3.6, 2.9, 0.9, 6.8 and 51.9.
+  model gives 3.23, 2.76, 0.84, 6.68 and 61.0 against 3.6, 2.9, 0.9, 6.8 and
+  51.9. With the papers' distance measure its non-geographic gains would rise
+  from 4.9% to about 6.3%; this needs Yukon's census points (the raw file).
 
 ### Removed
 

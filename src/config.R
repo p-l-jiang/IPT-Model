@@ -108,8 +108,8 @@ validate_config <- function(cfg) {
   if (!cfg$io_parameters$source %in% c("regional", "national", "global")) {
     stopf("io_parameters$source must be 'regional', 'national' or 'global'.")
   }
-  if (!cfg$calibration$deficits %in% c("data", "purge")) {
-    stopf("calibration$deficits must be 'data' or 'purge'.")
+  if (!cfg$calibration$deficits %in% c("data", "balanced", "purge")) {
+    stopf("calibration$deficits must be 'data', 'balanced' or 'purge'.")
   }
   invisible(TRUE)
 }

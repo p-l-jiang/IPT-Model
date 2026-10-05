@@ -8,8 +8,10 @@
 # so its baseline was not an equilibrium. Here:
 #   * trade shares pi, IO parameters (phi, gamma) and final-demand shares beta
 #     are taken from the data;
-#   * observed trade imbalances D are held fixed (Caliendo and Parro, 2015),
-#     or optionally purged by solving the model with D = 0 first;
+#   * observed trade imbalances D are held fixed (Caliendo and Parro, 2015);
+#     or set to zero with the observed trade shares kept (balanced trade, as
+#     in Albrecht and Tombe, 2016, and Alvarez, Krznar and Tombe, 2019); or
+#     purged by solving the model with D = 0, which also changes the shares;
 #   * expenditures, revenues and value added are then solved from the model's
 #     market-clearing conditions, with world value added equal to the data.
 # Differences between model-implied and observed value added are reported as
@@ -96,6 +98,7 @@ build_baseline <- function(cfg, flows, io, theta, population, va_data) {
   )
   D <- deficits_from_flows(flows_arr)
   D <- D - mean(D)  # remove floating-point residue so that sum(D) = 0 exactly
+  if (cfg$calibration$deficits == "balanced") D[] <- 0
   lv <- solve_baseline_levels(base, D, sum(base$va_data))
   base <- c(base, list(D = D, X = lv$X, R = lv$R, VA = lv$VA, I = lv$I))
 

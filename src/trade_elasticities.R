@@ -78,3 +78,22 @@ load_trade_elasticities <- function(cfg) {
   if (any(theta <= 0)) stopf("Trade elasticities must be positive.")
   theta
 }
+
+#' Elasticities used to measure trade costs (Head-Ries index, asymmetries).
+#'
+#' The model's elasticities by default. `trade_costs$measurement_elasticities`
+#' (a table with columns sector_id and theta) replaces them for the sectors it
+#' lists, e.g. to reproduce the cost levels a paper reports when they cannot be
+#' reproduced from the data with the paper's elasticities; the model itself
+#' keeps `theta`.
+measurement_elasticities <- function(cfg, theta) {
+  f <- cfg$trade_costs$measurement_elasticities
+  if (is.null(f)) return(theta)
+  m <- readr::read_csv(f, show_col_types = FALSE)
+  unknown <- setdiff(m$sector_id, names(theta))
+  if (length(unknown) > 0) stopf("Measurement elasticities for unknown sectors: %s",
+                                 paste(unknown, collapse = ", "))
+  if (any(m$theta <= 0)) stopf("Measurement elasticities must be positive.")
+  theta[m$sector_id] <- m$theta
+  theta
+}
