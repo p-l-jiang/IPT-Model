@@ -13,7 +13,9 @@ in the repository history (commit `24ede19`, folder `src/`):
 
 Items are grouped by severity. "Verified" means the problem was reproduced
 with the data in the repository. The dated summary of the resulting changes is
-in [`CHANGELOG.md`](../CHANGELOG.md).
+in [`CHANGELOG.md`](../CHANGELOG.md); the comparison of the corrected model
+with the published results of the papers is in
+[`replication.md`](replication.md).
 
 ## A. Errors that changed results
 
@@ -156,17 +158,27 @@ pharmaceutical, aircraft, non-metallic minerals and forestry components are not
 averaged in).
 
 ### A13. Gravity specification
-`GE Model Shares Calculation.R` regressed log trade costs on distance in
-kilometres *in levels*, so the "geographic" component $\exp(b \cdot d)$
-depended on the units of distance and excluded the fixed effects. The sample
-pooled interprovincial and international pairs without a border variable and
-included the US-US and ROW-ROW own pairs (log cost zero by construction) without
-the internal-trade dummy used for provinces. The adjacency list was
-asymmetric (NS-NL, PE-NB, BC-NT and MB-NT appeared in one direction only).
-*Fix:* log normalized distance $d_{ni}/\sqrt{d_{nn}d_{ii}}$ (unit-free, as in
-Albrecht and Tombe, 2016), interprovincial pairs only by default (international
-pairs with a border dummy as an option), symmetric adjacency (land borders and
-the Confederation Bridge), standard errors clustered by origin and destination.
+`GE Model Shares Calculation.R` followed Alvarez, Krznar and Tombe (2019) in
+regressing log trade costs on distance in kilometres, in levels, on a sample
+that pooled interprovincial and international pairs. Unlike the paper, it
+omitted the interprovincial-trade indicator and included the US-US and ROW-ROW
+own pairs (log cost zero by construction) without the internal-trade dummy it
+used for provinces, so the distance coefficient was partly identified from
+pairs with zero cost by construction. The adjacency list was asymmetric (NS-NL,
+PE-NB, BC-NT and MB-NT appeared in one direction only). *Fix:* the main model
+uses the specification of Albrecht and Tombe (2016), log distance relative to
+internal distances $d_{ni}/\sqrt{d_{nn}d_{ii}}$ on interprovincial pairs, with
+symmetric adjacency (land borders and the Confederation Bridge) and standard
+errors clustered by origin and destination. The specification of Alvarez et al.
+is implemented correctly as an option (own pairs excluded, interprovincial
+indicator by year; `config/sensitivity_gravity_levels.yml`).
+
+*Correction (2026-10-05).* An earlier version of this note said that distance
+in levels made the geographic component depend on the units of distance. It
+does not: the coefficient rescales with the units, so $b \cdot d$ is
+unchanged. The choice between the two specifications is a modelling choice,
+not an error, and it matters a great deal for the share of measured costs
+called non-geographic (see `docs/replication.md`).
 
 ### A14. Sectoral results were not sectoral
 `analyze_sectoral_results_by_region()` reported $\hat w \hat L / \hat p_j$ as
@@ -177,6 +189,18 @@ changes $\hat R_{nj}$ and employment changes $\hat R_{nj}/\hat w_n$.
 ### A15. "Eliminate all measured costs" could raise costs
 The shock $1/\bar\tau$ was applied whenever $\bar\tau > 0$, raising costs for
 pairs with measured costs below one. *Fix:* capped at one.
+
+### A16. "Eliminate non-geographic barriers" could cut below within-province costs
+*(Added 2026-10-05.)* The legacy code (`tau_counterfactual = pmin(tau_cf_raw,
+tau_bar)`) and the first version of the unified model lowered costs to the
+geographic component $\tau^{geo}$ even where it is below one, i.e. where a
+negative distance or adjacency coefficient predicts that trading with another
+province is cheaper than trading within one. For those pairs the shock exceeded
+the elimination of all measured costs. In the 2022 main model this affected 64
+interprovincial pairs (1.2% of trade, mainly mining support services,
+telecommunications and electronics). *Fix:* $\tau^{geo}$ is floored at one
+(`trade_costs$floor_geographic`); Canada's gain from eliminating
+non-geographic barriers in all sectors falls from 4.89% to 4.64%.
 
 ## B. Numerical issues
 

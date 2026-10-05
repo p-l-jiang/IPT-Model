@@ -6,6 +6,110 @@ change results) are not listed. Item references (A1, ...) point to
 [`docs/methodology_review.md`](docs/methodology_review.md), which explains each
 problem in detail.
 
+## 2026-10-05 — Comparison with the published results
+
+The model was compared with Albrecht and Tombe (2016; May 2015 working paper),
+Alvarez, Krznar and Tombe (2019, IMF WP 19/158) and Manucha and Tombe (2022,
+Macdonald-Laurier Institute). Each paper's setup is a configuration, its
+published figures are in `config/benchmarks/published_results.csv`, and
+`scripts/replication/run_replications.R` reproduces the comparison and the
+step-by-step "bridges" to the main model. Findings and diagnosis:
+[`docs/replication.md`](docs/replication.md).
+
+### Errors fixed
+
+- **"Eliminate non-geographic barriers" could cut costs below within-province
+  costs.** Where the estimated geographic component was below one (negative
+  distance or adjacency coefficients, mainly in mining support services,
+  telecommunications and electronics: 64 interprovincial pairs, 1.2% of 2022
+  trade), the shock lowered costs by more than eliminating all measured costs.
+  The geographic component is now floored at one (`trade_costs$floor_geographic`;
+  the Alvarez et al. replication keeps the paper's unfloored version). Main
+  model, all sectors: 4.89% -> 4.64%; services: 4.45% -> 4.18%; goods unchanged.
+- **Correction to the 2026-10-02 entry (A13).** That entry said the legacy
+  level-distance gravity specification made the geographic component depend on
+  the units of distance. It does not (the coefficient rescales). The legacy
+  specification was that of Alvarez et al. (2019), with two departures (no
+  interprovincial indicator; US and ROW own pairs without the intra-regional
+  indicator). It is now implemented correctly as an option; the main model
+  keeps the Albrecht-Tombe specification. `docs/methodology_review.md` is
+  corrected.
+- **Replication configurations.** `config/replication_albrecht_tombe_2016.yml`
+  now follows the paper (balanced trade, asymmetric costs and the augmented
+  Head-Ries index, real-GDP weights) and runs on data in the repository (2016;
+  it required the missing 2010 ICIO table and unverified legacy 2006 distances).
+  `config/replication_tombe_2019.yml`, which reproduced the legacy script rather
+  than the paper, is replaced by `config/replication_alvarez_krznar_tombe_2019.yml`.
+
+### Methodology changes
+
+- **Main-model internal-trade scenarios follow the papers' definitions.** The
+  measured-cost experiments now cover all sectors, as in Albrecht and Tombe
+  (previously goods only), with goods-only (Alvarez et al.) and services-only
+  (Manucha and Tombe) variants; asymmetries and a cut in import costs only are
+  added. Results: 10% lower measured costs 0.23% (goods) -> 0.67% (all
+  sectors); eliminating all measured costs 9.92% (goods) -> 41.9%; eliminating
+  non-geographic barriers 0.42% (goods) and 4.64% (all sectors).
+- **External cost experiment.** Albrecht and Tombe's Table 5 figures (2.9% for a
+  10% cut) are reproduced only when the cut applies to Canadian imports; a
+  two-way cut gives more than twice as much. Both versions are provided
+  (`t5c5_import_costs_minus10`: 3.30%; two-way: 9.34%).
+
+### Added
+
+- Exporter-specific (asymmetric) trade costs (Waugh, 2010), the augmented
+  Head-Ries index (`trade_costs$measured_index: augmented`) and the
+  `eliminate_asymmetries` experiment.
+- The trade-cost decomposition of Alvarez et al. (2019): distance in thousands
+  of km, neighbour indicator, interprovincial indicator by year, international
+  pairs, optional within-region pairs (`trade_costs$regressors`, `$geographic`,
+  `$year_interactions`, `$own_pairs`); `config/sensitivity_gravity_levels.yml`
+  applies it to the main model (non-geographic barriers for goods: 4.96%; all
+  sectors: 23.1%).
+- Gains-from-trade experiments (`autarky` shocks, `report: gains_from_trade`),
+  with a check that isolated regions can finance their trade imbalances.
+- Measured-cost experiments for any importers and exporters (external costs,
+  unilateral liberalization, blocs of provinces) and partial eliminations
+  (`fraction`).
+- Uniform trade elasticities (`trade_elasticities$method: uniform`) and
+  command-line overrides (`--set key=value`).
+- Trade-weighted summaries of measured, geographic, non-geographic and
+  asymmetric costs (`trade_cost_summary.csv`) and exporter-specific costs
+  (`exporter_costs.csv`).
+- Configurations, sector schemes and elasticities for the three papers. The
+  goods elasticities of Manucha and Tombe (2022), which the paper does not
+  list, are recovered from its measured costs (manufacturing 8.9, mining 15.8,
+  agriculture 6.9); inverting its Table 1 for services returns 4.9-5.2 against
+  the stated 5, which validates the data.
+- Tests for the new estimators (recovery of exporter costs and of both gravity
+  specifications on synthetic data), autarky (ACR formula), the floor, scenario
+  targeting, configuration overrides and the benchmark file.
+
+### Findings (see `docs/replication.md`)
+
+- Albrecht and Tombe: gains from trade, 10% cost cuts, measured-cost
+  experiments and non-distance elimination are reproduced (e.g. 4.2 vs 4.4,
+  3.15 vs 3.6, 0.82 vs 0.9, 6.4 vs 6.8), as are their measured trade costs;
+  removing asymmetries gives more (5.1 vs 3.3).
+- Alvarez et al.: gains from trade reproduced (4.5 / 10.0 / 18.9 vs 5.1 / 10.9 /
+  19.6); eliminating non-geographic barriers for goods gives 1.4-2.3 times their
+  figures, because measured costs in current data are higher than they report.
+  The main model's much smaller goods figure (0.42% vs 3.8%) is due to the
+  gravity specification.
+- Manucha and Tombe: non-distance experiments reproduced by the main model (4.6
+  vs 4.4; services 4.2 vs 4.2). Their 6.7% gain from a uniform 10% cut is not
+  reproduced: the model gives 3.1-3.7%, which is what the paper's own
+  first-order approximation (its Table 2) implies.
+- The trade elasticities explain most of the remaining difference between the
+  main model and Albrecht and Tombe: with the papers' elasticities the main
+  model gives 3.05, 2.81, 0.80, 6.23 and 54.2 against 3.6, 2.9, 0.9, 6.8 and 51.9.
+
+### Removed
+
+- `config/replication_tombe_2019.yml` (see above). `config/parameters/theta_tombe_2019_replication.csv`
+  is renamed `theta_albrecht_tombe_2016_base37.csv` (it holds Albrecht and
+  Tombe's Table 9 values mapped to the 37 sectors).
+
 ## 2026-10-02 — Unified, corrected model calibrated to 2022
 
 The five overlapping script variants (2015 replication and improvement, 2019

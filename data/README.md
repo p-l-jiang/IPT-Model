@@ -43,10 +43,12 @@ raw file and the extract.
 ## raw/legacy
 
 `2006_dist_mat_legacy.csv`: normalized distances between the ten provinces
-computed by the legacy script from the 2006 Geographic Attribute File (used by
-the Albrecht and Tombe, 2016, replication configuration). The raw 2006 file is
-not in the repository, so this file could not be regenerated with the
-corrected reader; it lies within about 6% of correctly weighted 2021 values.
+computed by the legacy script from the 2006 Geographic Attribute File. The raw
+2006 file is not in the repository, so this file could not be regenerated with
+the corrected reader; it lies within about 6% of correctly weighted 2021
+values. No configuration uses it (the Albrecht and Tombe replication uses the
+2021 census distances); it is kept for reference and can be selected with
+`paths$distances`.
 
 ## raw/statcan (not committed)
 
@@ -67,7 +69,9 @@ model can be re-estimated and re-run without downloading anything:
 | `phi.csv`, `beta.csv`, `gamma.csv.gz`, `io_parameters.rds` | production and demand parameters |
 | `measured_trade_costs.csv.gz` | Head-Ries trade costs |
 | `gravity_coefficients.csv` | distance and adjacency elasticities by sector |
-| `trade_cost_decomposition.csv` | geographic / non-geographic components, 2022 |
+| `exporter_costs.csv` | exporter-specific (asymmetric) trade costs by region, sector and year |
+| `trade_cost_decomposition.csv` | geographic, non-geographic and asymmetric components for every pair, 2022 |
+| `trade_cost_summary.csv` | trade-weighted averages of the components by sector, exporter and importer |
 | `trade_elasticities.csv` | trade elasticities with their derivation |
 | `baseline.rds`, `baseline_diagnostics.csv` | calibrated baseline and diagnostics |
 

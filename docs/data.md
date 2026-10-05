@@ -16,6 +16,7 @@ calibration year is 2022 in the main configuration.
 | Bank of Canada, series [FXUSDCAD](https://www.bankofcanada.ca/valet/observations/FXUSDCAD/csv) | Daily CAD per USD | May 2007 - May 2025 | `data/raw/fx/FXUSDCAD.csv` | committed |
 | Statistics Canada, census Geographic Attribute File (92-151-X), 2021 | Dissemination-block population and dissemination-area representative points | 2021 | `data/raw/census/2021_da_extract.csv` | committed extract (Yukon missing; see below) |
 | Charbonneau and Landry (2018), Table 1 | Sectoral trade elasticities | 1993 and 2016 estimates | `config/parameters/boc2018_trade_elasticities.csv` | transcribed |
+| Albrecht and Tombe (2016, working paper of May 2015), Alvarez, Krznar and Tombe (2019), Manucha and Tombe (2022) | Published results, measured trade costs and gravity estimates used for the replication comparison | 2010, 2015, 2018 | `config/benchmarks/published_results.csv` | transcribed (see `docs/replication.md`) |
 
 Statistics Canada downloads are cached in `data/raw/statcan/` (git-ignored),
 together with compact extracts that later runs read instead of the full files.
@@ -134,13 +135,13 @@ used when the gravity sample includes international pairs.
   `www12.statcan.gc.ca/census-recensement/2021/geo/aip-pia/attribute-attribs/`)
   in `data/raw/census/`, point `paths$census_da` to it and re-run
   `scripts/02_build_distances.R`; the reader identifies provinces by code.
-* **2006 distances (replication of Albrecht and Tombe, 2016).** The raw 2006
-  file is not in the repository; the replication configuration uses the
-  normalized distances produced by the legacy script
-  (`data/raw/legacy/2006_dist_mat_legacy.csv`). They are within about 6% of
-  correctly weighted 2021 values, so they do not appear to be affected by the
-  factor-code bug that corrupted the legacy 2011 matrix (removed), but they
-  could not be regenerated.
+* **2006 distances.** The raw 2006 file is not in the repository; the
+  normalized distances produced by the legacy script are kept in
+  `data/raw/legacy/2006_dist_mat_legacy.csv` for reference. They are within
+  about 6% of correctly weighted 2021 values, so they do not appear to be
+  affected by the factor-code bug that corrupted the legacy 2011 matrix
+  (removed), but they could not be regenerated. All configurations, including
+  the Albrecht and Tombe (2016) replication, use the 2021 census distances.
 * **Inter-city price indexes** end in 2019 and do not cover Iqaluit; they are
   only used when Canada-wide results are weighted by real income
   (`aggregation$canada_weights: real_income`).
