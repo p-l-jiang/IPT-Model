@@ -1,6 +1,9 @@
 # Downloaded source data and caches (re-created by scripts/01_download_data.R)
 data/raw/statcan/
 
+# Downloaded census data for distance calculations
+data/raw/census/
+
 # Processed inputs are committed for the main configuration only
 data/processed/*/
 !data/processed/default/

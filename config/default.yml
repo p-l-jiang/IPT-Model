@@ -16,7 +16,7 @@ paths:
   statcan_cache: data/raw/statcan          # downloaded StatCan tables (git-ignored)
   icio_file: data/raw/icio/{year}.csv
   fx_file: data/raw/fx/FXUSDCAD.csv
-  census_da: data/raw/census/2021_da_extract.csv
+  census_da: data/raw/census/2021_92-151_X.csv
   distances: data/processed/distances_2021.csv
   output: output/{name}
 
