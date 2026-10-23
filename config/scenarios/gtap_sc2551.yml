@@ -1,0 +1,110 @@
+# GTAP SC2551: July 20 2026 US tariffs + Sept 08 update, Aug 25 Canadian retaliation: converted from the GTAP shock file SC2551.PSH
+# by scripts/convert_gtap_shocks.R on 2026-10-23 (configuration default).
+# 
+# tms -> ad valorem tariffs (rate = tms / 100: same change in the power of the tariff,
+#   revenue rebated to the importer). qxs -> iceberg cost with the same partial-equilibrium
+#   change in the flow, factor = (1 + q)^(-1/theta), no revenue.
+# GTAP Canada -> all provinces and territories (same rate in each); USA -> USA; all other
+#   GTAP regions -> ROW. Where an IPT sector or ROW holds several GTAP commodities or regions,
+#   the rate is their trade-weighted average (weights: OECD ICIO 2022 bilateral trade (intermediate + final use)).
+#   Concordances: config/concordances/gtap/. Audit table: gtap_sc2551_conversion.csv.
+# Comments after each shock: the GTAP commodities behind it, their average change in the cell
+#   and their share (w) of the cell's baseline trade.
+
+scenarios:
+  - id: gtap_sc2551
+    label: "GTAP SC2551: July 20 2026 US tariffs + Sept 08 update, Aug 25 Canadian retaliation, fixed populations"
+    tariff_treatment: ad_valorem
+    migration_elasticity: 0
+    shocks: &gtap_sc2551_shocks
+      # Imports of the United States from Canada
+      - {type: tariff, importers: ["USA"], exporters: domestic, sectors: [AGR], rate: 0.015425}   # c_Agricult 1.51% (w 0.74), c_Frst_Fsh 1.63% (w 0.26)
+      - {type: tariff, importers: ["USA"], exporters: domestic, sectors: [MIE], rate: 0.000004}   # c_OtherExt 0.23% (w 0.00)
+      - {type: tariff, importers: ["USA"], exporters: domestic, sectors: [MIN], rate: 0.002253}   # c_OtherExt 0.23% (w 1.00)
+      - {type: tariff, importers: ["USA"], exporters: domestic, sectors: [FOD], rate: 0.005415}   # c_ProcFood 0.57% (w 0.96)
+      - {type: tariff, importers: ["USA"], exporters: domestic, sectors: [TEX], rate: 0.205759}   # c_Text_Cloth 20.58% (w 1.00)
+      - {type: tariff, importers: ["USA"], exporters: domestic, sectors: [WOD], rate: 0.091331}   # c_Wood_Paper 9.13% (w 1.00)
+      - {type: tariff, importers: ["USA"], exporters: domestic, sectors: [PAP], rate: 0.091331}   # c_Wood_Paper 9.13% (w 1.00)
+      - {type: tariff, importers: ["USA"], exporters: domestic, sectors: [PET], rate: 0.000144}   # c_Petrol 0.01% (w 1.00)
+      - {type: tariff, importers: ["USA"], exporters: domestic, sectors: [CHM], rate: 0.089305}   # c_Chemicals 3.70% (w 0.77), c_Pharma 26.19% (w 0.23)
+      - {type: tariff, importers: ["USA"], exporters: domestic, sectors: [RUB], rate: 0.141548}   # c_Rbr_Plast 14.15% (w 1.00)
+      - {type: tariff, importers: ["USA"], exporters: domestic, sectors: [NMM], rate: 0.043937}   # c_OthMinPrds 4.39% (w 1.00)
+      - {type: tariff, importers: ["USA"], exporters: domestic, sectors: [BMT], rate: 0.289623}   # c_OthNFMtl 25.27% (w 0.75), c_Steel 40.24% (w 0.25)
+      - {type: tariff, importers: ["USA"], exporters: domestic, sectors: [FMT], rate: 0.388446}   # c_MetalPrds 38.84% (w 1.00)
+      - {type: tariff, importers: ["USA"], exporters: domestic, sectors: [ELC], rate: 0.158326}   # c_Comp_ElcEq 15.83% (w 1.00)
+      - {type: tariff, importers: ["USA"], exporters: domestic, sectors: [ELQ], rate: 0.200648}   # c_ElctrclEq 20.06% (w 1.00)
+      - {type: tariff, importers: ["USA"], exporters: domestic, sectors: [MAC], rate: 0.119981}   # c_OME 12.00% (w 1.00)
+      - {type: tariff, importers: ["USA"], exporters: domestic, sectors: [MTV], rate: 0.106666}   # c_Autos 10.67% (w 1.00)
+      - {type: tariff, importers: ["USA"], exporters: domestic, sectors: [OTE], rate: 0.014592}   # c_OthTransEq 1.46% (w 1.00)
+      - {type: tariff, importers: ["USA"], exporters: domestic, sectors: [MFN], rate: 0.169905}   # c_OthMfct 16.99% (w 1.00)
+      - {type: iceberg, importers: ["USA"], exporters: domestic, sectors: [FOD], factor: 1.005948}   # c_BevTbco -45.65% (w 0.04); flow change -2.05%, theta 3.5
+      # Imports of the United States from the rest of the world
+      - {type: tariff, importers: ["USA"], exporters: ["ROW"], sectors: [AGR], rate: 0.057843}   # c_Agricult 4.44% (w 0.72), c_Frst_Fsh 9.24% (w 0.28)
+      - {type: tariff, importers: ["USA"], exporters: ["ROW"], sectors: [MIE], rate: 0.000104}   # c_OtherExt 3.19% (w 0.00)
+      - {type: tariff, importers: ["USA"], exporters: ["ROW"], sectors: [MIN], rate: 0.034021}   # c_OtherExt 3.40% (w 1.00)
+      - {type: tariff, importers: ["USA"], exporters: ["ROW"], sectors: [FOD], rate: 0.065972}   # c_ProcFood 6.49% (w 0.96), c_BevTbco 8.87% (w 0.04)
+      - {type: tariff, importers: ["USA"], exporters: ["ROW"], sectors: [TEX], rate: 0.097209}   # c_Text_Cloth 9.72% (w 1.00)
+      - {type: tariff, importers: ["USA"], exporters: ["ROW"], sectors: [WOD], rate: 0.087616}   # c_Wood_Paper 8.76% (w 1.00)
+      - {type: tariff, importers: ["USA"], exporters: ["ROW"], sectors: [PAP], rate: 0.087081}   # c_Wood_Paper 8.71% (w 1.00)
+      - {type: tariff, importers: ["USA"], exporters: ["ROW"], sectors: [PET], rate: 0.002520}   # c_Petrol 0.25% (w 1.00)
+      - {type: tariff, importers: ["USA"], exporters: ["ROW"], sectors: [CHM], rate: 0.146695}   # c_Pharma 19.21% (w 0.53), c_Chemicals 9.57% (w 0.47)
+      - {type: tariff, importers: ["USA"], exporters: ["ROW"], sectors: [RUB], rate: 0.089048}   # c_Rbr_Plast 8.90% (w 1.00)
+      - {type: tariff, importers: ["USA"], exporters: ["ROW"], sectors: [NMM], rate: 0.091086}   # c_OthMinPrds 9.11% (w 1.00)
+      - {type: tariff, importers: ["USA"], exporters: ["ROW"], sectors: [BMT], rate: 0.312385}   # c_Steel 40.76% (w 0.53), c_OthNFMtl 20.47% (w 0.47)
+      - {type: tariff, importers: ["USA"], exporters: ["ROW"], sectors: [FMT], rate: 0.292995}   # c_MetalPrds 29.30% (w 1.00)
+      - {type: tariff, importers: ["USA"], exporters: ["ROW"], sectors: [ELC], rate: 0.064401}   # c_Comp_ElcEq 6.44% (w 1.00)
+      - {type: tariff, importers: ["USA"], exporters: ["ROW"], sectors: [ELQ], rate: 0.134322}   # c_ElctrclEq 13.43% (w 1.00)
+      - {type: tariff, importers: ["USA"], exporters: ["ROW"], sectors: [MAC], rate: 0.123087}   # c_OME 12.31% (w 1.00)
+      - {type: tariff, importers: ["USA"], exporters: ["ROW"], sectors: [MTV], rate: 0.149108}   # c_Autos 14.91% (w 1.00)
+      - {type: tariff, importers: ["USA"], exporters: ["ROW"], sectors: [OTE], rate: 0.028030}   # c_OthTransEq 2.80% (w 1.00)
+      - {type: tariff, importers: ["USA"], exporters: ["ROW"], sectors: [MFN], rate: 0.097396}   # c_OthMfct 9.74% (w 1.00)
+      # Imports of Canada from the United States
+      - {type: tariff, importers: domestic, exporters: ["USA"], sectors: [AGR], rate: 0.000311}   # c_Agricult 0.03% (w 0.90)
+      - {type: tariff, importers: domestic, exporters: ["USA"], sectors: [FOD], rate: 0.012248}   # c_ProcFood 1.28% (w 0.96)
+      - {type: tariff, importers: domestic, exporters: ["USA"], sectors: [TEX], rate: 0.066614}   # c_Text_Cloth 6.66% (w 1.00)
+      - {type: tariff, importers: domestic, exporters: ["USA"], sectors: [WOD], rate: 0.120504}   # c_Wood_Paper 12.05% (w 1.00)
+      - {type: tariff, importers: domestic, exporters: ["USA"], sectors: [PAP], rate: 0.120504}   # c_Wood_Paper 12.05% (w 1.00)
+      - {type: tariff, importers: domestic, exporters: ["USA"], sectors: [CHM], rate: 0.012908}   # c_Chemicals 1.60% (w 0.81)
+      - {type: tariff, importers: domestic, exporters: ["USA"], sectors: [RUB], rate: 0.038676}   # c_Rbr_Plast 3.87% (w 1.00)
+      - {type: tariff, importers: domestic, exporters: ["USA"], sectors: [NMM], rate: 0.043707}   # c_OthMinPrds 4.37% (w 1.00)
+      - {type: tariff, importers: domestic, exporters: ["USA"], sectors: [BMT], rate: 0.243966}   # c_OthNFMtl 11.32% (w 0.63), c_Steel 46.30% (w 0.37)
+      - {type: tariff, importers: domestic, exporters: ["USA"], sectors: [FMT], rate: 0.261222}   # c_MetalPrds 26.12% (w 1.00)
+      - {type: tariff, importers: domestic, exporters: ["USA"], sectors: [ELC], rate: 0.040501}   # c_Comp_ElcEq 4.05% (w 1.00)
+      - {type: tariff, importers: domestic, exporters: ["USA"], sectors: [ELQ], rate: 0.037839}   # c_ElctrclEq 3.78% (w 1.00)
+      - {type: tariff, importers: domestic, exporters: ["USA"], sectors: [MAC], rate: 0.026198}   # c_OME 2.62% (w 1.00)
+      - {type: tariff, importers: domestic, exporters: ["USA"], sectors: [MTV], rate: 0.127107}   # c_Autos 12.71% (w 1.00)
+      - {type: tariff, importers: domestic, exporters: ["USA"], sectors: [OTE], rate: 0.022020}   # c_OthTransEq 2.20% (w 1.00)
+      - {type: tariff, importers: domestic, exporters: ["USA"], sectors: [MFN], rate: 0.069800}   # c_OthMfct 6.98% (w 1.00)
+      # Imports of Canada from the rest of the world
+      - {type: tariff, importers: domestic, exporters: ["ROW"], sectors: [BMT], rate: 0.060741}   # c_OthNFMtl 3.82% (w 0.51), c_Steel 8.38% (w 0.49)
+      - {type: tariff, importers: domestic, exporters: ["ROW"], sectors: [MTV], rate: 0.002607}   # c_Autos 0.26% (w 1.00)
+      # Imports of the rest of the world from the United States
+      - {type: tariff, importers: ["ROW"], exporters: ["USA"], sectors: [AGR], rate: 0.068892}   # c_Agricult 7.01% (w 0.95), c_Frst_Fsh 4.55% (w 0.05)
+      - {type: tariff, importers: ["ROW"], exporters: ["USA"], sectors: [MIE], rate: 0.011526}   # c_Oil_Gas 1.11% (w 0.93), c_OtherExt 1.73% (w 0.07)
+      - {type: tariff, importers: ["ROW"], exporters: ["USA"], sectors: [MIN], rate: 0.023552}   # c_OtherExt 2.36% (w 1.00)
+      - {type: tariff, importers: ["ROW"], exporters: ["USA"], sectors: [FOD], rate: 0.017270}   # c_ProcFood 1.81% (w 0.95)
+      - {type: tariff, importers: ["ROW"], exporters: ["USA"], sectors: [TEX], rate: 0.007596}   # c_Text_Cloth 0.76% (w 1.00)
+      - {type: tariff, importers: ["ROW"], exporters: ["USA"], sectors: [WOD], rate: 0.016189}   # c_Wood_Paper 1.62% (w 1.00)
+      - {type: tariff, importers: ["ROW"], exporters: ["USA"], sectors: [PAP], rate: 0.012269}   # c_Wood_Paper 1.23% (w 1.00)
+      - {type: tariff, importers: ["ROW"], exporters: ["USA"], sectors: [PET], rate: 0.007146}   # c_Petrol 0.71% (w 1.00)
+      - {type: tariff, importers: ["ROW"], exporters: ["USA"], sectors: [CHM], rate: 0.010006}   # c_Chemicals 1.15% (w 0.67), c_Pharma 0.69% (w 0.33)
+      - {type: tariff, importers: ["ROW"], exporters: ["USA"], sectors: [RUB], rate: 0.009053}   # c_Rbr_Plast 0.91% (w 1.00)
+      - {type: tariff, importers: ["ROW"], exporters: ["USA"], sectors: [NMM], rate: 0.025604}   # c_OthMinPrds 2.56% (w 1.00)
+      - {type: tariff, importers: ["ROW"], exporters: ["USA"], sectors: [BMT], rate: 0.014888}   # c_OthNFMtl 2.00% (w 0.68), c_Steel 0.42% (w 0.32)
+      - {type: tariff, importers: ["ROW"], exporters: ["USA"], sectors: [FMT], rate: 0.007110}   # c_MetalPrds 0.71% (w 1.00)
+      - {type: tariff, importers: ["ROW"], exporters: ["USA"], sectors: [ELC], rate: 0.019202}   # c_Comp_ElcEq 1.92% (w 1.00)
+      - {type: tariff, importers: ["ROW"], exporters: ["USA"], sectors: [ELQ], rate: 0.007872}   # c_ElctrclEq 0.79% (w 1.00)
+      - {type: tariff, importers: ["ROW"], exporters: ["USA"], sectors: [MAC], rate: 0.010536}   # c_OME 1.05% (w 1.00)
+      - {type: tariff, importers: ["ROW"], exporters: ["USA"], sectors: [MTV], rate: 0.017233}   # c_Autos 1.72% (w 1.00)
+      - {type: tariff, importers: ["ROW"], exporters: ["USA"], sectors: [OTE], rate: 0.006370}   # c_OthTransEq 0.64% (w 1.00)
+      - {type: tariff, importers: ["ROW"], exporters: ["USA"], sectors: [MFN], rate: 0.012494}   # c_OthMfct 1.25% (w 1.00)
+      # Imports of the rest of the world from Canada
+      - {type: tariff, importers: ["ROW"], exporters: domestic, sectors: [AGR], rate: 0.000163}   # c_Frst_Fsh 0.22% (w 0.08)
+      - {type: tariff, importers: ["ROW"], exporters: domestic, sectors: [FOD], rate: 0.022254}   # c_ProcFood 2.33% (w 0.96)
+
+  - id: gtap_sc2551_mobility
+    label: "GTAP SC2551: July 20 2026 US tariffs + Sept 08 update, Aug 25 Canadian retaliation, interprovincial labour mobility"
+    tariff_treatment: ad_valorem
+    migration_elasticity: 1.5
+    shocks: *gtap_sc2551_shocks
+

@@ -147,6 +147,19 @@ unilateral liberalization by Alberta or a bloc of provinces:
       - {type: eliminate_nongeographic, importers: ["AB"], exporters: domestic, sectors: all}
 ```
 
+**From a GTAP shock file.** `scripts/convert_gtap_shocks.R` turns the `tms`
+(import tariff) and `qxs` (export volume) shocks of a GTAP `.psh`/`.cmf` into a
+scenario file. Tariffs carry over as ad valorem rates, while quantity restrictions
+become iceberg costs with the same partial-equilibrium flow change. GTAP regions
+other than Canada and the US are trade-weighted into ROW, and GTAP commodities
+into IPT sectors (concordances in `config/concordances/gtap/`; weights from the
+ICIO table or from GTAP's `VCIF`):
+
+```sh
+Rscript scripts/convert_gtap_shocks.R --psh SC2551.PSH --id gtap_sc2551
+Rscript scripts/07_run_scenarios.R --set "scenarios=[config/scenarios/gtap_sc2551.yml]"
+```
+
 Region groups: `all`, `domestic`, `provinces`, `territories`, `foreign`, or a
 list of codes; sector groups: `all`, `goods`, `services`, or a list of codes
 (`config/concordances/sectors.csv`). With `report: gains_from_trade`, results
